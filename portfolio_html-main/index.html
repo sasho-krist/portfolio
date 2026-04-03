@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aleksander Keremidarov — Portfolio</title>
+  <meta name="description" content="Portfolio website for Aleksander Keremidarov — Laravel / PHP backend developer." />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b1220;
+      --panel: #0f172a;
+      --muted: #94a3b8;
+      --text: #e2e8f0;
+      --accent: #22d3ee;
+      --accent-2: #a78bfa;
+      --ring: rgba(34,211,238,.4);
+      --shadow: 0 10px 25px rgba(0,0,0,.4);
+      --radius: 18px;
+      --radius-lg: 26px;
+      --pad: 18px;
+      --speed: 220ms;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0; padding:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text)}
+    a{color:var(--accent)}
+    img{max-width:100%; display:block}
+    .container{max-width:1100px; margin:0 auto; padding:0 20px}
+    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.5) blur(10px); background:linear-gradient(180deg, rgba(11,18,32,.9), rgba(11,18,32,.6)); border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.4px}
+    .brand .dot{width:10px; height:10px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--accent-2)); box-shadow:0 0 20px var(--ring)}
+    .links a{margin-left:16px; text-decoration:none; color:var(--text); opacity:.9}
+    .links a:hover{opacity:1}
+
+    .hero{padding:72px 0 36px}
+    .hero-wrap{display:grid; grid-template-columns:1.1fr .9fr; gap:22px; align-items:center}
+    .tag{display:inline-flex; align-items:center; gap:8px; font-size:12px; padding:6px 10px; border:1px solid rgba(255,255,255,.12); border-radius:999px; color:var(--muted)}
+    .tag .ping{width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 6px var(--ring)}
+    h1{font-size:42px; line-height:1.05; margin:16px 0}
+    .subtitle{color:var(--muted); font-size:16px; max-width:58ch}
+    .hero-card{background:radial-gradient(1200px 400px at -10% -10%, rgba(34,211,238,.08), transparent 40%), radial-gradient(1400px 600px at 120% -10%, rgba(167,139,250,.07), transparent 40%), var(--panel); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius-lg); padding:28px; box-shadow:var(--shadow)}
+    .hero-actions{display:flex; gap:12px; margin-top:18px}
+    .btn{appearance:none; border:0; background:transparent; color:var(--text); padding:10px 14px; border-radius:12px; cursor:pointer; transition:transform var(--speed), box-shadow var(--speed), border-color var(--speed); border:1px solid rgba(255,255,255,.12)}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{background:linear-gradient(135deg, rgba(34,211,238,.15), rgba(167,139,250,.15)); border-color:rgba(255,255,255,.22)}
+
+    section{padding:40px 0}
+    .card{background:var(--panel); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:var(--pad); box-shadow:var(--shadow)}
+    .grid{display:grid; gap:18px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+
+    .about p{color:var(--muted)}
+
+    .projects .project{display:flex; flex-direction:column;}
+    .project h3{margin:0 0 6px 0; font-size:18px}
+    .project .meta{display:flex; gap:10px; flex-wrap:wrap; color:var(--muted); font-size:12px; margin:6px 0 10px}
+    .project .desc{color:var(--text); opacity:.9}
+    .project .actions{display:flex; gap:10px; margin-top:auto}
+    .pill{font-size:12px; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.06)}
+
+    details.readme{margin-top:10px}
+    details.readme summary{cursor:pointer; color:var(--accent)}
+    .readme-body{margin-top:10px; color:var(--text)}
+    .readme-body h1,.readme-body h2,.readme-body h3{margin-top:1.2em}
+    .readme-body pre{overflow:auto; padding:12px; border-radius:12px; background:#0a0f1a}
+    .readme-body code{font-family: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+
+    .contact form{display:grid; gap:10px}
+    .contact label{font-size:12px; color:var(--muted)}
+    .contact input,.contact textarea{width:100%; padding:12px 14px; border-radius:12px; background:#0a0f1a; color:var(--text); border:1px solid rgba(255,255,255,.08)}
+    .contact textarea{min-height:140px}
+
+    footer{padding:40px 0 60px; color:var(--muted); text-align:center}
+
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+
+    @media (max-width: 980px){
+      .hero-wrap{grid-template-columns:1fr}
+      .grid.cols-3{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width: 680px){
+      .grid.cols-3, .grid.cols-2{grid-template-columns:1fr}
+      h1{font-size:34px}
+    }
+  
+    /* ---------------------------------------------
+       Project card redesign — matches provided mock
+       (non-breaking overrides appended at end)
+       --------------------------------------------- */
+    .projects .project{position:relative; display:grid !important; grid-template-columns:1fr 1fr; grid-template-areas:
+      'title title'
+      'desc desc'
+      'readme actions';
+      gap:10px 12px; padding-top:34px}
+    .projects .project h3{grid-area:title; font-size:20px; margin:6px 0 0 0}
+    .projects .project .desc{grid-area:desc; line-height:1.6; margin:0 0 4px}
+
+    /* Top-left meta bar */
+    .projects .project .meta{position:absolute; top:-14px; left:-14px; display:flex; gap:8px; background:#0e1a2c; border:1px solid rgba(255,255,255,.08); padding:8px 10px; border-radius:12px; box-shadow:var(--shadow)}
+    .projects .project .meta .pill{font-size:12px; padding:6px 10px; border-radius:999px; background:#0c1424; border:1px solid rgba(255,255,255,.08); color:#cbd5e1}
+
+    /* Left button: Read full README */
+    .projects .project details.readme{grid-area:readme}
+    .projects .project details.readme>summary{list-style:none; display:inline-flex; align-items:center; gap:10px; padding:12px 14px; background:#0e1a2c; border:1px solid rgba(255,255,255,.08); border-radius:10px; color:var(--accent); cursor:pointer; user-select:none}
+    .projects .project details.readme>summary::-webkit-details-marker{display:none}
+    .projects .project details.readme>summary::before{content:'▶'; opacity:.9; transform:translateY(1px); transition:transform var(--speed)}
+    .projects .project details.readme[open]>summary::before{transform:rotate(90deg)}
+
+    /* Right button: View Repo styled as dark box with inner outline */
+    .projects .project .actions{grid-area:actions; display:flex; justify-content:flex-end; align-items:center}
+    .projects .project .actions .btn.primary{position:relative; background:#0e1a2c; border:1px solid rgba(255,255,255,.08)}
+    .projects .project .actions .btn.primary::after{content:''; position:absolute; inset:0; border-radius:12px; pointer-events:none; box-shadow:inset 0 0 0 1px rgba(255,255,255,.18), 0 0 0 1px rgba(0,0,0,.1)}
+    .projects .project .actions .btn.primary strong{font-weight:700; letter-spacing:.3px}
+
+    /* README body spacing */
+    .projects .project .readme-body{margin-top:10px}
+
+    @media (max-width: 680px){
+      .projects .project{grid-template-columns:1fr; grid-template-areas:
+        'title'
+        'desc'
+        'readme'
+        'actions'}
+      .projects .project .actions{justify-content:stretch}
+      .projects .project .actions .btn.primary{width:100%; text-align:center}
+      .projects .project details.readme{width:100%}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="dot"></span> <span> Alexander·Keremidarov</span></div>
+      <nav class="links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-wrap">
+        <div class="copy">
+          <span class="tag"><span class="ping" aria-hidden="true"></span> Available for backend projects</span>
+          <h1>Laravel / WordPess PHP Backend Developer</h1>
+          <p class="subtitle">I build reliable, testable services and APIs in Laravel/WordPress and PHP, integrate with queues (RabbitMQ), real-time WebSockets, and craft clean, modular architectures. Below are selected projects with descriptions extracted directly from their READMEs.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#projects">Explore Projects</a>
+            <a class="btn" href="https://github.com/sashokrist" target="_blank" rel="noopener">GitHub Profile</a>
+          </div>
+        </div>
+        <div class="hero-card card">
+          <h3 style="margin-top:0">Quick facts</h3>
+          <ul style="margin:8px 0 0 18px; color:var(--muted)">
+            <li>Core: Laravel 10+, WordPress PHP 8+, JavaScript, Ajax, MySQL/MariaDB</li>
+            <li>Real-time: Laravel WebSockets, queues (RabbitMQ)</li>
+            <li>Frontends: HTML, CSS, Bootstrap, Tailwind CSS, Blade, React, Vue 3 (learning)</li>
+            <li>DevOps-ish: Nginx, XAMPP on Windows, WSL; no Docker (by choice)</li>
+			<li>Version Control: GitHub, Bitbucket</li>
+			<li>Project Management: Jira, Trello, Monday</li>
+			<li>Hosting CPanel, FTP, SSH, installing different CMS, Mail config, database config</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container">
+        <div class="card">
+          <h2 style="margin-top:0">About me</h2>
+          <p>Hi, I'm <strong>Aleksander Keremidarov</strong> — a backend web developer focused on Laravel/WordPress and PHP. I enjoy designing clear service interfaces, building robust APIs, and shipping features with pragmatic trade-offs. I'm currently expanding my skills in Node.js and front-end frameworks while keeping performance, DX, and maintainability top-of-mind.</p>
+          <p>If you like what you see, drop me a message below or ping me on.
+		  <a href="https://github.com/sashokrist" target="_blank" rel="noopener">GitHub @sashokrist</a>
+		  </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects">
+      <div class="container">
+        <h2 style="margin:0 0 12px">Projects</h2>
+        <div class="grid cols-3" aria-live="polite">
+          <!-- 1) wp_CMS_real_estate -->
+          <article class="project card">
+            <div class="meta">
+              <span class="pill">PHP</span>
+              <span class="pill">WordPress</span>
+            </div>
+            <h3>wp_CMS_real_estate</h3>
+            <p class="desc">WordPress solution (custom plugin + “REP Dark” theme) for a real estate portal. Includes CPTs for Properties, Renovation Services, and News, archive templates with filtering (type, location, price, beds/baths), and shortcodes to compose the homepage quickly.</p>
+            <div class="actions">
+              <a class="btn primary" href="https://github.com/sashokrist/wp_CMS_real_estate" target="_blank" rel="noopener">View Repo</a>
+            </div>
+          </article>
+
+          <!-- 2) wp-api-hotel-booking -->
+          <article class="project card">
+            <div class="meta">
+              <span class="pill">PHP</span>
+              <span class="pill">WordPress</span>
+              <span class="pill">Laravel API</span>
+            </div>
+            <h3>wp-api-hotel-booking</h3>
+            <p class="desc">Minimal WordPress theme + plugin that consumes a Laravel Hotel Booking API. Lists bookings and provides a “Create Booking” form with customer/room dropdowns and total-price auto‑calculation; easy to configure API base URL and auth.</p>
+            <div class="actions">
+              <a class="btn primary" href="https://github.com/sashokrist/wp-api-hotel-booking" target="_blank" rel="noopener">View Repo</a>
+            </div>
+          </article>
+
+          <!-- 3) haircut_booking -->
+          <article class="project card">
+            <div class="meta">
+              <span class="pill">PHP</span>
+              <span class="pill">WordPress</span>
+            </div>
+            <h3>haircut_booking</h3>
+            <p class="desc">Full WordPress install containing a custom Haircut Booking plugin and Bootstrap theme for salons. Admin manages bookings, customers, services, and employees; includes an optional public booking shortcode for the website.</p>
+            <div class="actions">
+              <a class="btn primary" href="https://github.com/sashokrist/haircut_booking" target="_blank" rel="noopener">View Repo</a>
+            </div>
+          </article>
+
+          <!-- 4) traffic_tracker -->
+          <article class="project card">
+            <div class="meta">
+              <span class="pill">PHP</span>
+              <span class="pill">Laravel</span>
+            </div>
+            <h3>traffic_tracker</h3>
+            <p class="desc">Laravel‑based website traffic tracker. Embeddable JS snippet logs visits and resolves geo‑location (ip‑api.com). Admin dashboard offers filters, table/card views, Excel export and scheduled email summaries; includes Swagger documentation.</p>
+            <div class="actions">
+              <a class="btn primary" href="https://github.com/sashokrist/traffic_tracker" target="_blank" rel="noopener">View Repo</a>
+            </div>
+          </article>
+
+          <!-- 5) football_results_live_data -->
+          <article class="project card">
+            <div class="meta">
+              <span class="pill">PHP</span>
+              <span class="pill">WordPress</span>
+            </div>
+            <h3>football_results_live_data</h3>
+            <p class="desc">WordPress plugin that fetches real football data via API‑Football v3. Generates pages and shortcodes for Results, Live Scores, Fixtures, Top Scorers, and League Table; styled and easily extendable.</p>
+            <div class="actions">
+              <a class="btn primary" href="https://github.com/sashokrist/football_results_live_data" target="_blank" rel="noopener">View Repo</a>
+            </div>
+          </article>
+
+          <!-- 6) booking-hotel-app -->
+          <article class="project card">
+            <div class="meta">
+              <span class="pill">PHP</span>
+              <span class="pill">Laravel</span>
+            </div>
+            <h3>booking-hotel-app</h3>
+            <p class="desc">Laravel application that synchronizes bookings, guests, rooms and room types from an external PMS API into a local DB. Provides a console command and a web UI, background job for queued sync, logging/caching, and CSV report after each sync.</p>
+            <div class="actions">
+              <a class="btn primary" href="https://github.com/sashokrist/booking-hotel-app" target="_blank" rel="noopener">View Repo</a>
+            </div>
+          </article>
+
+          <!-- 7) Credit-Payment-System -->
+          <article class="project card">
+            <div class="meta">
+              <span class="pill">PHP</span>
+              <span class="pill">Laravel</span>
+            </div>
+            <h3>Credit-Payment-System</h3>
+            <p class="desc">Laravel credit/loan payment system. Create loans, generate schedules and make payments; includes routes and migrations/seeders with a Blade UI. Useful base for credit management flows.</p>
+            <div class="actions">
+              <a class="btn primary" href="https://github.com/sashokrist/Credit-Payment-System" target="_blank" rel="noopener">View Repo</a>
+            </div>
+          </article>
+
+          <!-- 8) openAIChatGTP -->
+          <article class="project card">
+            <div class="meta">
+              <span class="pill">PHP</span>
+              <span class="pill">Laravel</span>
+              <span class="pill">OpenAI API</span>
+            </div>
+            <h3>openAIChatGTP</h3>
+            <p class="desc">Laravel + JS app integrating the OpenAI ChatGPT API. Requires an <code>OPENAI_API_KEY</code>; includes Tailwind‑powered views and example chat screens.</p>
+            <div class="actions">
+              <a class="btn primary" href="https://github.com/sashokrist/openAIChatGTP" target="_blank" rel="noopener">View Repo</a>
+              <a class="btn" href="https://your-vibration.com/" target="_blank" rel="noopener">Live Demo</a>
+            </div>
+          </article>
+
+          <!-- 9) -_- (multi‑business bookings) -->
+          <article class="project card">
+            <div class="meta">
+              <span class="pill">PHP</span>
+              <span class="pill">Laravel</span>
+            </div>
+            <h3>-_-</h3>
+            <p class="desc">Multi‑business bookings system (doctors, hairdressers, restaurants). Flexible Eloquent models, clean controllers/services, Sanctum‑secured API and web UI; dynamic provider assignment and rich filtering.</p>
+            <div class="actions">
+              <a class="btn primary" href="https://github.com/sashokrist/-_-" target="_blank" rel="noopener">View Repo</a>
+            </div>
+          </article>
+
+          <!-- 10) credit-system -->
+          <article class="project card">
+            <div class="meta">
+              <span class="pill">PHP</span>
+              <span class="pill">Laravel</span>
+            </div>
+            <h3>credit-system</h3>
+            <p class="desc">Уеб приложение за управление на кредити (BG). Създаване на кредити с годишна лихва 7.9%, валидиране за максимум 80,000 лв. общо, плащания с проверки, автентикация, пагинация и визуални статуси.</p>
+            <div class="actions">
+              <a class="btn primary" href="https://github.com/sashokrist/credit-system" target="_blank" rel="noopener">View Repo</a>
+            </div>
+          </article>
+
+          <!-- 11) SQLBuilder-Laravel -->
+          <article class="project card">
+            <div class="meta">
+              <span class="pill">PHP</span>
+              <span class="pill">Laravel</span>
+            </div>
+            <h3>SQLBuilder-Laravel</h3>
+            <p class="desc">Small Laravel demo of a SQLBuilder interface (select, where, limit, getSQL) with a simple UI to compose a query and preview the generated SQL and results.</p>
+            <div class="actions">
+              <a class="btn primary" href="https://github.com/sashokrist/SQLBuilder-Laravel" target="_blank" rel="noopener">View Repo</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="grid cols-2">
+          <div class="card">
+            <h2 style="margin-top:0">Contact</h2>
+            <p class="subtitle">This form opens your email client with a pre-filled message.</p>
+            <form id="contactForm">
+              <div>
+                <label for="name">Your name</label>
+                <input id="name" name="name" type="text" placeholder="Jane Doe" required />
+              </div>
+              <div>
+                <label for="email">Your email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" required />
+              </div>
+              <div>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Hi Aleksander, I'd like to discuss..." required></textarea>
+              </div>
+              <button type="submit" class="btn primary">Send</button>
+            </form>
+          </div>
+          <div class="card">
+            <h3 style="margin-top:0">Direct</h3>
+            <p>Email: <a href="mailto:aleksander@example.com">aleksander@example.com</a> <!-- TODO: replace with your real email --> </p>
+            <p>GitHub: <a href="https://github.com/sashokrist" target="_blank" rel="noopener">@sashokrist</a></p>
+			<p>Phone: +359877750552</p>
+            <p style="color:var(--muted)">Prefer a calendar link or phone?
+				<a class="btn primary"
+				   href="https://calendar.app.google/TBgDARyCp4zZYttZ9"
+				   target="_blank" rel="noopener">
+				Add it here.
+				</a>
+			</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <small>© <span id="year"></span> Aleksander Keremidarov • Built with vanilla HTML/JS • Hosted anywhere</small>
+    </div>
+  </footer>
+
+  <script>
+  const $ = (sel, ctx=document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+
+  function initContact(){
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = encodeURIComponent(form.name.value.trim());
+      const email = encodeURIComponent(form.email.value.trim());
+      const message = encodeURIComponent(form.message.value.trim());
+      const to = 'aleksander@example.com'; // TODO: replace with your real email
+      const subject = `Portfolio contact from ${name}`;
+      const body = `From: ${name} (%3C${email}%3E)
+
+${message}`;
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    });
+  }
+
+  function initSmoothScroll(){
+    $$('.links a').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const href = a.getAttribute('href');
+        if(href && href.startsWith('#')){
+          e.preventDefault();
+          document.querySelector(href)?.scrollIntoView({ behavior:'smooth', block:'start' });
+        }
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('year').textContent = new Date().getFullYear();
+    initContact();
+    initSmoothScroll();
+  });
+</script>
+</body>
+</html>

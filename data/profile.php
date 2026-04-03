@@ -1,0 +1,101 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'name' => 'Aleksander Keremidarov',
+    'title' => 'Full stack Web Developer',
+    'tagline' => 'Laravel, WordPress и PHP backend с фокус върху ясна архитектура и реални бизнес процеси.',
+    'location' => 'София, България',
+    'email' => 'alexander.krist@gmail.com',
+    'phone' => '+359 877 750 552',
+    'github' => 'https://github.com/sashokrist',
+    'calendar' => 'https://calendar.app.google/TBgDARyCp4zZYttZ9',
+    'profile' => 'Резултатно ориентиран Full Stack разработчик с 5+ години опит в изграждане на мащабируеми Laravel и WordPress платформи. Разработвам RESTful API, сложна бизнес логика и съвременни интерфейси с React и Next.js. Интересувам се от чиста архитектура, производителност и практични решения.',
+    'education' => [
+        [
+            'period' => '2015 – 2018',
+            'degree' => 'Бакалавър по информационни и комуникационни технологии',
+            'school' => 'VIA University College, Дания',
+            'details' => [
+                'Фокус: Java, .NET, SQL, Android, мрежи',
+                'Дипломен проект: Laravel платформа за обяви за музикални инструменти',
+            ],
+        ],
+        [
+            'period' => '2003 – 2006',
+            'degree' => 'Java разработка и бизнес мениджмънт',
+            'school' => 'Vejle Teknik Skole, Дания',
+            'details' => [
+                'Фокус: Java програмиране, логистика и бизнес мениджмънт',
+            ],
+        ],
+    ],
+    'experience' => [
+        [
+            'period' => 'юни 2025 – настояще',
+            'role' => 'Full Stack Developer',
+            'company' => 'Devrix',
+            'desc' => 'Laravel и WordPress backend: нови функции, корекции на бъгове, API интеграции, custom плъгини и теми.',
+        ],
+        [
+            'period' => 'апр. 2025 – юни 2025',
+            'role' => 'Freelance',
+            'company' => 'ERP — обучения и тестова система',
+            'desc' => 'Изграждане от нулата: категории, тестове, въпроси и отговори, права по групи, режими learning/test, UX с collapse/expand и bulk операции. Laravel + Bootstrap.',
+        ],
+        [
+            'period' => 'Freelance',
+            'role' => 'Full stack',
+            'company' => 'BioMarket ERP',
+            'desc' => 'Вътрешна ERP система за веригата BioMarket / HealthStore: Laravel PHP 8.x, MySQL, Blade, интеграции (PRIM), склад, HR, payroll, POS и др. (вътрешен проект).',
+        ],
+        [
+            'period' => 'сеп. 2023 – апр. 2025',
+            'role' => 'Full stack Laravel backend',
+            'company' => 'Bteam',
+            'desc' => 'Система за ваучери: REST API, нови функции, поддръжка, custom WordPress плъгини.',
+        ],
+        [
+            'period' => 'юни 2021 – юни 2023',
+            'role' => 'Full stack Laravel',
+            'company' => 'Looming Tech',
+            'desc' => 'Laravel системи с Orchid Admin, REST API, Vue.js табла, Docker deployment.',
+        ],
+        [
+            'period' => 'ное. 2019 – май 2021',
+            'role' => 'Laravel & OctoberCMS backend',
+            'company' => 'Shippii Technologies',
+            'desc' => 'Архитектура и рефакторинг на shipping система, нови функции, поддръжка.',
+        ],
+    ],
+    'skills' => [
+        'Backend & Languages' => 'PHP, Laravel (5+ years), JavaScript, Ajax, WordPress',
+        'Frontend' => 'HTML, CSS, Bootstrap, Tailwind CSS',
+        'Frameworks' => 'Next.js, React',
+        'Database' => 'MySQL, PostgreSQL',
+        'Version Control' => 'GitHub, Bitbucket',
+        'Project Management' => 'Jira, Trello, Monday',
+        'DevOps & Tools' => 'Docker, REST API integration',
+        'Hosting' => 'cPanel, FTP, SSH, installing different CMS, Mail config, database config',
+        'CMS Experience' => 'WordPress, October CMS, custom Laravel CMS',
+        'Operating Systems' => 'Windows (XAMPP, WAMP), Linux (Nginx)',
+    ],
+    'languages' => [
+        'Bulgarian' => 'Native',
+        'English' => 'Advanced',
+        'Russian' => 'Intermediate',
+        'Danish' => 'Basic (2nd level)',
+    ],
+    'interests' => [
+        ['label' => 'Dogs', 'href' => '#dogs'],
+        ['label' => 'fast cars'],
+        ['label' => 'F1'],
+    ],
+    'quick_facts' => [
+        'Laravel 10+, WordPress PHP 8+, JavaScript, MySQL/MariaDB',
+        'Real-time: Laravel WebSockets, опашки (RabbitMQ)',
+        'Frontend: HTML, CSS, Bootstrap, Tailwind, Blade, React, Vue 3 (уча се)',
+        'DevOps: Nginx, XAMPP/WAMP, WSL; Docker при нужда',
+    ],
+];
