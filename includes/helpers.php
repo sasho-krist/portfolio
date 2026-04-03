@@ -146,3 +146,24 @@ function portfolio_markdown_to_html(string $md): string
 
     return implode("\n", $html);
 }
+
+function portfolio_mail_write_last_error(string $detail): void
+{
+    $line = date('c') . ' ' . str_replace(["\r", "\n"], ' ', $detail) . PHP_EOL;
+    $root = dirname(__DIR__);
+    $dir = $root . DIRECTORY_SEPARATOR . 'logs';
+    $file = $dir . DIRECTORY_SEPARATOR . 'mail-last-error.txt';
+
+    $written = false;
+    if ((! is_dir($dir) && @mkdir($dir, 0755, true)) || is_dir($dir)) {
+        $written = @file_put_contents($file, $line, LOCK_EX) !== false;
+    }
+
+    if (! $written) {
+        $tmpFile = rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR
+            . 'portfolio-mail-error-' . md5($root) . '.txt';
+        if (@file_put_contents($tmpFile, $line, LOCK_EX) !== false) {
+            error_log('[portfolio mail] logs/ не се пише от уеб сървъра; грешката е в: ' . $tmpFile);
+        }
+    }
+}

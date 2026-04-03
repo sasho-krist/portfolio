@@ -57,7 +57,16 @@ function portfolio_mail_via_smtp(
         $mail->Username = $user;
         $mail->Password = $pass;
         $mail->Port = $port;
-        $mail->Timeout = 45;
+        $mail->Timeout = 90;
+
+        $ehlo = trim($g('MAIL_EHLO_HOST'));
+        if ($ehlo === '' && preg_match('/@([a-z0-9.-]+\.[a-z]{2,})$/i', $user, $ehloM)) {
+            $ehlo = $ehloM[1];
+        }
+        if ($ehlo === '') {
+            $ehlo = preg_replace('/[^\w.-]+/', '', (string) ($_SERVER['HTTP_HOST'] ?? '')) ?: 'localhost';
+        }
+        $mail->Hostname = $ehlo;
 
         $authType = strtoupper($g('MAIL_AUTH_TYPE'));
         if (in_array($authType, ['LOGIN', 'PLAIN', 'CRAM-MD5'], true)) {
@@ -114,26 +123,5 @@ function portfolio_mail_via_smtp(
         portfolio_mail_write_last_error($detail);
 
         return false;
-    }
-}
-
-function portfolio_mail_write_last_error(string $detail): void
-{
-    $line = date('c') . ' ' . str_replace(["\r", "\n"], ' ', $detail) . PHP_EOL;
-    $root = dirname(__DIR__);
-    $dir = $root . DIRECTORY_SEPARATOR . 'logs';
-    $file = $dir . DIRECTORY_SEPARATOR . 'mail-last-error.txt';
-
-    $written = false;
-    if ((! is_dir($dir) && @mkdir($dir, 0755, true)) || is_dir($dir)) {
-        $written = @file_put_contents($file, $line, LOCK_EX) !== false;
-    }
-
-    if (! $written) {
-        $tmpFile = rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR
-            . 'portfolio-mail-error-' . md5($root) . '.txt';
-        if (@file_put_contents($tmpFile, $line, LOCK_EX) !== false) {
-            error_log('[portfolio mail] logs/ не се пише от уеб сървъра; грешката е в: ' . $tmpFile);
-        }
     }
 }

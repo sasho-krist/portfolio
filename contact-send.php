@@ -76,6 +76,7 @@ $ok = false;
 
 if ($useSmtp) {
     if (! is_readable(__DIR__ . '/vendor/autoload.php')) {
+        portfolio_mail_write_last_error('Липсва vendor/autoload.php — на сървъра пусни: php ~/composer.phar install --no-dev');
         $ok = false;
     } else {
         require_once __DIR__ . '/vendor/autoload.php';
@@ -95,6 +96,17 @@ if ($useSmtp) {
                     'MAIL_ENCRYPTION' => 'tls',
                 ]);
             }
+        }
+        // Някои SMTP отхвърлят принудителен AUTH LOGIN — втори опит с авто-избор (изключи с MAIL_AUTH_RETRY_PLAIN=0).
+        if (
+            ! $ok
+            && getenv('MAIL_AUTH_RETRY_PLAIN') !== '0'
+            && trim((string) getenv('MAIL_AUTH_TYPE')) !== ''
+        ) {
+            error_log('[portfolio mail] повторен опит без MAIL_AUTH_TYPE (автоматичен AUTH)');
+            $ok = portfolio_mail_via_smtp($to, $subject, $body, $email, $name, [
+                'MAIL_AUTH_TYPE' => '',
+            ]);
         }
     }
 } else {
