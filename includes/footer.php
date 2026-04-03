@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+$portfolioJsPath = __DIR__ . '/../assets/js/portfolio.js';
+$portfolioJsV = is_readable($portfolioJsPath) ? (string) filemtime($portfolioJsPath) : '1';
+
 ?>
   </main>
   <footer class="site-footer">
@@ -18,6 +21,6 @@ declare(strict_types=1);
       <p class="lightbox-caption"></p>
     </div>
   </div>
-  <script src="assets/js/portfolio.js" defer></script>
+  <script src="assets/js/portfolio.js?v=<?= portfolio_h($portfolioJsV) ?>" defer></script>
 </body>
 </html>

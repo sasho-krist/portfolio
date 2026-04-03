@@ -238,23 +238,33 @@ a.brand-home {
   flex-shrink: 0;
 }
 
-.hero-profile__img {
+/* Кръг чрез overflow — работи и при кеширан/override на border-radius за img на хостинг */
+.hero-profile__clip {
   width: 148px;
   height: 148px;
-  max-width: 148px;
   border-radius: 50%;
-  object-fit: cover;
-  object-position: center top;
+  overflow: hidden;
   border: 3px solid var(--border);
   box-shadow:
     0 0 0 4px var(--accent-soft),
     0 12px 32px rgba(0, 0, 0, 0.22);
+  background: var(--bg-elevated);
 }
 
-html[data-theme="light"] .hero-profile__img {
+html[data-theme="light"] .hero-profile__clip {
   box-shadow:
     0 0 0 4px var(--accent-soft),
     0 10px 28px rgba(15, 23, 42, 0.12);
+}
+
+.hero-profile__img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  border-radius: 0;
 }
 
 .hero-copy {

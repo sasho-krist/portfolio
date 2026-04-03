@@ -61,15 +61,17 @@ require __DIR__ . '/includes/header.php';
         <div class="hero-main">
           <?php if ($hasProfilePhoto) : ?>
             <div class="hero-profile">
-              <img
-                class="hero-profile__img"
-                src="images/alexander.jpg"
-                alt="<?= portfolio_h($profile['name']) ?>"
-                width="160"
-                height="160"
-                loading="eager"
-                decoding="async"
-              />
+              <div class="hero-profile__clip">
+                <img
+                  class="hero-profile__img"
+                  src="images/alexander.jpg"
+                  alt="<?= portfolio_h($profile['name']) ?>"
+                  width="160"
+                  height="160"
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
             </div>
           <?php endif; ?>
           <div class="hero-copy">
