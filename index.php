@@ -15,7 +15,7 @@ $projects = require __DIR__ . '/data/projects.php';
 
 $contactFlash = match ($_GET['contact'] ?? '') {
     'sent' => ['ok' => true, 'text' => 'Съобщението е изпратено до пощата. Ще отговоря възможно най-скоро.'],
-    'fail' => ['ok' => false, 'text' => 'Изпращането не успя на сървъра. Чести причини: (1) липсва или е различен .env на хостинга спрямо локалния; (2) хостингът блокира изходящ SMTP на порт 465 от PHP — опитай в .env MAIL_PORT=587 и MAIL_ENCRYPTION=tls; (3) MAIL_SSL_RELAX=1 ако има SSL грешка; (4) виж logs/mail-last-error.txt по SSH/FTP или cPanel → Errors / error_log — ако папката logs не се пише от Apache, в същия лог ще има път към временен файл portfolio-mail-error-*.txt. Пиши на ' . $profile['email'] . '.'],
+    'fail' => ['ok' => false, 'text' => 'Изпращането не успя. Кодът вече опитва автоматично и 587+TLS след 465. Провери .env на сървъра, MAIL_SSL_RELAX=1, vendor/ (composer install). Детайли: logs/mail-last-error.txt или error_log / portfolio-mail-error-*.txt. Пиши на ' . $profile['email'] . '.'],
     'invalid' => ['ok' => false, 'text' => 'Провери полетата и опитай отново.'],
     default => null,
 };

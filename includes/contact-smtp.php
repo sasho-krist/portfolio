@@ -7,6 +7,8 @@ use PHPMailer\PHPMailer\SMTP;
 
 /**
  * Изпращане през SMTP (настройки от .env: MAIL_*).
+ *
+ * @param array<string, string> $override Ключове като MAIL_PORT — презаписват getenv за този опит.
  */
 function portfolio_mail_via_smtp(
     string $to,
@@ -14,24 +16,34 @@ function portfolio_mail_via_smtp(
     string $bodyPlain,
     string $visitorEmail,
     string $visitorName,
+    array $override = [],
 ): bool {
-    $user = trim((string) getenv('MAIL_USERNAME'));
-    $pass = trim((string) getenv('MAIL_PASSWORD'));
+    $g = static function (string $key) use ($override): string {
+        if (array_key_exists($key, $override)) {
+            return trim((string) $override[$key]);
+        }
+        $v = getenv($key);
+
+        return $v !== false ? trim((string) $v) : '';
+    };
+
+    $user = $g('MAIL_USERNAME');
+    $pass = $g('MAIL_PASSWORD');
     if ($user === '' || $pass === '') {
         return false;
     }
 
-    $host = trim((string) getenv('MAIL_HOST'));
+    $host = $g('MAIL_HOST');
     if ($host === '') {
         return false;
     }
 
-    $port = (int) getenv('MAIL_PORT');
+    $port = (int) $g('MAIL_PORT');
     if ($port < 1 || $port > 65535) {
         $port = 465;
     }
 
-    $encryption = strtolower(trim((string) getenv('MAIL_ENCRYPTION')));
+    $encryption = strtolower($g('MAIL_ENCRYPTION'));
     if ($encryption === '') {
         $encryption = $port === 465 ? 'ssl' : 'tls';
     }
@@ -47,19 +59,19 @@ function portfolio_mail_via_smtp(
         $mail->Port = $port;
         $mail->Timeout = 45;
 
-        $authType = strtoupper(trim((string) getenv('MAIL_AUTH_TYPE')));
+        $authType = strtoupper($g('MAIL_AUTH_TYPE'));
         if (in_array($authType, ['LOGIN', 'PLAIN', 'CRAM-MD5'], true)) {
             $mail->AuthType = $authType;
         }
 
-        if (getenv('MAIL_DEBUG') === '1') {
+        if ($g('MAIL_DEBUG') === '1') {
             $mail->SMTPDebug = SMTP::DEBUG_SERVER;
             $mail->Debugoutput = static function (string $str, int $level): void {
                 error_log('[portfolio mail] ' . trim($str));
             };
         }
 
-        $sslRelax = getenv('MAIL_SSL_RELAX') === '1';
+        $sslRelax = $g('MAIL_SSL_RELAX') === '1';
         $mail->SMTPOptions = [
             'ssl' => [
                 'verify_peer' => ! $sslRelax,
@@ -70,17 +82,16 @@ function portfolio_mail_via_smtp(
 
         if ($encryption === 'ssl' || $port === 465) {
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-            // Вече криптирана връзка; повторен STARTTLS чупи някои сървъри (вкл. често на Windows).
             $mail->SMTPAutoTLS = false;
         } else {
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->SMTPAutoTLS = true;
         }
 
-        if (getenv('MAIL_SMTP_AUTO_TLS') === '1') {
+        if ($g('MAIL_SMTP_AUTO_TLS') === '1') {
             $mail->SMTPAutoTLS = true;
         }
-        if (getenv('MAIL_SMTP_AUTO_TLS') === '0') {
+        if ($g('MAIL_SMTP_AUTO_TLS') === '0') {
             $mail->SMTPAutoTLS = false;
         }
 

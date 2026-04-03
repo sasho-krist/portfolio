@@ -81,6 +81,21 @@ if ($useSmtp) {
         require_once __DIR__ . '/vendor/autoload.php';
         require_once __DIR__ . '/includes/contact-smtp.php';
         $ok = portfolio_mail_via_smtp($to, $subject, $body, $email, $name);
+        // Много хостове блокират 465 от PHP; втори опит с 587+STARTTLS (изключи с MAIL_AUTO_FALLBACK_587=0).
+        if (
+            ! $ok
+            && getenv('MAIL_AUTO_FALLBACK_587') !== '0'
+        ) {
+            $p = (int) getenv('MAIL_PORT');
+            $enc = strtolower(trim((string) getenv('MAIL_ENCRYPTION')));
+            if ($p === 465 || $enc === 'ssl') {
+                error_log('[portfolio mail] първи опит неуспешен — опит 587 + STARTTLS');
+                $ok = portfolio_mail_via_smtp($to, $subject, $body, $email, $name, [
+                    'MAIL_PORT' => '587',
+                    'MAIL_ENCRYPTION' => 'tls',
+                ]);
+            }
+        }
     }
 } else {
     $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
