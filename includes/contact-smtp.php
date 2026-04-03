@@ -108,14 +108,21 @@ function portfolio_mail_via_smtp(
 
 function portfolio_mail_write_last_error(string $detail): void
 {
-    $dir = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'logs';
-    if (! is_dir($dir) && ! @mkdir($dir, 0755, true)) {
-        return;
-    }
+    $line = date('c') . ' ' . str_replace(["\r", "\n"], ' ', $detail) . PHP_EOL;
+    $root = dirname(__DIR__);
+    $dir = $root . DIRECTORY_SEPARATOR . 'logs';
     $file = $dir . DIRECTORY_SEPARATOR . 'mail-last-error.txt';
-    @file_put_contents(
-        $file,
-        date('c') . ' ' . str_replace(["\r", "\n"], ' ', $detail) . PHP_EOL,
-        LOCK_EX
-    );
+
+    $written = false;
+    if ((! is_dir($dir) && @mkdir($dir, 0755, true)) || is_dir($dir)) {
+        $written = @file_put_contents($file, $line, LOCK_EX) !== false;
+    }
+
+    if (! $written) {
+        $tmpFile = rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR
+            . 'portfolio-mail-error-' . md5($root) . '.txt';
+        if (@file_put_contents($tmpFile, $line, LOCK_EX) !== false) {
+            error_log('[portfolio mail] logs/ не се пише от уеб сървъра; грешката е в: ' . $tmpFile);
+        }
+    }
 }
