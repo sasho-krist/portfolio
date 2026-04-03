@@ -15,7 +15,7 @@ $projects = require __DIR__ . '/data/projects.php';
 
 $contactFlash = match ($_GET['contact'] ?? '') {
     'sent' => ['ok' => true, 'text' => 'Съобщението е изпратено до пощата. Ще отговоря възможно най-скоро.'],
-    'fail' => ['ok' => false, 'text' => 'Изпращането не успя. Провери vendor/ (composer install), .env и logs/mail-last-error.txt. Кодът опитва 587 след 465 и втори опит без MAIL_AUTH_TYPE ако е зададен. Опитай MAIL_EHLO_HOST=healthstore.bg или махни MAIL_AUTH_TYPE. Пиши на ' . $profile['email'] . '.'],
+    'fail' => ['ok' => false, 'text' => 'Изпращането не успя (SMTP и PHP mail() на хостинга). Виж logs/mail-last-error.txt и error_log. Провери vendor/, .env, дали хостингът позволява изходящ SMTP. Изключи fallback: MAIL_FALLBACK_PHP_MAIL=0. Пиши на ' . $profile['email'] . '.'],
     'invalid' => ['ok' => false, 'text' => 'Провери полетата и опитай отново.'],
     default => null,
 };

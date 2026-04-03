@@ -110,27 +110,13 @@ if ($useSmtp) {
         }
     }
 } else {
-    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
-    $host = preg_replace('/[^\w.-]+/', '', $host);
-    if ($host === '') {
-        $host = 'localhost';
-    }
+    $ok = portfolio_send_via_php_mail($to, $subject, $body, $email);
+}
 
-    $fromLine = 'Portfolio <noreply@' . $host . '>';
-    $subjectHeader = function_exists('mb_encode_mimeheader')
-        ? mb_encode_mimeheader($subject, 'UTF-8', 'B', "\r\n")
-        : 'Portfolio contact';
-
-    $headers = implode("\r\n", [
-        'MIME-Version: 1.0',
-        'Content-Type: text/plain; charset=UTF-8',
-        'Content-Transfer-Encoding: 8bit',
-        'From: ' . $fromLine,
-        'Reply-To: ' . $email,
-        'X-Mailer: PHP/' . PHP_VERSION,
-    ]);
-
-    $ok = @mail($to, $subjectHeader, $body, $headers);
+// Външен SMTP често е блокиран от хостинга; последен опит през локалния mail() на сървъра.
+if (! $ok && $useSmtp && getenv('MAIL_FALLBACK_PHP_MAIL') !== '0') {
+    error_log('[portfolio mail] SMTP неуспешен — fallback към PHP mail()');
+    $ok = portfolio_send_via_php_mail($to, $subject, $body, $email);
 }
 
 $redirect($ok ? 'sent' : 'fail');

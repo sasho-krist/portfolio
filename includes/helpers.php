@@ -147,6 +147,34 @@ function portfolio_markdown_to_html(string $md): string
     return implode("\n", $html);
 }
 
+/**
+ * Изпращане чрез PHP mail() (локален MTA на хостинга).
+ */
+function portfolio_send_via_php_mail(string $to, string $subject, string $bodyPlain, string $replyToEmail): bool
+{
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $host = preg_replace('/[^\w.-]+/', '', $host);
+    if ($host === '') {
+        $host = 'localhost';
+    }
+
+    $fromLine = 'Portfolio <noreply@' . $host . '>';
+    $subjectHeader = function_exists('mb_encode_mimeheader')
+        ? mb_encode_mimeheader($subject, 'UTF-8', 'B', "\r\n")
+        : $subject;
+
+    $headers = implode("\r\n", [
+        'MIME-Version: 1.0',
+        'Content-Type: text/plain; charset=UTF-8',
+        'Content-Transfer-Encoding: 8bit',
+        'From: ' . $fromLine,
+        'Reply-To: ' . $replyToEmail,
+        'X-Mailer: PHP/' . PHP_VERSION,
+    ]);
+
+    return @mail($to, $subjectHeader, $bodyPlain, $headers);
+}
+
 function portfolio_mail_write_last_error(string $detail): void
 {
     $line = date('c') . ' ' . str_replace(["\r", "\n"], ' ', $detail) . PHP_EOL;
