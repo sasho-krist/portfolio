@@ -280,11 +280,6 @@ require __DIR__ . '/includes/header.php';
     <section id="contact">
       <div class="container">
         <h2 class="section-title">Контакти</h2>
-        <p class="section-intro">
-          Съобщенията отиват на <strong><?= portfolio_h($profile['email']) ?></strong> (или <code class="inline-code">MAIL_TO</code> в <code class="inline-code">.env</code>).
-          Изпращането е през SMTP от <code class="inline-code">.env</code> — <code class="inline-code">MAIL_MAILER</code>, <code class="inline-code">MAIL_HOST</code>, <code class="inline-code">MAIL_PORT</code>, <code class="inline-code">MAIL_USERNAME</code>, <code class="inline-code">MAIL_PASSWORD</code>.
-          Виж <code class="inline-code">.env.example</code>. Без тези настройки се ползва PHP <code class="inline-code">mail()</code>.
-        </p>
         <div class="contact-grid">
           <div class="card">
             <?php if ($contactFlash !== null) : ?>
