@@ -30,6 +30,9 @@ $erpReadmeHtml = $erpReadmeRaw !== '' ? portfolio_markdown_to_html($erpReadmeRaw
 $galleryImages = portfolio_gallery_images();
 $dogGalleryImages = portfolio_images_in_subdir('images/dogs');
 
+$profilePhotoPath = portfolio_base_path('images/alexander.jpg');
+$hasProfilePhoto = is_file($profilePhotoPath) && is_readable($profilePhotoPath);
+
 $erpCaptions = [
     'Dashboard — ключови показатели',
     'Профил, известия и лични данни',
@@ -55,14 +58,29 @@ require __DIR__ . '/includes/header.php';
 
     <section class="hero">
       <div class="container hero-grid">
-        <div>
-          <span class="tag"><span class="tag-dot" aria-hidden="true"></span> Отворен за backend и full stack проекти</span>
-          <h1><?= portfolio_h($profile['title']) ?></h1>
-          <p class="hero-lead"><?= portfolio_h($profile['tagline']) ?></p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#projects">Виж проектите</a>
-            <a class="btn" href="<?= portfolio_h($profile['github']) ?>" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a class="btn" href="<?= portfolio_h($profile['calendar']) ?>" target="_blank" rel="noopener noreferrer">Насрочи среща</a>
+        <div class="hero-main">
+          <?php if ($hasProfilePhoto) : ?>
+            <div class="hero-profile">
+              <img
+                class="hero-profile__img"
+                src="images/alexander.jpg"
+                alt="<?= portfolio_h($profile['name']) ?>"
+                width="160"
+                height="160"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+          <?php endif; ?>
+          <div class="hero-copy">
+            <span class="tag"><span class="tag-dot" aria-hidden="true"></span> Отворен за backend и full stack проекти</span>
+            <h1><?= portfolio_h($profile['title']) ?></h1>
+            <p class="hero-lead"><?= portfolio_h($profile['tagline']) ?></p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#projects">Виж проектите</a>
+              <a class="btn" href="<?= portfolio_h($profile['github']) ?>" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a class="btn" href="<?= portfolio_h($profile['calendar']) ?>" target="_blank" rel="noopener noreferrer">Насрочи среща</a>
+            </div>
           </div>
         </div>
         <aside class="card quick-facts">

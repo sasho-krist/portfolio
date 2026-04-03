@@ -31,7 +31,11 @@ function portfolio_gallery_images(): array
     });
     $out = [];
     foreach ($files as $full) {
-        $out[] = 'images/' . basename($full);
+        $base = basename($full);
+        if (preg_match('/^alexander\./i', $base) === 1) {
+            continue;
+        }
+        $out[] = 'images/' . $base;
     }
 
     return $out;
