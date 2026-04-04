@@ -15,6 +15,10 @@ $plausibleDomain = isset($plausibleDomain) ? trim((string) $plausibleDomain) : '
         <a href="<?= portfolio_h($footerHomeHref ?? 'index.php') ?>">Начало</a>
         <span class="footer-sep" aria-hidden="true">·</span>
         <a href="privacy.php">Поверителност</a>
+        <?php if (! empty($profile['site_repo_url']) && is_string($profile['site_repo_url']) && filter_var($profile['site_repo_url'], FILTER_VALIDATE_URL)) : ?>
+          <span class="footer-sep" aria-hidden="true">·</span>
+          <a href="<?= portfolio_h($profile['site_repo_url']) ?>" target="_blank" rel="noopener noreferrer">This site repo</a>
+        <?php endif; ?>
       </nav>
     </div>
   </footer>

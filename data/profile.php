@@ -10,6 +10,7 @@ return [
     'email' => 'alexander.krist@gmail.com',
     'phone' => '+359 877 750 552',
     'github' => 'https://github.com/sashokrist',
+    'site_repo_url' => 'https://github.com/sasho-krist/portfolio',
     'linkedin' => '', // пълен URL към профил, напр. https://www.linkedin.com/in/...
     // Насрочване на срещи (Google Календар → Настройки → „Насрочване на срещи“ / appointment schedule).
     // Ако линкът показва „Срещата не бе намерена“, създай ново насрочване и подмени URL-а или задай CALENDAR_URL в .env

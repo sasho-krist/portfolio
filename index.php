@@ -527,6 +527,13 @@ require __DIR__ . '/includes/header.php';
             <p><strong>Телефон:</strong> <a href="tel:<?= portfolio_h(preg_replace('/\s+/', '', $profile['phone'])) ?>"><?= portfolio_h($profile['phone']) ?></a></p>
             <p><strong>Локация:</strong> <?= portfolio_h($profile['location']) ?></p>
             <p><strong>GitHub:</strong> <a href="<?= portfolio_h($profile['github']) ?>" target="_blank" rel="noopener noreferrer">@sashokrist</a></p>
+            <?php if (! empty($profile['site_repo_url']) && is_string($profile['site_repo_url']) && filter_var($profile['site_repo_url'], FILTER_VALIDATE_URL)) : ?>
+              <?php
+                $repoPath = trim((string) parse_url($profile['site_repo_url'], PHP_URL_PATH), '/');
+                $repoLabel = $repoPath !== '' ? $repoPath : 'GitHub';
+              ?>
+              <p><strong>This site repo:</strong> <a href="<?= portfolio_h($profile['site_repo_url']) ?>" target="_blank" rel="noopener noreferrer"><?= portfolio_h($repoLabel) ?></a></p>
+            <?php endif; ?>
             <?php if (! empty($profile['linkedin']) && is_string($profile['linkedin']) && filter_var($profile['linkedin'], FILTER_VALIDATE_URL)) : ?>
               <p><strong>LinkedIn:</strong> <a href="<?= portfolio_h($profile['linkedin']) ?>" target="_blank" rel="noopener noreferrer">Профил</a></p>
             <?php endif; ?>
