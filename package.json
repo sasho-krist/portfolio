@@ -1,0 +1,13 @@
+{
+  "name": "portfolio-assets",
+  "private": true,
+  "scripts": {
+    "build:css": "cleancss -O1 --output assets/css/portfolio.min.css assets/css/portfolio.css",
+    "build:js": "terser assets/js/portfolio.js -c -m --comments false -o assets/js/portfolio.min.js",
+    "build": "npm run build:css && npm run build:js"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "terser": "^5.37.0"
+  }
+}

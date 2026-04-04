@@ -81,30 +81,70 @@ function portfolio_h(string $s): string
 
 /**
  * Изпращане чрез PHP mail() (локален MTA на хостинга).
+ * При неуспех: запис в logs/mail-last-error.txt и error_log. mail() рядко хвърля — try/catch за сигурност.
  */
 function portfolio_send_via_php_mail(string $to, string $subject, string $bodyPlain, string $replyToEmail): bool
 {
-    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
-    $host = preg_replace('/[^\w.-]+/', '', $host);
-    if ($host === '') {
-        $host = 'localhost';
+    try {
+        $to = trim($to);
+        if ($to === '' || filter_var($to, FILTER_VALIDATE_EMAIL) === false) {
+            portfolio_mail_write_last_error('PHP mail(): invalid or empty recipient');
+            error_log('[portfolio mail] invalid recipient');
+
+            return false;
+        }
+
+        $replyToEmail = str_replace(["\0", "\r", "\n"], '', trim($replyToEmail));
+        if ($replyToEmail === '' || filter_var($replyToEmail, FILTER_VALIDATE_EMAIL) === false) {
+            portfolio_mail_write_last_error('PHP mail(): invalid Reply-To after sanitize');
+            error_log('[portfolio mail] invalid Reply-To');
+
+            return false;
+        }
+
+        $subject = str_replace(["\0", "\r", "\n"], '', $subject);
+        if ($subject === '') {
+            portfolio_mail_write_last_error('PHP mail(): empty subject');
+            error_log('[portfolio mail] empty subject');
+
+            return false;
+        }
+
+        $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+        $host = preg_replace('/[^\w.-]+/', '', $host);
+        if ($host === '') {
+            $host = 'localhost';
+        }
+
+        $fromLine = 'Portfolio <noreply@' . $host . '>';
+        $subjectHeader = function_exists('mb_encode_mimeheader')
+            ? mb_encode_mimeheader($subject, 'UTF-8', 'B', "\r\n")
+            : $subject;
+
+        $headers = implode("\r\n", [
+            'MIME-Version: 1.0',
+            'Content-Type: text/plain; charset=UTF-8',
+            'Content-Transfer-Encoding: 8bit',
+            'From: ' . $fromLine,
+            'Reply-To: <' . $replyToEmail . '>',
+            'X-Mailer: PHP/' . PHP_VERSION,
+        ]);
+
+        $ok = @mail($to, $subjectHeader, $bodyPlain, $headers);
+        if (! $ok) {
+            $detail = 'PHP mail() returned false (recipient validated)';
+            portfolio_mail_write_last_error($detail);
+            error_log('[portfolio mail] ' . $detail);
+        }
+
+        return $ok;
+    } catch (\Throwable $e) {
+        $detail = 'PHP mail() exception: ' . $e->getMessage();
+        portfolio_mail_write_last_error($detail);
+        error_log('[portfolio mail] ' . $detail);
+
+        return false;
     }
-
-    $fromLine = 'Portfolio <noreply@' . $host . '>';
-    $subjectHeader = function_exists('mb_encode_mimeheader')
-        ? mb_encode_mimeheader($subject, 'UTF-8', 'B', "\r\n")
-        : $subject;
-
-    $headers = implode("\r\n", [
-        'MIME-Version: 1.0',
-        'Content-Type: text/plain; charset=UTF-8',
-        'Content-Transfer-Encoding: 8bit',
-        'From: ' . $fromLine,
-        'Reply-To: ' . $replyToEmail,
-        'X-Mailer: PHP/' . PHP_VERSION,
-    ]);
-
-    return @mail($to, $subjectHeader, $bodyPlain, $headers);
 }
 
 function portfolio_mail_write_last_error(string $detail): void

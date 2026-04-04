@@ -15,7 +15,10 @@ $navShowCases = $navShowCases ?? false;
 $navShowTestimonials = $navShowTestimonials ?? false;
 
 $portfolioCssPath = __DIR__ . '/../assets/css/portfolio.css';
-$portfolioCssV = is_readable($portfolioCssPath) ? (string) filemtime($portfolioCssPath) : '1';
+$portfolioCssMinPath = __DIR__ . '/../assets/css/portfolio.min.css';
+$useCssMin = is_readable($portfolioCssMinPath);
+$portfolioCssHref = $useCssMin ? 'assets/css/portfolio.min.css' : 'assets/css/portfolio.css';
+$portfolioCssV = (string) filemtime($useCssMin ? $portfolioCssMinPath : $portfolioCssPath);
 
 $brandHref = $navHrefPrefix === '' ? '#top' : portfolio_h($navHrefPrefix . '#top');
 $navFrag = static function (string $id) use ($navHrefPrefix): string {
@@ -36,6 +39,9 @@ $navFrag = static function (string $id) use ($navHrefPrefix): string {
   <title><?= portfolio_h($pageTitle) ?></title>
   <meta name="description" content="<?= portfolio_h($pageDescription) ?>" />
   <link rel="canonical" href="<?= portfolio_h($canonicalUrl) ?>" />
+  <link rel="alternate" hreflang="bg" href="<?= portfolio_h(portfolio_url_with_lang('bg')) ?>" />
+  <link rel="alternate" hreflang="en" href="<?= portfolio_h(portfolio_url_with_lang('en')) ?>" />
+  <link rel="alternate" hreflang="x-default" href="<?= portfolio_h(portfolio_url_with_lang('bg')) ?>" />
   <meta name="robots" content="<?= portfolio_h($robotsMeta) ?>" />
   <meta name="keywords" content="<?= portfolio_h($metaKeywords) ?>" />
   <meta name="author" content="<?= portfolio_h($profile['name']) ?>" />
@@ -52,6 +58,8 @@ $navFrag = static function (string $id) use ($navHrefPrefix): string {
   <?php endif; ?>
   <?php if ($ogImageUrl !== null && $ogImageUrl !== '') : ?>
   <meta property="og:image" content="<?= portfolio_h($ogImageUrl) ?>" />
+  <meta property="og:image:width" content="160" />
+  <meta property="og:image:height" content="160" />
   <meta property="og:image:alt" content="<?= portfolio_h($profile['name'] . ' — ' . portfolio_t('og_image_alt')) ?>" />
   <?php endif; ?>
   <meta name="twitter:card" content="<?= ($ogImageUrl !== null && $ogImageUrl !== '') ? 'summary_large_image' : 'summary' ?>" />
@@ -69,7 +77,7 @@ $navFrag = static function (string $id) use ($navHrefPrefix): string {
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/portfolio.css?v=<?= portfolio_h($portfolioCssV) ?>" />
+  <link rel="stylesheet" href="<?= portfolio_h($portfolioCssHref) ?>?v=<?= portfolio_h($portfolioCssV) ?>" />
 </head>
 <body data-projects-view="cards">
   <a class="skip-link" href="#main-content"><?= portfolio_h(portfolio_t('skip_content')) ?></a>

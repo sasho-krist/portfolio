@@ -3,7 +3,10 @@
 declare(strict_types=1);
 
 $portfolioJsPath = __DIR__ . '/../assets/js/portfolio.js';
-$portfolioJsV = is_readable($portfolioJsPath) ? (string) filemtime($portfolioJsPath) : '1';
+$portfolioJsMinPath = __DIR__ . '/../assets/js/portfolio.min.js';
+$useJsMin = is_readable($portfolioJsMinPath);
+$portfolioJsHref = $useJsMin ? 'assets/js/portfolio.min.js' : 'assets/js/portfolio.js';
+$portfolioJsV = (string) filemtime($useJsMin ? $portfolioJsMinPath : $portfolioJsPath);
 $plausibleDomain = isset($plausibleDomain) ? trim((string) $plausibleDomain) : '';
 
 ?>
@@ -40,6 +43,6 @@ $plausibleDomain = isset($plausibleDomain) ? trim((string) $plausibleDomain) : '
   <?php if ($plausibleDomain !== '') : ?>
   <script defer data-domain="<?= portfolio_h($plausibleDomain) ?>" src="https://plausible.io/js/script.js"></script>
   <?php endif; ?>
-  <script src="assets/js/portfolio.js?v=<?= portfolio_h($portfolioJsV) ?>" defer></script>
+  <script src="<?= portfolio_h($portfolioJsHref) ?>?v=<?= portfolio_h($portfolioJsV) ?>" defer></script>
 </body>
 </html>

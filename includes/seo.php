@@ -30,6 +30,34 @@ function portfolio_canonical_url(): string
 }
 
 /**
+ * Пълен URL на текущата страница с зададен ?lang= (за hreflang).
+ */
+function portfolio_url_with_lang(string $lang): string
+{
+    $allowed = ['bg', 'en'];
+    if (! in_array($lang, $allowed, true)) {
+        $lang = 'bg';
+    }
+
+    $https = (! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+        || (isset($_SERVER['SERVER_PORT']) && (int) $_SERVER['SERVER_PORT'] === 443)
+        || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower((string) $_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https');
+    $scheme = $https ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $uri = $_SERVER['REQUEST_URI'] ?? '/';
+    $parts = parse_url($uri);
+    $path = $parts['path'] ?? '/';
+    $query = [];
+    if (! empty($parts['query'])) {
+        parse_str($parts['query'], $query);
+    }
+    $query['lang'] = $lang;
+    $qs = http_build_query($query);
+
+    return $scheme . '://' . $host . $path . ($qs !== '' ? '?' . $qs : '');
+}
+
+/**
  * @param list<string> $extra
  */
 function portfolio_seo_keywords_string(array $profile, array $extra = []): string
