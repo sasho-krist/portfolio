@@ -10,6 +10,7 @@ return [
     'email' => 'alexander.krist@gmail.com',
     'phone' => '+359 877 750 552',
     'github' => 'https://github.com/sashokrist',
+    'linkedin' => '', // пълен URL към профил, напр. https://www.linkedin.com/in/...
     'calendar' => 'https://calendar.app.google/TBgDARyCp4zZYttZ9',
     'seo_title' => 'Aleksander Keremidarov | PHP & Laravel · Sofia',
     'seo_description' => 'Aleksander Keremidarov — PHP & Laravel full stack разработчик в София. WordPress, REST API, MySQL, React, Next.js. Портфолио и контакт.',
@@ -42,6 +43,14 @@ return [
     ],
     'seo_same_as' => [
         'https://github.com/sasho-krist/portfolio',
+    ],
+    'testimonials' => [
+        [
+            'quote' => 'Александър работи структурирано и комуникира ясно — Laravel модулите и WordPress интеграциите бяха доставени в срок, с внимание към поддръжката.',
+            'name' => 'Примерно име',
+            'role' => 'Tech Lead',
+            'company' => 'Замени с реална компания',
+        ],
     ],
     'profile' => 'Резултатно ориентиран Full Stack разработчик с 5+ години опит в изграждане на мащабируеми Laravel и WordPress платформи. Разработвам RESTful API, сложна бизнес логика и съвременни интерфейси с React и Next.js. Интересувам се от чиста архитектура, производителност и практични решения.',
     'education' => [

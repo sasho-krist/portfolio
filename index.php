@@ -15,6 +15,7 @@ $csrfContactToken = $_SESSION['csrf_contact'];
 
 $profile = require __DIR__ . '/data/profile.php';
 $projects = require __DIR__ . '/data/projects.php';
+$cases = require __DIR__ . '/data/cases.php';
 
 $contactFlash = match ($_GET['contact'] ?? '') {
     'sent' => ['ok' => true, 'text' => 'Съобщението е изпратено до пощата. Ще отговоря възможно най-скоро.'],
@@ -39,6 +40,11 @@ $ogImageUrl = $hasProfilePhoto
 $metaKeywords = portfolio_seo_keywords_string($profile);
 $jsonLd = portfolio_seo_json_ld($profile, $canonicalUrl, $ogImageUrl, $pageTitle, $pageDescription);
 
+$navShowCases = $cases !== [];
+$navShowTestimonials = ($profile['testimonials'] ?? []) !== [];
+$plausibleDomain = trim((string) (getenv('PLAUSIBLE_DOMAIN') ?: ''));
+$footerHomeHref = 'index.php';
+
 $erpCaptions = [
     'Dashboard — ключови показатели',
     'Профил, известия и лични данни',
@@ -62,7 +68,7 @@ $erpCaptions = [
 require __DIR__ . '/includes/header.php';
 ?>
 
-    <section class="hero">
+    <section class="hero" id="top">
       <div class="container hero-grid">
         <div class="hero-main">
           <?php if ($hasProfilePhoto) : ?>
@@ -87,6 +93,9 @@ require __DIR__ . '/includes/header.php';
             <div class="hero-actions">
               <a class="btn btn-primary" href="#projects">Виж проектите</a>
               <a class="btn" href="<?= portfolio_h($profile['github']) ?>" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <?php if (! empty($profile['linkedin']) && is_string($profile['linkedin']) && filter_var($profile['linkedin'], FILTER_VALIDATE_URL)) : ?>
+                <a class="btn" href="<?= portfolio_h($profile['linkedin']) ?>" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <?php endif; ?>
               <a class="btn" href="<?= portfolio_h($profile['calendar']) ?>" target="_blank" rel="noopener noreferrer">Насрочи среща</a>
             </div>
           </div>
@@ -241,6 +250,58 @@ require __DIR__ . '/includes/header.php';
       </div>
     </section>
 
+    <?php if ($cases !== []) : ?>
+    <section id="cases" aria-labelledby="cases-heading">
+      <div class="container">
+        <h2 id="cases-heading" class="section-title">Избрани кейсове</h2>
+        <p class="section-intro">Контекст, подход и резултат — без излишни детайли, с фокус върху стойността за бизнеса.</p>
+        <div class="cases-grid">
+          <?php foreach ($cases as $c) : ?>
+            <article class="card case-card" id="case-<?= portfolio_h($c['slug']) ?>">
+              <h3><?= portfolio_h($c['title']) ?></h3>
+              <p class="case-context muted"><?= portfolio_h($c['context']) ?></p>
+              <div class="case-block">
+                <h4 class="case-label">Предизвикателство</h4>
+                <p><?= portfolio_h($c['problem']) ?></p>
+              </div>
+              <div class="case-block">
+                <h4 class="case-label">Подход</h4>
+                <p><?= portfolio_h($c['approach']) ?></p>
+              </div>
+              <p class="case-stack"><strong>Технологии:</strong> <?= portfolio_h(implode(' · ', $c['stack'])) ?></p>
+              <div class="case-outcome">
+                <strong>Резултат</strong>
+                <p><?= portfolio_h($c['outcome']) ?></p>
+              </div>
+            </article>
+          <?php endforeach; ?>
+        </div>
+      </div>
+    </section>
+    <?php endif; ?>
+
+    <?php if ($navShowTestimonials) : ?>
+    <section id="testimonials" class="testimonials-section" aria-labelledby="testimonials-heading">
+      <div class="container">
+        <h2 id="testimonials-heading" class="section-title">Препоръки</h2>
+        <p class="section-intro">Отзиви от колеги и партньори по проекти.</p>
+        <div class="testimonials-grid">
+          <?php foreach ($profile['testimonials'] as $t) : ?>
+            <blockquote class="card testimonial-card">
+              <p class="testimonial-quote">“<?= portfolio_h($t['quote']) ?>”</p>
+              <footer class="testimonial-footer">
+                <cite class="testimonial-cite">
+                  <span class="testimonial-name"><?= portfolio_h($t['name']) ?></span>
+                  <span class="muted"> · <?= portfolio_h($t['role']) ?><?= isset($t['company']) ? ', ' . portfolio_h($t['company']) : '' ?></span>
+                </cite>
+              </footer>
+            </blockquote>
+          <?php endforeach; ?>
+        </div>
+      </div>
+    </section>
+    <?php endif; ?>
+
     <section id="projects">
       <div class="container">
         <div class="projects-toolbar">
@@ -308,7 +369,7 @@ require __DIR__ . '/includes/header.php';
                 <?= portfolio_h($contactFlash['text']) ?>
               </div>
             <?php endif; ?>
-            <form id="contactForm" class="contact-form" action="contact-send.php" method="post" accept-charset="UTF-8">
+            <form id="contactForm" class="contact-form" action="contact-send.php" method="post" accept-charset="UTF-8" aria-describedby="contact-privacy-note">
               <input type="hidden" name="csrf" value="<?= portfolio_h($csrfContactToken) ?>" />
               <div class="field-honeypot" aria-hidden="true">
                 <label for="website">Не попълвай</label>
@@ -326,6 +387,10 @@ require __DIR__ . '/includes/header.php';
                 <label for="sender_message">Съобщение</label>
                 <textarea id="sender_message" name="sender_message" required placeholder="Здравей, Александър…" maxlength="8000"></textarea>
               </div>
+              <p id="contact-privacy-note" class="contact-privacy">
+                Изпращайки формата, приемаш обработката на личните данни само за отговор на запитването.
+                <a href="privacy.php">Политика за поверителност</a>.
+              </p>
               <button type="submit" class="btn btn-primary">Изпрати</button>
             </form>
           </div>
@@ -335,6 +400,9 @@ require __DIR__ . '/includes/header.php';
             <p><strong>Телефон:</strong> <a href="tel:<?= portfolio_h(preg_replace('/\s+/', '', $profile['phone'])) ?>"><?= portfolio_h($profile['phone']) ?></a></p>
             <p><strong>Локация:</strong> <?= portfolio_h($profile['location']) ?></p>
             <p><strong>GitHub:</strong> <a href="<?= portfolio_h($profile['github']) ?>" target="_blank" rel="noopener noreferrer">@sashokrist</a></p>
+            <?php if (! empty($profile['linkedin']) && is_string($profile['linkedin']) && filter_var($profile['linkedin'], FILTER_VALIDATE_URL)) : ?>
+              <p><strong>LinkedIn:</strong> <a href="<?= portfolio_h($profile['linkedin']) ?>" target="_blank" rel="noopener noreferrer">Профил</a></p>
+            <?php endif; ?>
             <p class="muted" style="margin-bottom:0">
               <a class="btn btn-primary" href="<?= portfolio_h($profile['calendar']) ?>" target="_blank" rel="noopener noreferrer">Google Calendar</a>
             </p>

@@ -4,12 +4,18 @@ declare(strict_types=1);
 
 $portfolioJsPath = __DIR__ . '/../assets/js/portfolio.js';
 $portfolioJsV = is_readable($portfolioJsPath) ? (string) filemtime($portfolioJsPath) : '1';
+$plausibleDomain = isset($plausibleDomain) ? trim((string) $plausibleDomain) : '';
 
 ?>
   </main>
   <footer class="site-footer">
-    <div class="container">
-      <small>© <span id="year"></span> <?= portfolio_h($profile['name']) ?> · PHP <?= PHP_VERSION ?> · София</small>
+    <div class="container footer-inner">
+      <small class="footer-copy">© <span id="year"></span> <?= portfolio_h($profile['name']) ?> · PHP <?= PHP_VERSION ?> · София</small>
+      <nav class="footer-nav" aria-label="Долна навигация">
+        <a href="<?= portfolio_h($footerHomeHref ?? 'index.php') ?>">Начало</a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="privacy.php">Поверителност</a>
+      </nav>
     </div>
   </footer>
   <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Галерия">
@@ -21,6 +27,9 @@ $portfolioJsV = is_readable($portfolioJsPath) ? (string) filemtime($portfolioJsP
       <p class="lightbox-caption"></p>
     </div>
   </div>
+  <?php if ($plausibleDomain !== '') : ?>
+  <script defer data-domain="<?= portfolio_h($plausibleDomain) ?>" src="https://plausible.io/js/script.js"></script>
+  <?php endif; ?>
   <script src="assets/js/portfolio.js?v=<?= portfolio_h($portfolioJsV) ?>" defer></script>
 </body>
 </html>

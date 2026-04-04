@@ -66,6 +66,9 @@ function portfolio_seo_same_as(array $profile): array
     if (! empty($profile['github']) && is_string($profile['github'])) {
         $out[] = $profile['github'];
     }
+    if (! empty($profile['linkedin']) && is_string($profile['linkedin']) && filter_var($profile['linkedin'], FILTER_VALIDATE_URL)) {
+        $out[] = $profile['linkedin'];
+    }
     foreach ($profile['seo_same_as'] ?? [] as $u) {
         if (is_string($u) && filter_var($u, FILTER_VALIDATE_URL)) {
             $out[] = $u;
@@ -129,6 +132,26 @@ function portfolio_seo_json_ld(array $profile, string $canonicalUrl, ?string $og
 
     $payload = ['@context' => 'https://schema.org', '@graph' => $graph];
 
+    $json = json_encode(
+        $payload,
+        JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT
+    );
+
+    return $json !== false ? $json : '{}';
+}
+
+/**
+ * Минимален JSON-LD за статични страници (напр. поверителност).
+ */
+function portfolio_seo_json_ld_webpage(string $title, string $description, string $url): string
+{
+    $payload = [
+        '@context' => 'https://schema.org',
+        '@type' => 'WebPage',
+        'name' => $title,
+        'description' => $description,
+        'url' => $url,
+    ];
     $json = json_encode(
         $payload,
         JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT
