@@ -71,6 +71,8 @@ $navFrag = static function (string $id) use ($navHrefPrefix): string {
       </a>
       <nav class="nav-links" aria-label="Основна навигация">
         <a href="<?= $navFrag('about') ?>">За мен</a>
+        <a href="<?= $navFrag('projects') ?>">Проекти</a>
+        <a href="<?= $navFrag('skills') ?>">Умения</a>
         <a href="<?= $navFrag('erp') ?>">BioMarket ERP</a>
         <?php if ($navShowCases) : ?>
           <a href="<?= $navFrag('cases') ?>">Кейсове</a>
@@ -78,7 +80,6 @@ $navFrag = static function (string $id) use ($navHrefPrefix): string {
         <?php if ($navShowTestimonials) : ?>
           <a href="<?= $navFrag('testimonials') ?>">Препоръки</a>
         <?php endif; ?>
-        <a href="<?= $navFrag('projects') ?>">Проекти</a>
         <?php if (! empty($dogGalleryImages)) : ?>
           <a href="<?= $navFrag('dogs') ?>">Кучета</a>
         <?php endif; ?>

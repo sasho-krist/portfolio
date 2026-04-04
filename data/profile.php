@@ -11,7 +11,9 @@ return [
     'phone' => '+359 877 750 552',
     'github' => 'https://github.com/sashokrist',
     'linkedin' => '', // пълен URL към профил, напр. https://www.linkedin.com/in/...
-    'calendar' => 'https://calendar.app.google/TBgDARyCp4zZYttZ9',
+    // Насрочване на срещи (Google Календар → Настройки → „Насрочване на срещи“ / appointment schedule).
+    // Ако линкът показва „Срещата не бе намерена“, създай ново насрочване и подмени URL-а или задай CALENDAR_URL в .env
+    'calendar' => 'https://calendar.app.google/VrS5H47ZJH7uKdNL7',
     'seo_title' => 'Aleksander Keremidarov | PHP & Laravel · Sofia',
     'seo_description' => 'Aleksander Keremidarov — PHP & Laravel full stack разработчик в София. WordPress, REST API, MySQL, React, Next.js. Портфолио и контакт.',
     'seo_keywords' => [
@@ -64,7 +66,27 @@ return [
             'company' => '',
         ],
     ],
-    'profile' => 'Резултатно ориентиран Full Stack разработчик с 5+ години опит в изграждане на мащабируеми Laravel и WordPress платформи. Разработвам RESTful API, сложна бизнес логика и съвременни интерфейси с React и Next.js. Интересувам се от чиста архитектура, производителност и практични решения.',
+    'profile' => 'Резултатно ориентиран Full Stack разработчик с 7 години опит в изграждане на мащабируеми Laravel и WordPress платформи. Разработвам RESTful API, сложна бизнес логика и съвременни интерфейси с React и Next.js. Интересувам се от чиста архитектура, производителност и практични решения.',
+    'years_experience' => '7',
+    'about_bullets' => [
+        'Full stack с акцент върху Laravel backend, WordPress и PHP 8.',
+        'Силен в REST API, интеграции, опашки и ясна домейн логика.',
+        'Търся проекти: Laravel/backend, WordPress, API — freelance, кооперации или фиксирана позиция.',
+        'Работя freelance и remote; отворен за екипи в EU timezone.',
+    ],
+    'resume_url' => '', // напр. CV.pdf в root — показва се „Свали PDF“ в контактите
+    'skills_cards' => [
+        'Backend, бази данни и CMS' => 'PHP 8, Laravel (7 години), Laravel Sanctum, JavaScript, Ajax, WordPress (custom плъгини, CPT), REST API, MySQL, MariaDB, PostgreSQL, RabbitMQ и опашки. CMS: WordPress, October CMS, custom Laravel CMS.',
+        'Frontend и UI' => 'HTML, CSS, Bootstrap, Tailwind CSS, Blade, JavaScript, React, Next.js, Vue.js (уча се).',
+        'DevOps и среда' => 'Linux, Nginx, Apache, Docker (при нужда), REST API интеграции, WSL, SSH. Windows (XAMPP, WAMP), Linux (Apache, Nginx).',
+        'Версии, проекти и хостинг' => 'GitHub, Bitbucket. Управление на проекти: Jira, Trello, Monday, ClickUp. Хостинг: cPanel, FTP, SSH, инсталация на различни CMS, mail и database конфигурация.',
+    ],
+    'services' => [
+        'Уеб разработка и разширяване на съществуващи системи',
+        'REST API и интеграции с външни услуги',
+        'WordPress: плъгини, теми, Custom Post Types',
+        'Laravel: модули, миграции, админ табла, опашки и кеширане',
+    ],
     'education' => [
         [
             'period' => '2015 – 2018',
@@ -121,18 +143,6 @@ return [
             'company' => 'Shippii Technologies',
             'desc' => 'Архитектура и рефакторинг на shipping система, нови функции, поддръжка.',
         ],
-    ],
-    'skills' => [
-        'Backend & Languages' => 'PHP, Laravel (5+ years), JavaScript, Ajax, WordPress',
-        'Frontend' => 'HTML, CSS, Bootstrap, Tailwind CSS',
-        'Frameworks' => 'Next.js, React',
-        'Database' => 'MySQL, PostgreSQL',
-        'Version Control' => 'GitHub, Bitbucket',
-        'Project Management' => 'Jira, Trello, Monday, ClickUp',
-        'DevOps & Tools' => 'Docker, REST API integration',
-        'Hosting' => 'cPanel, FTP, SSH, installing different CMS, Mail config, database config',
-        'CMS Experience' => 'WordPress, October CMS, custom Laravel CMS',
-        'Operating Systems' => 'Windows (XAMPP, WAMP), Linux (Apache, Nginx)',
     ],
     'languages' => [
         'Bulgarian' => 'Native',

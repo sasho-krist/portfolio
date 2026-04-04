@@ -127,3 +127,30 @@ function portfolio_mail_write_last_error(string $detail): void
         }
     }
 }
+
+/**
+ * Normalize project screenshot entries (string URLs or {url, caption}).
+ *
+ * @param array<string, mixed> $p
+ * @return list<array{url: string, caption: string}>
+ */
+function portfolio_project_screenshots(array $p): array
+{
+    $raw = $p['screenshots'] ?? [];
+    if (! is_array($raw)) {
+        return [];
+    }
+    $out = [];
+    foreach ($raw as $item) {
+        if (is_string($item) && $item !== '') {
+            $out[] = ['url' => $item, 'caption' => ''];
+        } elseif (is_array($item) && ! empty($item['url']) && is_string($item['url'])) {
+            $out[] = [
+                'url' => $item['url'],
+                'caption' => isset($item['caption']) && is_string($item['caption']) ? $item['caption'] : '',
+            ];
+        }
+    }
+
+    return $out;
+}

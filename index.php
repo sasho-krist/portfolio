@@ -14,8 +14,16 @@ $_SESSION['csrf_contact'] = bin2hex(random_bytes(32));
 $csrfContactToken = $_SESSION['csrf_contact'];
 
 $profile = require __DIR__ . '/data/profile.php';
+$calendarOverride = trim((string) (getenv('CALENDAR_URL') ?: ''));
+if ($calendarOverride !== '' && filter_var($calendarOverride, FILTER_VALIDATE_URL)) {
+    $profile['calendar'] = $calendarOverride;
+}
 $projects = require __DIR__ . '/data/projects.php';
 $cases = require __DIR__ . '/data/cases.php';
+$projectsCount = count($projects);
+$resumeUrl = isset($profile['resume_url']) ? trim((string) $profile['resume_url']) : '';
+$resumePath = $resumeUrl !== '' ? portfolio_base_path($resumeUrl) : '';
+$hasResume = $resumeUrl !== '' && is_readable($resumePath);
 
 $contactFlash = match ($_GET['contact'] ?? '') {
     'sent' => ['ok' => true, 'text' => 'Съобщението е изпратено до пощата. Ще отговоря възможно най-скоро.'],
@@ -98,6 +106,11 @@ require __DIR__ . '/includes/header.php';
               <?php endif; ?>
               <a class="btn" href="<?= portfolio_h($profile['calendar']) ?>" target="_blank" rel="noopener noreferrer">Насрочи среща</a>
             </div>
+            <p class="hero-stats" aria-label="Показатели">
+              <span><strong><?= (int) $projectsCount ?></strong> публични проекта в GitHub</span>
+              <span class="hero-stats__sep" aria-hidden="true">·</span>
+              <span><strong><?= portfolio_h((string) ($profile['years_experience'] ?? '7')) ?></strong> години опит</span>
+            </p>
           </div>
         </div>
         <aside class="card quick-facts">
@@ -111,10 +124,192 @@ require __DIR__ . '/includes/header.php';
       </div>
     </section>
 
+    <section id="projects">
+      <div class="container">
+        <div class="projects-toolbar">
+          <div>
+            <h2 class="section-title" style="margin-bottom:0">Проекти</h2>
+          </div>
+        </div>
+        <div class="projects-grid" aria-label="Проекти в изглед карти">
+          <?php foreach ($projects as $p) : ?>
+            <article class="card project-card" id="project-<?= portfolio_h($p['slug']) ?>">
+              <div class="project-meta">
+                <?php foreach ($p['pills'] as $pill) : ?>
+                  <span class="pill"><?= portfolio_h($pill) ?></span>
+                <?php endforeach; ?>
+              </div>
+              <h3><?= portfolio_h($p['name']) ?></h3>
+              <p class="project-desc"><?= portfolio_h($p['desc']) ?></p>
+              <?php if (! empty($p['readme_excerpt'])) : ?>
+                <p class="project-readme"><?= portfolio_h((string) $p['readme_excerpt']) ?></p>
+              <?php endif; ?>
+              <?php
+                $hasDetail = ! empty($p['problem']) || ! empty($p['my_role']) || ! empty($p['challenge']) || ! empty($p['solution']);
+              ?>
+              <?php if ($hasDetail) : ?>
+                <dl class="project-detail">
+                  <?php if (! empty($p['problem'])) : ?>
+                    <dt>Проблем / контекст</dt>
+                    <dd><?= portfolio_h((string) $p['problem']) ?></dd>
+                  <?php endif; ?>
+                  <?php if (! empty($p['my_role'])) : ?>
+                    <dt>Моята роля</dt>
+                    <dd><?= portfolio_h((string) $p['my_role']) ?></dd>
+                  <?php endif; ?>
+                  <?php if (! empty($p['challenge'])) : ?>
+                    <dt>Предизвикателство</dt>
+                    <dd><?= portfolio_h((string) $p['challenge']) ?></dd>
+                  <?php endif; ?>
+                  <?php if (! empty($p['solution'])) : ?>
+                    <dt>Подход / решение</dt>
+                    <dd><?= portfolio_h((string) $p['solution']) ?></dd>
+                  <?php endif; ?>
+                </dl>
+              <?php endif; ?>
+              <?php
+                $projectShots = array_values(array_filter(
+                    portfolio_project_screenshots($p),
+                    static fn (array $s): bool => filter_var($s['url'], FILTER_VALIDATE_URL) !== false
+                ));
+              ?>
+              <?php if ($projectShots !== []) : ?>
+                <div class="project-shots" aria-label="Снимки от GitHub README">
+                  <?php foreach ($projectShots as $si => $shot) : ?>
+                    <?php
+                      $alt = $p['name'] . ' — снимка ' . (string) ($si + 1);
+                      if ($shot['caption'] !== '') {
+                          $alt = $shot['caption'];
+                      }
+                    ?>
+                    <figure class="project-shot">
+                      <a href="<?= portfolio_h($shot['url']) ?>" target="_blank" rel="noopener noreferrer">
+                        <img
+                          src="<?= portfolio_h($shot['url']) ?>"
+                          alt="<?= portfolio_h($alt) ?>"
+                          width="320"
+                          height="200"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </a>
+                      <?php if ($shot['caption'] !== '') : ?>
+                        <figcaption class="project-shot-cap"><?= portfolio_h($shot['caption']) ?></figcaption>
+                      <?php endif; ?>
+                    </figure>
+                  <?php endforeach; ?>
+                </div>
+              <?php endif; ?>
+              <div class="project-actions">
+                <a class="btn btn-primary" href="<?= portfolio_h($p['repo']) ?>" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <?php if (! empty($p['demo'])) : ?>
+                  <a class="btn" href="<?= portfolio_h((string) $p['demo']) ?>" target="_blank" rel="noopener noreferrer">Демо</a>
+                <?php endif; ?>
+              </div>
+            </article>
+          <?php endforeach; ?>
+        </div>
+        <div class="projects-table-wrap" aria-label="Проекти в табличен изглед">
+          <table class="projects-table">
+            <thead>
+              <tr>
+                <th>Проект</th>
+                <th>Технологии</th>
+                <th>Описание и контекст</th>
+                <th>Връзки</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($projects as $p) : ?>
+                <tr>
+                  <td><strong><?= portfolio_h($p['name']) ?></strong></td>
+                  <td><?= portfolio_h(implode(', ', $p['pills'])) ?></td>
+                  <td>
+                    <?= portfolio_h($p['desc']) ?>
+                    <?php if (! empty($p['readme_excerpt'])) : ?>
+                      <div class="projects-table-excerpt muted"><?= portfolio_h((string) $p['readme_excerpt']) ?></div>
+                    <?php endif; ?>
+                    <?php
+                      $shotCount = count(array_filter(
+                          portfolio_project_screenshots($p),
+                          static fn (array $s): bool => filter_var($s['url'], FILTER_VALIDATE_URL) !== false
+                      ));
+                    ?>
+                    <?php if ($shotCount > 0) : ?>
+                      <div class="projects-table-shots">
+                        <a href="#project-<?= portfolio_h($p['slug']) ?>"><?= (int) $shotCount ?> снимки в изглед карти</a>
+                      </div>
+                    <?php endif; ?>
+                    <?php
+                      $bits = [];
+                      if (! empty($p['problem'])) {
+                          $bits[] = 'Проблем: ' . $p['problem'];
+                      }
+                      if (! empty($p['my_role'])) {
+                          $bits[] = 'Роля: ' . $p['my_role'];
+                      }
+                      if (! empty($p['challenge']) && ! empty($p['solution'])) {
+                          $bits[] = 'Предизвикателство → решение: ' . $p['challenge'] . ' → ' . $p['solution'];
+                      } elseif (! empty($p['challenge'])) {
+                          $bits[] = 'Предизвикателство: ' . $p['challenge'];
+                      }
+                      if ($bits !== []) {
+                          echo '<div class="projects-table-detail muted">' . portfolio_h(implode(' ', $bits)) . '</div>';
+                      }
+                    ?>
+                  </td>
+                  <td>
+                    <a href="<?= portfolio_h($p['repo']) ?>" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <?php if (! empty($p['demo'])) : ?>
+                      · <a href="<?= portfolio_h((string) $p['demo']) ?>" target="_blank" rel="noopener noreferrer">Демо</a>
+                    <?php endif; ?>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="skills-section" aria-labelledby="skills-heading">
+      <div class="container">
+        <h2 id="skills-heading" class="section-title">Умения и технологии</h2>
+        <div class="tech-stack-grid tech-stack-grid--merged">
+          <?php foreach (($profile['skills_cards'] ?? []) as $label => $text) : ?>
+            <article class="card tech-stack-card">
+              <h3 class="tech-stack-card__title"><?= portfolio_h((string) $label) ?></h3>
+              <p class="tech-stack-card__body"><?= portfolio_h((string) $text) ?></p>
+            </article>
+          <?php endforeach; ?>
+        </div>
+        <?php if (($profile['services'] ?? []) !== []) : ?>
+          <div class="card services-card">
+            <h3 class="services-card__title">Услуги</h3>
+            <ul class="services-list">
+              <?php foreach ($profile['services'] as $service) : ?>
+                <li><?= portfolio_h((string) $service) ?></li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+        <?php endif; ?>
+      </div>
+    </section>
+
     <section id="about">
       <div class="container">
         <h2 class="section-title">За мен</h2>
         <p class="section-intro"><?= portfolio_h($profile['profile']) ?></p>
+        <?php if (($profile['about_bullets'] ?? []) !== []) : ?>
+          <div class="card about-highlights">
+            <h3 class="about-highlights__title">Накратко</h3>
+            <ul class="about-highlights__list">
+              <?php foreach ($profile['about_bullets'] as $bullet) : ?>
+                <li><?= portfolio_h((string) $bullet) ?></li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+        <?php endif; ?>
         <div class="two-cols">
           <div class="card">
             <h3>Кариерен път</h3>
@@ -148,17 +343,6 @@ require __DIR__ . '/includes/header.php';
                 <li><strong><?= portfolio_h($lang) ?></strong> — <?= portfolio_h($level) ?></li>
               <?php endforeach; ?>
             </ul>
-          </div>
-        </div>
-        <div class="card" style="margin-top:18px">
-          <h3>Технически умения <span class="muted" style="font-weight:500;font-size:0.88em">· Technical Skills</span></h3>
-          <div class="skills-grid">
-            <?php foreach ($profile['skills'] as $label => $value) : ?>
-              <div class="skill-pill">
-                <strong><?= portfolio_h($label) ?></strong>
-                <?= portfolio_h($value) ?>
-              </div>
-            <?php endforeach; ?>
           </div>
         </div>
         <div class="card" style="margin-top:18px">
@@ -272,63 +456,6 @@ require __DIR__ . '/includes/header.php';
     </section>
     <?php endif; ?>
 
-    <section id="projects">
-      <div class="container">
-        <div class="projects-toolbar">
-          <div>
-            <h2 class="section-title" style="margin-bottom:4px">Проекти</h2>
-            <p class="section-intro" style="margin:0">Избрани GitHub репозиторита · превключване карти / таблица отгоре в навигацията</p>
-          </div>
-        </div>
-        <div class="projects-grid" aria-label="Проекти в изглед карти">
-          <?php foreach ($projects as $p) : ?>
-            <article class="card project-card" id="project-<?= portfolio_h($p['slug']) ?>">
-              <div class="project-meta">
-                <?php foreach ($p['pills'] as $pill) : ?>
-                  <span class="pill"><?= portfolio_h($pill) ?></span>
-                <?php endforeach; ?>
-              </div>
-              <h3><?= portfolio_h($p['name']) ?></h3>
-              <p class="project-desc"><?= portfolio_h($p['desc']) ?></p>
-              <div class="project-actions">
-                <a class="btn btn-primary" href="<?= portfolio_h($p['repo']) ?>" target="_blank" rel="noopener noreferrer">Репозиторий</a>
-                <?php if (! empty($p['demo'])) : ?>
-                  <a class="btn" href="<?= portfolio_h((string) $p['demo']) ?>" target="_blank" rel="noopener noreferrer">Демо</a>
-                <?php endif; ?>
-              </div>
-            </article>
-          <?php endforeach; ?>
-        </div>
-        <div class="projects-table-wrap" aria-label="Проекти в табличен изглед">
-          <table class="projects-table">
-            <thead>
-              <tr>
-                <th>Проект</th>
-                <th>Технологии</th>
-                <th>Описание</th>
-                <th>Връзки</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php foreach ($projects as $p) : ?>
-                <tr>
-                  <td><strong><?= portfolio_h($p['name']) ?></strong></td>
-                  <td><?= portfolio_h(implode(', ', $p['pills'])) ?></td>
-                  <td><?= portfolio_h($p['desc']) ?></td>
-                  <td>
-                    <a href="<?= portfolio_h($p['repo']) ?>" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    <?php if (! empty($p['demo'])) : ?>
-                      · <a href="<?= portfolio_h((string) $p['demo']) ?>" target="_blank" rel="noopener noreferrer">Демо</a>
-                    <?php endif; ?>
-                  </td>
-                </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
     <?php if ($dogGalleryImages !== []) : ?>
     <section id="dogs" class="dogs-section" aria-labelledby="dogs-heading">
       <div class="container">
@@ -402,6 +529,9 @@ require __DIR__ . '/includes/header.php';
             <p><strong>GitHub:</strong> <a href="<?= portfolio_h($profile['github']) ?>" target="_blank" rel="noopener noreferrer">@sashokrist</a></p>
             <?php if (! empty($profile['linkedin']) && is_string($profile['linkedin']) && filter_var($profile['linkedin'], FILTER_VALIDATE_URL)) : ?>
               <p><strong>LinkedIn:</strong> <a href="<?= portfolio_h($profile['linkedin']) ?>" target="_blank" rel="noopener noreferrer">Профил</a></p>
+            <?php endif; ?>
+            <?php if ($hasResume) : ?>
+              <p><strong>CV:</strong> <a href="<?= portfolio_h($resumeUrl) ?>" download="<?= portfolio_h(basename($resumeUrl)) ?>">Свали PDF</a></p>
             <?php endif; ?>
             <p class="muted" style="margin-bottom:0">
               <a class="btn btn-primary" href="<?= portfolio_h($profile['calendar']) ?>" target="_blank" rel="noopener noreferrer">Google Calendar</a>
