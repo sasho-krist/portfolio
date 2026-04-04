@@ -71,9 +71,6 @@ $navFrag = static function (string $id) use ($navHrefPrefix): string {
       </a>
       <nav class="nav-links" aria-label="Основна навигация">
         <a href="<?= $navFrag('about') ?>">За мен</a>
-        <?php if (! empty($dogGalleryImages)) : ?>
-          <a href="<?= $navFrag('dogs') ?>">Кучета</a>
-        <?php endif; ?>
         <a href="<?= $navFrag('erp') ?>">BioMarket ERP</a>
         <?php if ($navShowCases) : ?>
           <a href="<?= $navFrag('cases') ?>">Кейсове</a>
@@ -82,6 +79,9 @@ $navFrag = static function (string $id) use ($navHrefPrefix): string {
           <a href="<?= $navFrag('testimonials') ?>">Препоръки</a>
         <?php endif; ?>
         <a href="<?= $navFrag('projects') ?>">Проекти</a>
+        <?php if (! empty($dogGalleryImages)) : ?>
+          <a href="<?= $navFrag('dogs') ?>">Кучета</a>
+        <?php endif; ?>
         <a href="<?= $navFrag('contact') ?>">Контакти</a>
         <?php if (! empty($profile['linkedin']) && is_string($profile['linkedin']) && filter_var($profile['linkedin'], FILTER_VALIDATE_URL)) : ?>
           <a href="<?= portfolio_h($profile['linkedin']) ?>" target="_blank" rel="noopener noreferrer">LinkedIn</a>

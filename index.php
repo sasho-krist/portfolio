@@ -183,36 +183,6 @@ require __DIR__ . '/includes/header.php';
       </div>
     </section>
 
-    <?php if ($dogGalleryImages !== []) : ?>
-    <section id="dogs" class="dogs-section" aria-labelledby="dogs-heading">
-      <div class="container">
-        <h2 id="dogs-heading" class="section-title">Моите кучета</h2>
-        <p class="section-intro">Снимки от папка <code class="inline-code">images/dogs</code> · клик за увеличение</p>
-        <div class="gallery-grid gallery-grid--dogs">
-          <?php foreach ($dogGalleryImages as $i => $src) : ?>
-            <?php
-              $fileBase = pathinfo($src, PATHINFO_FILENAME);
-              $caption = $fileBase !== '' ? (string) preg_replace('/[-_]+/', ' ', $fileBase) : 'Снимка ' . (string) ($i + 1);
-            ?>
-            <figure
-              class="gallery-item gallery-item--dog"
-              data-lightbox-group="dogs"
-              data-lightbox-index="<?= (int) $i ?>"
-              data-full="<?= portfolio_h($src) ?>"
-              data-caption="<?= portfolio_h($caption) ?>"
-              role="button"
-              tabindex="0"
-              aria-label="Отвори: <?= portfolio_h($caption) ?>"
-            >
-              <img src="<?= portfolio_h($src) ?>" alt="<?= portfolio_h($caption) ?>" loading="lazy" width="400" height="280" />
-              <figcaption><?= portfolio_h($caption) ?></figcaption>
-            </figure>
-          <?php endforeach; ?>
-        </div>
-      </div>
-    </section>
-    <?php endif; ?>
-
     <section id="erp">
       <div class="container">
         <h2 class="section-title">BioMarket ERP</h2>
@@ -358,6 +328,36 @@ require __DIR__ . '/includes/header.php';
         </div>
       </div>
     </section>
+
+    <?php if ($dogGalleryImages !== []) : ?>
+    <section id="dogs" class="dogs-section" aria-labelledby="dogs-heading">
+      <div class="container">
+        <h2 id="dogs-heading" class="section-title">Моите кучета</h2>
+        <p class="section-intro">Снимки от папка <code class="inline-code">images/dogs</code> · клик за увеличение</p>
+        <div class="gallery-grid gallery-grid--dogs">
+          <?php foreach ($dogGalleryImages as $i => $src) : ?>
+            <?php
+              $fileBase = pathinfo($src, PATHINFO_FILENAME);
+              $caption = $fileBase !== '' ? (string) preg_replace('/[-_]+/', ' ', $fileBase) : 'Снимка ' . (string) ($i + 1);
+            ?>
+            <figure
+              class="gallery-item gallery-item--dog"
+              data-lightbox-group="dogs"
+              data-lightbox-index="<?= (int) $i ?>"
+              data-full="<?= portfolio_h($src) ?>"
+              data-caption="<?= portfolio_h($caption) ?>"
+              role="button"
+              tabindex="0"
+              aria-label="Отвори: <?= portfolio_h($caption) ?>"
+            >
+              <img src="<?= portfolio_h($src) ?>" alt="<?= portfolio_h($caption) ?>" loading="lazy" width="400" height="280" />
+              <figcaption><?= portfolio_h($caption) ?></figcaption>
+            </figure>
+          <?php endforeach; ?>
+        </div>
+      </div>
+    </section>
+    <?php endif; ?>
 
     <section id="contact">
       <div class="container">
