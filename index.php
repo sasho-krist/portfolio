@@ -333,7 +333,7 @@ require __DIR__ . '/includes/header.php';
     <section id="dogs" class="dogs-section" aria-labelledby="dogs-heading">
       <div class="container">
         <h2 id="dogs-heading" class="section-title">Моите кучета</h2>
-        <p class="section-intro">Снимки от папка <code class="inline-code">images/dogs</code> · клик за увеличение</p>
+        <p class="section-intro">Клик за увеличение</p>
         <div class="gallery-grid gallery-grid--dogs">
           <?php foreach ($dogGalleryImages as $i => $src) : ?>
             <?php
