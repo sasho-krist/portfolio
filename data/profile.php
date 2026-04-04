@@ -120,7 +120,7 @@ return [
         'DevOps & Tools' => 'Docker, REST API integration',
         'Hosting' => 'cPanel, FTP, SSH, installing different CMS, Mail config, database config',
         'CMS Experience' => 'WordPress, October CMS, custom Laravel CMS',
-        'Operating Systems' => 'Windows (XAMPP, WAMP), Linux (Nginx)',
+        'Operating Systems' => 'Windows (XAMPP, WAMP), Linux (Apache, Nginx)',
     ],
     'languages' => [
         'Bulgarian' => 'Native',
