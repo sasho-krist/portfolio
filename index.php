@@ -292,7 +292,7 @@ require __DIR__ . '/includes/header.php';
               <footer class="testimonial-footer">
                 <cite class="testimonial-cite">
                   <span class="testimonial-name"><?= portfolio_h($t['name']) ?></span>
-                  <span class="muted"> · <?= portfolio_h($t['role']) ?><?= isset($t['company']) ? ', ' . portfolio_h($t['company']) : '' ?></span>
+                  <span class="muted"> · <?= portfolio_h($t['role']) ?><?= ! empty($t['company']) ? ', ' . portfolio_h($t['company']) : '' ?></span>
                 </cite>
               </footer>
             </blockquote>
