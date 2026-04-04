@@ -57,7 +57,8 @@
     body.setAttribute("data-projects-view", mode);
     syncViewButtons(mode);
 
-    document.querySelectorAll("[data-projects-view]").forEach((btn) => {
+    // Само бутоните в тулбара — не <body data-projects-view>, иначе слушателите се дублират и toggle чупи.
+    document.querySelectorAll("button[data-projects-view]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const v = btn.getAttribute("data-projects-view");
         if (v !== "cards" && v !== "table") return;
@@ -69,7 +70,7 @@
   }
 
   function syncViewButtons(mode) {
-    document.querySelectorAll("[data-projects-view]").forEach((btn) => {
+    document.querySelectorAll("button[data-projects-view]").forEach((btn) => {
       const v = btn.getAttribute("data-projects-view");
       btn.setAttribute("aria-pressed", v === mode ? "true" : "false");
     });
