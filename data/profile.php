@@ -116,7 +116,7 @@ return [
         'Frameworks' => 'Next.js, React',
         'Database' => 'MySQL, PostgreSQL',
         'Version Control' => 'GitHub, Bitbucket',
-        'Project Management' => 'Jira, Trello, Monday',
+        'Project Management' => 'Jira, Trello, Monday ClickUp',
         'DevOps & Tools' => 'Docker, REST API integration',
         'Hosting' => 'cPanel, FTP, SSH, installing different CMS, Mail config, database config',
         'CMS Experience' => 'WordPress, October CMS, custom Laravel CMS',
