@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Добави sitemap в Google Search Console с пълен HTTPS URL, напр.:
+# https://твоят-домейн/sitemap.php

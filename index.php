@@ -3,6 +3,9 @@
 declare(strict_types=1);
 
 require __DIR__ . '/includes/helpers.php';
+require __DIR__ . '/includes/env.php';
+portfolio_load_dotenv(__DIR__ . '/.env');
+require __DIR__ . '/includes/seo.php';
 
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
@@ -20,14 +23,21 @@ $contactFlash = match ($_GET['contact'] ?? '') {
     default => null,
 };
 
-$pageTitle = $profile['name'] . ' — Портфолио';
-$pageDescription = $profile['tagline'];
+$pageTitle = $profile['name'] . ' — PHP & Laravel developer · Портфолио';
+$pageDescription = (string) ($profile['seo_description'] ?? $profile['tagline']);
 
 $galleryImages = portfolio_gallery_images();
 $dogGalleryImages = portfolio_images_in_subdir('images/dogs');
 
 $profilePhotoPath = portfolio_base_path('images/alexander.jpg');
 $hasProfilePhoto = is_file($profilePhotoPath) && is_readable($profilePhotoPath);
+
+$canonicalUrl = portfolio_canonical_url();
+$ogImageUrl = $hasProfilePhoto
+    ? rtrim($canonicalUrl, '/') . '/images/alexander.jpg'
+    : null;
+$metaKeywords = portfolio_seo_keywords_string($profile);
+$jsonLd = portfolio_seo_json_ld($profile, $canonicalUrl, $ogImageUrl, $pageTitle, $pageDescription);
 
 $erpCaptions = [
     'Dashboard — ключови показатели',
