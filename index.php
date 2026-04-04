@@ -23,9 +23,9 @@ $contactFlash = match ($_GET['contact'] ?? '') {
 $pageTitle = $profile['name'] . ' — Портфолио';
 $pageDescription = $profile['tagline'];
 
-$readmePath = portfolio_base_path('README.md');
-$erpReadmeRaw = is_readable($readmePath) ? (string) file_get_contents($readmePath) : '';
-$erpReadmeHtml = $erpReadmeRaw !== '' ? portfolio_markdown_to_html($erpReadmeRaw) : '<p class="muted">README.md не е намерен.</p>';
+$erpDocPath = portfolio_base_path('docs/BIOMARKET-ERP.md');
+$erpReadmeRaw = is_readable($erpDocPath) ? (string) file_get_contents($erpDocPath) : '';
+$erpReadmeHtml = $erpReadmeRaw !== '' ? portfolio_markdown_to_html($erpReadmeRaw) : '<p class="muted">docs/BIOMARKET-ERP.md не е намерен.</p>';
 
 $galleryImages = portfolio_gallery_images();
 $dogGalleryImages = portfolio_images_in_subdir('images/dogs');
@@ -203,14 +203,14 @@ require __DIR__ . '/includes/header.php';
         <h2 class="section-title">BioMarket ERP</h2>
         <p class="section-intro">
           Вътрешна уеб система за веригата BioMarket / HealthStore — Laravel, HR, склад, каталог, POS, PRIM интеграции и още.
-          Описанието по-долу е от README на проекта (вътрешна документация).
+          Описанието по-долу е от docs/BIOMARKET-ERP.md (вътрешна документация за Laravel ERP).
         </p>
         <div class="erp-banner">
           <strong>Важно:</strong>
           <span class="muted"> Репозиторият е за вътрешна употреба. Няма публичен линк към кода; показвам модулите и екрани чрез галерия.</span>
         </div>
         <details class="readme-details card">
-          <summary>Пълен README (markdown)</summary>
+          <summary>Пълна документация (markdown)</summary>
           <div class="readme-body"><?= $erpReadmeHtml ?></div>
         </details>
         <?php if ($galleryImages !== []) : ?>
