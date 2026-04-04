@@ -99,6 +99,8 @@ $erpCaptionsEn = [
 ];
 $erpCaptions = portfolio_lang() === 'en' ? $erpCaptionsEn : $erpCaptionsBg;
 
+$heroFocus = trim(portfolio_profile_text($profile, 'hero_focus'));
+
 require __DIR__ . '/includes/header.php';
 ?>
 
@@ -122,10 +124,17 @@ require __DIR__ . '/includes/header.php';
           <?php endif; ?>
           <div class="hero-copy">
             <span class="tag"><span class="tag-dot" aria-hidden="true"></span> <?= portfolio_h(portfolio_t('hero_tag')) ?></span>
-            <h1><?= portfolio_h($profile['title']) ?></h1>
+            <p class="hero-name"><?= portfolio_h($profile['name']) ?></p>
+            <h1 class="hero-title"><?= portfolio_h($profile['title']) ?></h1>
             <p class="hero-lead"><?= portfolio_h(portfolio_profile_text($profile, 'tagline')) ?></p>
-            <div class="hero-actions">
+            <?php if ($heroFocus !== '') : ?>
+              <p class="hero-focus"><?= portfolio_h($heroFocus) ?></p>
+            <?php endif; ?>
+            <div class="hero-actions hero-actions--primary">
               <a class="btn btn-primary" href="#projects"><?= portfolio_h(portfolio_t('hero_view_projects')) ?></a>
+              <a class="btn btn-primary" href="#contact"><?= portfolio_h(portfolio_t('hero_contact')) ?></a>
+            </div>
+            <div class="hero-actions hero-actions--secondary">
               <a class="btn" href="<?= portfolio_h($profile['github']) ?>" target="_blank" rel="noopener noreferrer"><?= portfolio_h(portfolio_t('hero_github')) ?></a>
               <?php if (! empty($profile['linkedin']) && is_string($profile['linkedin']) && filter_var($profile['linkedin'], FILTER_VALIDATE_URL)) : ?>
                 <a class="btn" href="<?= portfolio_h($profile['linkedin']) ?>" target="_blank" rel="noopener noreferrer"><?= portfolio_h(portfolio_t('hero_linkedin')) ?></a>
@@ -298,26 +307,27 @@ require __DIR__ . '/includes/header.php';
       </div>
     </section>
 
-    <section id="skills" class="skills-section" aria-labelledby="skills-heading">
+    <section id="github" class="github-section" aria-labelledby="github-heading">
       <div class="container">
-        <h2 id="skills-heading" class="section-title"><?= portfolio_h(portfolio_t('skills_title')) ?></h2>
-        <div class="tech-stack-grid tech-stack-grid--merged">
-          <?php foreach (portfolio_skills_cards_for_lang($profile) as $label => $text) : ?>
-            <article class="card tech-stack-card">
-              <h3 class="tech-stack-card__title"><?= portfolio_h((string) $label) ?></h3>
-              <p class="tech-stack-card__body"><?= portfolio_h((string) $text) ?></p>
-            </article>
-          <?php endforeach; ?>
-        </div>
-        <?php if (($profile['services'] ?? []) !== []) : ?>
-          <div class="card services-card">
-            <h3 class="services-card__title"><?= portfolio_h(portfolio_t('services_title')) ?></h3>
-            <ul class="services-list">
-              <?php foreach (portfolio_services_for_lang($profile) as $service) : ?>
-                <li><?= portfolio_h((string) $service) ?></li>
-              <?php endforeach; ?>
-            </ul>
-          </div>
+        <h2 id="github-heading" class="section-title"><?= portfolio_h(portfolio_t('github_section_title')) ?></h2>
+        <p class="section-intro"><?= portfolio_h(portfolio_profile_text($profile, 'github_section_intro')) ?></p>
+        <p class="github-section__cta">
+          <a class="btn btn-primary" href="<?= portfolio_h($profile['github']) ?>" target="_blank" rel="noopener noreferrer"><?= portfolio_h(portfolio_t('github_profile_cta')) ?></a>
+        </p>
+        <?php $ghRepos = portfolio_github_repos_for_lang($profile); ?>
+        <?php if ($ghRepos !== []) : ?>
+          <ul class="github-repo-cards">
+            <?php foreach ($ghRepos as $repo) : ?>
+              <li class="github-repo-cards__item">
+                <a class="github-repo-card" href="<?= portfolio_h($repo['url']) ?>" target="_blank" rel="noopener noreferrer">
+                  <span class="github-repo-card__name"><?= portfolio_h($repo['label']) ?></span>
+                  <?php if (! empty($repo['note'])) : ?>
+                    <span class="github-repo-card__note"><?= portfolio_h((string) $repo['note']) ?></span>
+                  <?php endif; ?>
+                </a>
+              </li>
+            <?php endforeach; ?>
+          </ul>
         <?php endif; ?>
       </div>
     </section>
@@ -390,6 +400,30 @@ require __DIR__ . '/includes/header.php';
             <?php endforeach; ?>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section id="skills" class="skills-section" aria-labelledby="skills-heading">
+      <div class="container">
+        <h2 id="skills-heading" class="section-title"><?= portfolio_h(portfolio_t('skills_title')) ?></h2>
+        <div class="tech-stack-grid tech-stack-grid--merged">
+          <?php foreach (portfolio_skills_cards_for_lang($profile) as $label => $text) : ?>
+            <article class="card tech-stack-card">
+              <h3 class="tech-stack-card__title"><?= portfolio_h((string) $label) ?></h3>
+              <p class="tech-stack-card__body"><?= portfolio_h((string) $text) ?></p>
+            </article>
+          <?php endforeach; ?>
+        </div>
+        <?php if (($profile['services'] ?? []) !== []) : ?>
+          <div class="card services-card">
+            <h3 class="services-card__title"><?= portfolio_h(portfolio_t('services_title')) ?></h3>
+            <ul class="services-list">
+              <?php foreach (portfolio_services_for_lang($profile) as $service) : ?>
+                <li><?= portfolio_h((string) $service) ?></li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+        <?php endif; ?>
       </div>
     </section>
 

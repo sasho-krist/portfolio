@@ -119,3 +119,16 @@ function portfolio_interest_label(array $interest): string
 
     return (string) ($interest['label'] ?? '');
 }
+
+/**
+ * @return list<array{label: string, url: string, note?: string}>
+ */
+function portfolio_github_repos_for_lang(array $profile): array
+{
+    if (portfolio_lang() === 'en' && ! empty($profile['github_repos_en']) && is_array($profile['github_repos_en'])) {
+        return $profile['github_repos_en'];
+    }
+    $r = $profile['github_repos'] ?? [];
+
+    return is_array($r) ? $r : [];
+}

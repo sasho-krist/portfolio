@@ -29,8 +29,11 @@ return [
         'WordPress developer',
         'full stack developer',
         'backend developer',
+        'API developer',
         'web developer Sofia',
+        'web developer Bulgaria',
         'Bulgaria PHP',
+        'freelance Laravel developer',
         'REST API',
         'MySQL',
         'PHP 8',
@@ -86,18 +89,43 @@ return [
         'Looking for: Laravel/backend, WordPress, API work — freelance, team collaboration or permanent role.',
         'Freelance and remote; open to EU timezone teams.',
     ],
-    'resume_url' => '', // напр. CV.pdf в root — показва се „Свали PDF“ в контактите
+    /** Един ред под tagline: какво търсиш / фокус (hero). */
+    'hero_focus' => 'Търся проекти с Laravel, WordPress и API — freelance, екипна работа или фиксирана позиция; remote, EU timezone.',
+    'hero_focus_en' => 'Looking for Laravel, WordPress and API work — freelance, collaboration or a permanent role; remote, EU timezone.',
+    /** Кратък текст над списъка репота в секция GitHub. */
+    'github_section_intro' => 'Публични репота с акцент върху Laravel, WordPress и API. Пълен профил и история на commit-и на GitHub.',
+    'github_section_intro_en' => 'Public repos focused on Laravel, WordPress and APIs. Full profile and commit history on GitHub.',
+    /**
+     * Акцентни репота (като „pinned“). label, url, опционално кратко описание.
+     *
+     * @var list<array{label: string, url: string, note?: string}>
+     */
+    'github_repos' => [
+        ['label' => 'booking-hotel-app', 'url' => 'https://github.com/sashokrist/booking-hotel-app', 'note' => 'PMS sync, опашки'],
+        ['label' => 'traffic_tracker', 'url' => 'https://github.com/sashokrist/traffic_tracker', 'note' => 'Laravel, отчети, Swagger'],
+        ['label' => 'wp-api-hotel-booking', 'url' => 'https://github.com/sashokrist/wp-api-hotel-booking', 'note' => 'WordPress ↔ Laravel API'],
+        ['label' => 'credit-system', 'url' => 'https://github.com/sashokrist/credit-system', 'note' => 'Домейн логика, UI'],
+        ['label' => 'portfolio', 'url' => 'https://github.com/sasho-krist/portfolio', 'note' => 'Този сайт'],
+    ],
+    'github_repos_en' => [
+        ['label' => 'booking-hotel-app', 'url' => 'https://github.com/sashokrist/booking-hotel-app', 'note' => 'PMS sync, queues'],
+        ['label' => 'traffic_tracker', 'url' => 'https://github.com/sashokrist/traffic_tracker', 'note' => 'Laravel, reports, Swagger'],
+        ['label' => 'wp-api-hotel-booking', 'url' => 'https://github.com/sashokrist/wp-api-hotel-booking', 'note' => 'WordPress ↔ Laravel API'],
+        ['label' => 'credit-system', 'url' => 'https://github.com/sashokrist/credit-system', 'note' => 'Domain logic, UI'],
+        ['label' => 'portfolio', 'url' => 'https://github.com/sasho-krist/portfolio', 'note' => 'This site'],
+    ],
+    'resume_url' => 'CV eng.pdf', // английско CV в root — показва се „Свали PDF“ в контактите
     'skills_cards' => [
         'Backend, бази данни и CMS' => 'PHP 8, Laravel (7 години), Laravel Sanctum, JavaScript, Ajax, WordPress (custom плъгини, CPT), REST API, MySQL, MariaDB, PostgreSQL, RabbitMQ и опашки. CMS: WordPress, October CMS, custom Laravel CMS.',
         'Frontend и UI' => 'HTML, CSS, Bootstrap, Tailwind CSS, Blade, JavaScript, React, Next.js, Vue.js (уча се).',
-        'DevOps и среда' => 'Linux, Nginx, Apache, Docker (при нужда), REST API интеграции, WSL, SSH. Windows (XAMPP, WAMP), Linux (Apache, Nginx).',
-        'Версии, проекти и хостинг' => 'GitHub, Bitbucket. Управление на проекти: Jira, Trello, Monday, ClickUp. Хостинг: cPanel, FTP, SSH, инсталация на различни CMS, mail и database конфигурация.',
+        'Локална среда и deploy' => 'Локална разработка: Windows (XAMPP, WAMP), Linux, WSL. Качване и конфигурация: Nginx, Apache, SSH. Docker при нужда. Интеграции към външни услуги (REST).',
+        'Git, проекти и хостинг' => 'Git — клонове, merge/PR, GitHub и Bitbucket. Управление на задачи: Jira, Trello, Monday, ClickUp. Хостинг: cPanel, FTP, SSH, инсталация на CMS, mail и database конфигурация.',
     ],
     'skills_cards_en' => [
         'Backend, databases & CMS' => 'PHP 8, Laravel (7 years), Laravel Sanctum, JavaScript, Ajax, WordPress (custom plugins, CPT), REST API, MySQL, MariaDB, PostgreSQL, RabbitMQ and queues. CMS: WordPress, October CMS, custom Laravel CMS.',
         'Frontend & UI' => 'HTML, CSS, Bootstrap, Tailwind CSS, Blade, JavaScript, React, Next.js, Vue.js (learning).',
-        'DevOps & environment' => 'Linux, Nginx, Apache, Docker as needed, REST API integrations, WSL, SSH. Windows (XAMPP, WAMP), Linux (Apache, Nginx).',
-        'Version control, PM & hosting' => 'GitHub, Bitbucket. Project tools: Jira, Trello, Monday, ClickUp. Hosting: cPanel, FTP, SSH, CMS installs, mail and database configuration.',
+        'Local environment & deployment' => 'Local development: Windows (XAMPP, WAMP), Linux, WSL. Deployment and config: Nginx, Apache, SSH. Docker when needed. Integrations with external services (REST).',
+        'Git, delivery & hosting' => 'Git — branches, merges/PRs, GitHub and Bitbucket. Task tracking: Jira, Trello, Monday, ClickUp. Hosting: cPanel, FTP, SSH, CMS setup, mail and database configuration.',
     ],
     'services' => [
         'Уеб разработка и разширяване на съществуващи системи',
@@ -183,12 +211,12 @@ return [
         'Laravel 10+, WordPress PHP 8+, JavaScript, MySQL/MariaDB',
         'Real-time: Laravel WebSockets, опашки (RabbitMQ)',
         'Frontend: HTML, CSS, Bootstrap, Tailwind, Blade, React, Vue 3 (уча се)',
-        'DevOps: Nginx, XAMPP/WAMP, WSL; Docker при нужда',
+        'Работен процес: Git (клонове, PR), GitHub; PM: Jira, Trello, Monday, ClickUp · Локално: XAMPP/WAMP, WSL · Deploy: Nginx/Apache; Docker при нужда',
     ],
     'quick_facts_en' => [
         'Laravel 10+, WordPress PHP 8+, JavaScript, MySQL/MariaDB',
         'Real-time: Laravel WebSockets, queues (RabbitMQ)',
         'Frontend: HTML, CSS, Bootstrap, Tailwind, Blade, React, Vue 3 (learning)',
-        'DevOps: Nginx, XAMPP/WAMP, WSL; Docker when needed',
+        'Workflow: Git (branches, PRs), GitHub; PM: Jira, Trello, Monday, ClickUp · Local: XAMPP/WAMP, WSL · Deploy: Nginx/Apache; Docker when needed',
     ],
 ];

@@ -318,7 +318,9 @@ html[data-theme="light"] .hero-profile__clip {
     margin-right: auto;
   }
 
-  .hero-actions {
+  .hero-actions,
+  .hero-actions--primary,
+  .hero-actions--secondary {
     justify-content: center;
   }
 }
@@ -351,6 +353,28 @@ h1 {
   margin: 0 0 16px;
 }
 
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.8vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 6px;
+  color: var(--text);
+  line-height: 1.15;
+}
+
+.hero-title {
+  margin: 0 0 14px;
+}
+
+.hero-focus {
+  color: var(--muted);
+  font-size: 0.98rem;
+  max-width: 62ch;
+  margin: 0 0 18px;
+  line-height: 1.5;
+}
+
 .hero-lead {
   color: var(--muted);
   font-size: 1.05rem;
@@ -362,6 +386,21 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+.hero-actions--primary {
+  margin-bottom: 4px;
+}
+
+.hero-actions--secondary {
+  margin-bottom: 8px;
+}
+
+@media (max-width: 560px) {
+  .hero-focus {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .btn {
@@ -434,6 +473,61 @@ section {
   color: var(--muted);
   margin: 0 0 22px;
   max-width: 70ch;
+}
+
+/* GitHub spotlight */
+.github-section__cta {
+  margin: 0 0 20px;
+}
+
+.github-repo-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.github-repo-cards__item {
+  margin: 0;
+}
+
+.github-repo-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 100%;
+  padding: 14px 16px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition:
+    border-color var(--speed),
+    transform var(--speed),
+    box-shadow var(--speed);
+}
+
+.github-repo-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.github-repo-card__name {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.88rem;
+}
+
+.github-repo-card__note {
+  font-weight: 500;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.35;
 }
 
 /* Grid cards about */

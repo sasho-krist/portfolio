@@ -80,8 +80,9 @@ $navFrag = static function (string $id) use ($navHrefPrefix): string {
         <span><?= portfolio_h($profile['name']) ?></span>
       </a>
       <nav class="nav-links" aria-label="<?= portfolio_h(portfolio_t('nav_main')) ?>">
-        <a href="<?= $navFrag('about') ?>"><?= portfolio_h(portfolio_t('nav_about')) ?></a>
         <a href="<?= $navFrag('projects') ?>"><?= portfolio_h(portfolio_t('nav_projects')) ?></a>
+        <a href="<?= $navFrag('github') ?>"><?= portfolio_h(portfolio_t('nav_github')) ?></a>
+        <a href="<?= $navFrag('about') ?>"><?= portfolio_h(portfolio_t('nav_about')) ?></a>
         <a href="<?= $navFrag('skills') ?>"><?= portfolio_h(portfolio_t('nav_skills')) ?></a>
         <a href="<?= $navFrag('erp') ?>"><?= portfolio_h(portfolio_t('nav_erp')) ?></a>
         <?php if ($navShowCases) : ?>
