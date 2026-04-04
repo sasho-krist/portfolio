@@ -23,7 +23,7 @@ $contactFlash = match ($_GET['contact'] ?? '') {
     default => null,
 };
 
-$pageTitle = $profile['name'] . ' — PHP & Laravel developer · Портфолио';
+$pageTitle = (string) ($profile['seo_title'] ?? ($profile['name'] . ' | PHP & Laravel · Sofia'));
 $pageDescription = (string) ($profile['seo_description'] ?? $profile['tagline']);
 
 $galleryImages = portfolio_gallery_images();
