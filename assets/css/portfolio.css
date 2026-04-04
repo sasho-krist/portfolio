@@ -161,6 +161,36 @@ a.brand-home {
   flex-wrap: wrap;
 }
 
+.lang-switch {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  gap: 2px;
+}
+
+.lang-switch__link {
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: var(--muted);
+  transition: background var(--speed), color var(--speed);
+}
+
+.lang-switch__link:hover {
+  color: var(--text);
+  background: var(--accent-soft);
+}
+
+.lang-switch__link.is-active {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
 .toggle-group {
   display: inline-flex;
   padding: 4px;

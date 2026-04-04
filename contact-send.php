@@ -8,24 +8,34 @@ declare(strict_types=1);
  * Иначе: PHP mail().
  */
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: index.php#contact', true, 303);
-    exit;
-}
-
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
 require __DIR__ . '/includes/helpers.php';
 require __DIR__ . '/includes/env.php';
+require __DIR__ . '/includes/i18n.php';
 
 portfolio_load_dotenv(__DIR__ . '/.env');
+portfolio_i18n_init();
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    $back = ['lang' => 'en'];
+    $url = portfolio_lang() === 'en'
+        ? 'index.php?' . http_build_query($back) . '#contact'
+        : 'index.php#contact';
+    header('Location: ' . $url, true, 303);
+    exit;
+}
 
 $profile = require __DIR__ . '/data/profile.php';
 
 $redirect = static function (string $query): void {
-    header('Location: index.php?contact=' . $query . '#contact', true, 303);
+    $params = ['contact' => $query];
+    if (portfolio_lang() === 'en') {
+        $params['lang'] = 'en';
+    }
+    header('Location: index.php?' . http_build_query($params) . '#contact', true, 303);
     exit;
 };
 

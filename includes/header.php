@@ -24,7 +24,12 @@ $navFrag = static function (string $id) use ($navHrefPrefix): string {
 
 ?>
 <!DOCTYPE html>
-<html lang="bg" data-theme="dark">
+<html
+  lang="<?= portfolio_lang() === 'en' ? 'en' : 'bg' ?>"
+  data-theme="dark"
+  data-theme-aria-light="<?= portfolio_h(portfolio_t('theme_aria_light')) ?>"
+  data-theme-aria-dark="<?= portfolio_h(portfolio_t('theme_aria_dark')) ?>"
+>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -39,10 +44,15 @@ $navFrag = static function (string $id) use ($navHrefPrefix): string {
   <meta property="og:title" content="<?= portfolio_h($pageTitle) ?>" />
   <meta property="og:description" content="<?= portfolio_h($pageDescription) ?>" />
   <meta property="og:url" content="<?= portfolio_h($canonicalUrl) ?>" />
-  <meta property="og:locale" content="bg_BG" />
+  <meta property="og:locale" content="<?= portfolio_lang() === 'en' ? 'en_US' : 'bg_BG' ?>" />
+  <?php if (portfolio_lang() === 'en') : ?>
+  <meta property="og:locale:alternate" content="bg_BG" />
+  <?php else : ?>
+  <meta property="og:locale:alternate" content="en_US" />
+  <?php endif; ?>
   <?php if ($ogImageUrl !== null && $ogImageUrl !== '') : ?>
   <meta property="og:image" content="<?= portfolio_h($ogImageUrl) ?>" />
-  <meta property="og:image:alt" content="<?= portfolio_h($profile['name'] . ' — портфолио') ?>" />
+  <meta property="og:image:alt" content="<?= portfolio_h($profile['name'] . ' — ' . portfolio_t('og_image_alt')) ?>" />
   <?php endif; ?>
   <meta name="twitter:card" content="<?= ($ogImageUrl !== null && $ogImageUrl !== '') ? 'summary_large_image' : 'summary' ?>" />
   <meta name="twitter:title" content="<?= portfolio_h($pageTitle) ?>" />
@@ -62,38 +72,42 @@ $navFrag = static function (string $id) use ($navHrefPrefix): string {
   <link rel="stylesheet" href="assets/css/portfolio.css?v=<?= portfolio_h($portfolioCssV) ?>" />
 </head>
 <body data-projects-view="cards">
-  <a class="skip-link" href="#main-content">Към съдържанието</a>
+  <a class="skip-link" href="#main-content"><?= portfolio_h(portfolio_t('skip_content')) ?></a>
   <header class="site-header">
     <div class="container nav">
       <a class="brand brand-home" href="<?= $brandHref ?>">
         <span class="brand-mark" aria-hidden="true"></span>
         <span><?= portfolio_h($profile['name']) ?></span>
       </a>
-      <nav class="nav-links" aria-label="Основна навигация">
-        <a href="<?= $navFrag('about') ?>">За мен</a>
-        <a href="<?= $navFrag('projects') ?>">Проекти</a>
-        <a href="<?= $navFrag('skills') ?>">Умения</a>
-        <a href="<?= $navFrag('erp') ?>">BioMarket ERP</a>
+      <nav class="nav-links" aria-label="<?= portfolio_h(portfolio_t('nav_main')) ?>">
+        <a href="<?= $navFrag('about') ?>"><?= portfolio_h(portfolio_t('nav_about')) ?></a>
+        <a href="<?= $navFrag('projects') ?>"><?= portfolio_h(portfolio_t('nav_projects')) ?></a>
+        <a href="<?= $navFrag('skills') ?>"><?= portfolio_h(portfolio_t('nav_skills')) ?></a>
+        <a href="<?= $navFrag('erp') ?>"><?= portfolio_h(portfolio_t('nav_erp')) ?></a>
         <?php if ($navShowCases) : ?>
-          <a href="<?= $navFrag('cases') ?>">Кейсове</a>
+          <a href="<?= $navFrag('cases') ?>"><?= portfolio_h(portfolio_t('nav_cases')) ?></a>
         <?php endif; ?>
         <?php if ($navShowTestimonials) : ?>
-          <a href="<?= $navFrag('testimonials') ?>">Препоръки</a>
+          <a href="<?= $navFrag('testimonials') ?>"><?= portfolio_h(portfolio_t('nav_testimonials')) ?></a>
         <?php endif; ?>
         <?php if (! empty($dogGalleryImages)) : ?>
-          <a href="<?= $navFrag('dogs') ?>">Кучета</a>
+          <a href="<?= $navFrag('dogs') ?>"><?= portfolio_h(portfolio_t('nav_dogs')) ?></a>
         <?php endif; ?>
-        <a href="<?= $navFrag('contact') ?>">Контакти</a>
+        <a href="<?= $navFrag('contact') ?>"><?= portfolio_h(portfolio_t('nav_contact')) ?></a>
         <?php if (! empty($profile['linkedin']) && is_string($profile['linkedin']) && filter_var($profile['linkedin'], FILTER_VALIDATE_URL)) : ?>
-          <a href="<?= portfolio_h($profile['linkedin']) ?>" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="<?= portfolio_h($profile['linkedin']) ?>" target="_blank" rel="noopener noreferrer"><?= portfolio_h(portfolio_t('nav_linkedin')) ?></a>
         <?php endif; ?>
       </nav>
       <div class="toolbar">
-        <div class="toggle-group" role="group" aria-label="Изглед проекти">
-          <button type="button" data-projects-view="cards" aria-pressed="true">Карти</button>
-          <button type="button" data-projects-view="table" aria-pressed="false">Таблица</button>
+        <div class="lang-switch" role="group" aria-label="<?= portfolio_h(portfolio_t('lang_switch_aria')) ?>">
+          <a class="lang-switch__link<?= portfolio_lang() === 'bg' ? ' is-active' : '' ?>" href="<?= portfolio_h(portfolio_lang_url('bg')) ?>" hreflang="bg" lang="bg"><?= portfolio_h(portfolio_t('lang_bg')) ?></a>
+          <a class="lang-switch__link<?= portfolio_lang() === 'en' ? ' is-active' : '' ?>" href="<?= portfolio_h(portfolio_lang_url('en')) ?>" hreflang="en" lang="en"><?= portfolio_h(portfolio_t('lang_en')) ?></a>
         </div>
-        <button type="button" class="icon-btn" data-theme-toggle aria-label="Смяна на тема">☀</button>
+        <div class="toggle-group" role="group" aria-label="<?= portfolio_h(portfolio_t('toolbar_projects_view')) ?>">
+          <button type="button" data-projects-view="cards" aria-pressed="true"><?= portfolio_h(portfolio_t('view_cards')) ?></button>
+          <button type="button" data-projects-view="table" aria-pressed="false"><?= portfolio_h(portfolio_t('view_table')) ?></button>
+        </div>
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="<?= portfolio_h(portfolio_t('theme_toggle')) ?>">☀</button>
       </div>
     </div>
   </header>

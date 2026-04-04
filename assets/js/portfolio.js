@@ -44,8 +44,13 @@
   }
 
   function updateThemeButtons(theme) {
+    const root = document.documentElement;
+    const light =
+      root.getAttribute("data-theme-aria-light") || "Light theme";
+    const dark =
+      root.getAttribute("data-theme-aria-dark") || "Dark theme";
     document.querySelectorAll("[data-theme-toggle]").forEach((btn) => {
-      btn.setAttribute("aria-label", theme === "dark" ? "Светла тема" : "Тъмна тема");
+      btn.setAttribute("aria-label", theme === "dark" ? light : dark);
       btn.textContent = theme === "dark" ? "☀" : "☾";
     });
   }
