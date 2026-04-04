@@ -479,59 +479,6 @@ section {
   background: linear-gradient(120deg, var(--accent-soft), transparent);
 }
 
-.readme-details {
-  margin-bottom: 22px;
-}
-
-.readme-details summary {
-  cursor: pointer;
-  font-weight: 700;
-  color: var(--accent);
-  padding: 12px 0;
-  list-style: none;
-}
-
-.readme-details summary::-webkit-details-marker {
-  display: none;
-}
-
-.readme-body {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px 18px;
-  max-height: 420px;
-  overflow: auto;
-  font-size: 0.92rem;
-  background: var(--bg);
-}
-
-.readme-body h1,
-.readme-body h2,
-.readme-body h3 {
-  font-family: var(--font-display);
-  margin-top: 1em;
-  margin-bottom: 0.4em;
-  font-size: 1.05rem;
-}
-
-.readme-body pre {
-  background: var(--code-bg);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px;
-  overflow: auto;
-  font-size: 0.82rem;
-}
-
-.readme-body code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 0.86em;
-}
-
-.readme-body ul {
-  padding-left: 1.2rem;
-}
-
 /* Gallery */
 .gallery-grid {
   display: grid;
