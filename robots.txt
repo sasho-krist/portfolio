@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Добави sitemap в Google Search Console с пълен HTTPS URL, напр.:
-# https://твоят-домейн/sitemap.php
+# https://sasho-dev/portfolio/sitemap.php
