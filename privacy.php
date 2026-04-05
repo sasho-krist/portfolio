@@ -50,6 +50,7 @@ require __DIR__ . '/includes/header.php';
         <ul>
           <li><?= portfolio_h(portfolio_t('privacy_li_form')) ?></li>
           <li><?= portfolio_h(portfolio_t('privacy_li_logs')) ?></li>
+          <li><?= portfolio_h(portfolio_t('privacy_li_chat')) ?></li>
         </ul>
 
         <h2><?= portfolio_h(portfolio_t('privacy_h2_goal')) ?></h2>

@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build:css": "cleancss -O1 --output assets/css/portfolio.min.css assets/css/portfolio.css",
-    "build:js": "terser assets/js/portfolio.js -c -m --comments false -o assets/js/portfolio.min.js",
+    "build:js": "terser assets/js/portfolio.js -c -m --comments false -o assets/js/portfolio.min.js && terser assets/js/alexander-chat.js -c -m --comments false -o assets/js/alexander-chat.min.js",
     "build": "npm run build:css && npm run build:js"
   },
   "devDependencies": {
