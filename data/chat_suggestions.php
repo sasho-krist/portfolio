@@ -13,26 +13,28 @@ return [
             'title' => 'Кариера и опит',
             'questions' => [
                 'Къде работи Александър в момента и какво прави?',
-                'Разкажи накратко за опита му в Devrix и BioMarket ERP.',
+                'Какво е правил в Pavelandreev.bg (Paysera, API, дизайн)?',
+                'Разкажи за опита му в Looming Tech и Monizze.',
                 'Какво включва ролята му в Bteam и системата за ваучери?',
-                'Какви компании и периоди са описани в опита му?',
+                'Какви компании и периоди са описани в опита му (вкл. Shippii)?',
             ],
         ],
         [
             'title' => 'Образование и езици',
             'questions' => [
                 'Какво образование има и от кои учебни заведения?',
-                'На какви езици работи и какви са нивата?',
                 'За какво е бил дипломният му проект в бакалавърската програма?',
+                'Какви предмети и теми са споменати от образованието в Дания?',
+                'На какви езици работи и какви са нивата?',
             ],
         ],
         [
             'title' => 'Технологии и GitHub',
             'questions' => [
-                'С какви технологии работи по backend и WordPress?',
+                'С какви технологии работи по backend и WordPress/Laravel?',
                 'Какви публични GitHub проекти са акцентирани на сайта?',
                 'Какво включват quick facts за стека и инструменти?',
-                'Ползва ли RabbitMQ, Docker или Sanctum според профила?',
+                'Ползва ли Docker, Vue.js или REST API интеграции според описанието?',
             ],
         ],
         [
@@ -40,19 +42,35 @@ return [
             'questions' => [
                 'Какви услуги предлага според портфолиото?',
                 'Какъв тип проекти търси (freelance, remote, EU)?',
-                'Как е описан фокусът му в hero секцията?',
+                'Кой е любимият му framework според допълнителния контекст?',
             ],
         ],
         [
-            'title' => 'Лично, семейство и интереси',
+            'title' => 'Лично, семейство и дом',
             'questions' => [
-                'С кого живее Александър и за кого се грижи у дома?',
+                'С кого живее и за кого се грижи у дома?',
                 'Кои домашни любимци са споменати и как се казват?',
-                'За кой футболен клуб е привърженик?',
-                'Кои марки и модели коли харесва?',
-                'Кои книги, автори и жанрове са сред любимите му?',
                 'Кои роднини живеят в Дания?',
-                'Обича ли животни според описанието?',
+                'Как е описан домът му в София?',
+                'На какви имена още отговаря освен Александър?',
+            ],
+        ],
+        [
+            'title' => 'Спорт, пътувания и свободно време',
+            'questions' => [
+                'За кой футболен клуб е привърженик?',
+                'Какви спортове гледа или практикува (Ф1, ски, тенис…)?',
+                'Къде ходи през лятото според описанието?',
+                'Ходи ли на риболов и какви коли харесва?',
+                'Каква музика харесва?',
+            ],
+        ],
+        [
+            'title' => 'Книги и лични факти',
+            'questions' => [
+                'Коя е любимата му книга и кои автори са споменати?',
+                'Какви физически характеристики са описани (ръст, очи)?',
+                'Обича ли животни и какво е казано за кучето в парка?',
             ],
         ],
     ],
@@ -60,27 +78,29 @@ return [
         [
             'title' => 'Career & experience',
             'questions' => [
-                'Where is Aleksander working now and what does he do there?',
-                'Summarize his experience at Devrix and BioMarket ERP.',
-                'What did his role at Bteam involve regarding the voucher system?',
-                'Which companies and time periods are listed in his experience?',
+                'Where is Aleksander working now and what does he do?',
+                'What did he do at Pavelandreev.bg (Paysera, APIs, design)?',
+                'Summarize his time at Looming Tech and Monizze.',
+                'What did his role at Bteam involve regarding vouchers?',
+                'Which companies and periods are listed (including Shippii)?',
             ],
         ],
         [
             'title' => 'Education & languages',
             'questions' => [
-                'What education does he have and from which schools?',
-                'What languages does he work in and at what levels?',
+                'What degree does he have and from which schools?',
                 'What was his bachelor thesis project about?',
+                'What subjects from his Denmark education are mentioned?',
+                'What languages does he speak and at what level?',
             ],
         ],
         [
             'title' => 'Tech stack & GitHub',
             'questions' => [
-                'What technologies does he use for backend and WordPress?',
+                'What technologies does he use for backend and Laravel/WordPress?',
                 'Which public GitHub projects are highlighted on the site?',
                 'What do the quick facts say about his stack and tools?',
-                'Does the profile mention RabbitMQ, Docker, or Sanctum?',
+                'Does the profile mention Docker, Vue.js, or REST API integrations?',
             ],
         ],
         [
@@ -88,19 +108,35 @@ return [
             'questions' => [
                 'What services does he offer according to the portfolio?',
                 'What kind of projects is he looking for (freelance, remote, EU)?',
-                'How is his current focus described in the hero section?',
+                'What is his favourite framework according to the extra context?',
             ],
         ],
         [
-            'title' => 'Personal, family & interests',
+            'title' => 'Personal, family & home',
             'questions' => [
-                'Who does Aleksander live with and who does he help care for at home?',
+                'Who does he live with and who does he help care for?',
                 'Which pets are mentioned and what are their names?',
-                'Which football club does he support?',
-                'What car brands or models does he like?',
-                'What books, authors, and genres does he enjoy?',
                 'Which relatives live in Denmark?',
-                'Does he love animals according to the profile?',
+                'How is his home in Sofia described?',
+                'What nicknames does he go by besides Aleksander?',
+            ],
+        ],
+        [
+            'title' => 'Sports, travel & leisure',
+            'questions' => [
+                'Which football club does he support?',
+                'What sports does he watch or do (F1, skiing, tennis…)?',
+                'Where does he go in the summer according to the text?',
+                'Does he fish and what cars does he like?',
+                'What kind of music does he enjoy?',
+            ],
+        ],
+        [
+            'title' => 'Books & quick facts',
+            'questions' => [
+                'What is his favourite book and which authors are mentioned?',
+                'What physical traits are described (height, eyes)?',
+                'What is said about animals and walking the dog in the park?',
             ],
         ],
     ],

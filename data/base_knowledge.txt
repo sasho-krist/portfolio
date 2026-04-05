@@ -1,0 +1,12 @@
+# Base knowledge (English reference)
+# Used together with data/ai_context_personal.php for the site AI chat.
+# Edit ai_context_personal.php (bg/en) when changing facts — keep this file in sync if you use it as scratchpad.
+
+Aleksander Keremidarov
+alexander.krist@gmail.com
+Sofia, Bulgaria
+Phone: +359 877750552
+
+Profile — beliefs, education, work (Pavelandreev.bg, Bteam, Looming Tech, Shippii, Intellia internship, ProPeople), skills, languages, hobbies, personal stats, family (Krisi, Viki, Marti), pets (Jana, Magi), sports (F1, Levski, snooker, skiing, tennis), cars (Mini, BMW, Golf GTI), books (Hitchhiker's Guide, etc.), Denmark family (Linda, Zoya), Black Sea (Veleka, Sozopol, Tsarevo), Sofia home, nicknames Alex/Sasho.
+
+Full narrative: see ai_context_personal.php → 'en' block.
