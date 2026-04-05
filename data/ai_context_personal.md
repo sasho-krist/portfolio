@@ -1,35 +1,7 @@
-# Допълнителен контекст за AI чата
+# Контекст за AI чата на портфолиото
 
-Този файл е **удобно копие за четене и редакция**. Източникът, който кодът реално зарежда, е **`ai_context_personal.php`** (секции `bg` и `en`). При промяна обнови и двата файла, или редактирай само `.php`.
+- **Източник за кода:** `ai_context_personal.php` (секции `bg` и `en`) — това се вмъква в system prompt в `includes/ai-chat.php`.
+- **Портфолио данни:** `data/profile.php` (кариера, проекти, skills на сайта).
+- **Английски списък-референция:** `base_knowledge.txt`.
 
----
-
-## Български (bg)
-
-Семейство и дом: Александър живее с приятелката си Криси. Криси има две деца — Марти и Вики; Александър участва в грижата за тях.
-
-Любими животни: Александър много обича животни. Домашни любимци: черен кокер шпаньол на име Жана; котка на име Маги.
-
-Спорт: привърженик на футболен клуб ПФК Левски (София).
-
-Автомобили: любими марки/модели — BMW, Mini, VW Golf GTI.
-
-Книги и четене: „Пътеводител на галактическият стопаджия“; „Властелинът на пръстените“ и „Хобит“; поредицата „Светът на диска“ на Тери Пратчет; творби на Стивън Кинг; жанрове — фантастика, фентъзи, криминални романи.
-
-Роднини в чужбина: сестра Линда и майка Зоя живеят в Дания.
-
----
-
-## English (en)
-
-Home and family: Aleksander lives with his partner Chrissy. Chrissy has two children — Marti and Vicki; Aleksander helps care for them.
-
-Pets: he loves animals. Pets: black Cocker Spaniel named Jana; cat named Magi.
-
-Sports: supporter of PFC Levski Sofia.
-
-Cars: favourite brands/models — BMW, Mini, VW Golf GTI.
-
-Books and reading: The Hitchhiker’s Guide to the Galaxy; The Lord of the Rings and The Hobbit; Terry Pratchett’s Discworld series; Stephen King’s works; genres — sci-fi & fantasy, crime novels.
-
-Family abroad: sister Linda and mother Zoya live in Denmark.
+При промяна на факти редактирай първо **`ai_context_personal.php`**, после при желание обнови този `.md` или `base_knowledge.txt` за удобство.
