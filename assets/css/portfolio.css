@@ -496,16 +496,12 @@ section {
 .github-repo-card {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 10px;
   height: 100%;
   padding: 14px 16px;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
   background: var(--bg-elevated);
-  text-decoration: none;
-  color: var(--accent);
-  font-weight: 600;
-  font-size: 0.95rem;
   transition:
     border-color var(--speed),
     transform var(--speed),
@@ -516,6 +512,33 @@ section {
   border-color: var(--accent);
   transform: translateY(-2px);
   box-shadow: var(--shadow-sm);
+}
+
+.github-repo-card__repo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.github-repo-card__repo:hover .github-repo-card__name {
+  text-decoration: underline;
+}
+
+.github-repo-card__demo {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  align-self: flex-start;
+}
+
+.github-repo-card__demo:hover {
+  color: var(--accent);
+  text-decoration: underline;
 }
 
 .github-repo-card__name {
@@ -1275,6 +1298,15 @@ textarea:focus-visible {
   display: block;
   margin-bottom: 6px;
   color: var(--accent);
+}
+
+.case-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
 }
 
 /* Testimonials */

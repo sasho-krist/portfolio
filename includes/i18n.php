@@ -121,7 +121,7 @@ function portfolio_interest_label(array $interest): string
 }
 
 /**
- * @return list<array{label: string, url: string, note?: string}>
+ * @return list<array{label: string, url: string, note?: string, demo?: string}>
  */
 function portfolio_github_repos_for_lang(array $profile): array
 {

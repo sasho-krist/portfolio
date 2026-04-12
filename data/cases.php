@@ -14,6 +14,8 @@ return [
         'approach' => 'Laravel приложение с OpenAI Chat Completions (JSON): генериране на заглавия и въпроси с четири опции и записан верен индекс, конструктор с секции, настройки за точки и времеви лимит, опити по UUID и страница с резултат в Blade + Bootstrap.',
         'stack' => ['Laravel 12', 'PHP 8.2', 'OpenAI', 'Blade', 'MySQL / SQLite'],
         'outcome' => 'От идея до публичен линк за попълване: чернова, генериране, настройки и play URL с резултат и преглед на отговорите без дублиране на съдържание на ръка.',
+        'repo' => 'https://github.com/sasho-krist/questionnaire_ai',
+        'demo' => 'https://sasho-dev.com/anketi/questionnaires',
     ],
     [
         'slug' => 'biomarket-erp',
@@ -32,6 +34,7 @@ return [
         'approach' => 'Минимална тема/плъгин, повиквания към Laravel API, кеширане където е уместно, ясни граници на отговорност.',
         'stack' => ['WordPress', 'Laravel', 'REST API', 'JavaScript'],
         'outcome' => 'Един източник на истина за данните, по-лесна поддръжка и по-бързо внедряване на нови полета.',
+        'repo' => 'https://github.com/sashokrist/wp-api-hotel-booking',
     ],
     [
         'slug' => 'bteam-vouchers',
@@ -41,6 +44,7 @@ return [
         'approach' => 'Ясни API договори, Laravel модулна структура, custom плъгини и теми само където е нужно; приоритет на продукшън корекции и наблюдение на грешки.',
         'stack' => ['Laravel', 'REST API', 'WordPress', 'MySQL'],
         'outcome' => 'По-бързо реагиране при приоритети в продукшън, по-малко регресии и по-лесно онбордване на нови полета в API.',
+        'repo' => 'https://github.com/sashokrist/credit-system',
     ],
     [
         'slug' => 'hotel-pms-sync',
@@ -50,6 +54,7 @@ return [
         'approach' => 'Console команда и насрочени задачи, опашки за асинхронна обработка, логове и CSV/отчети след sync за проверка; bulk upsert към локалната БД.',
         'stack' => ['Laravel', 'PHP 8', 'MySQL', 'Queues', 'REST'],
         'outcome' => 'Надежден инкрементален sync, по-малко ръчни корекции и ясна диагностика при проблеми с външния доставчик.',
+        'repo' => 'https://github.com/sashokrist/booking-hotel-app',
     ],
     [
         'slug' => 'sql-builder-laravel',
@@ -59,6 +64,7 @@ return [
         'approach' => 'PHP Builder клас с фиксиран API (getSQL, ограничени операции), Blade UI за преглед на генерирания SQL и на резултатите от заявката в демо контекст; Bootstrap за бърз прототип.',
         'stack' => ['Laravel', 'PHP 8', 'Blade', 'Bootstrap', 'MySQL'],
         'outcome' => 'По-лесно обяснение на заявки към база за обучение и демонстрации; ясна граница между „безопасен builder“ и опасен произволен вход.',
+        'repo' => 'https://github.com/sashokrist/SQLBuilder-Laravel',
     ],
     [
         'slug' => 'traffic-analytics-laravel',
@@ -68,5 +74,6 @@ return [
         'approach' => 'Laravel админ табло, индексирани заявки за таблични изгледи, интеграция с geo услуга, Swagger за документация и планирани имейл обобщения.',
         'stack' => ['Laravel', 'Blade', 'JavaScript', 'MySQL', 'Swagger'],
         'outcome' => 'Четими отчети, по-малко шум в данните и възможност за разширяване с нови филтри без да се чупи ядрото.',
+        'repo' => 'https://github.com/sashokrist/traffic_tracker',
     ],
 ];

@@ -22,7 +22,7 @@ return [
             ['url' => 'images/anketa/6.png', 'caption' => 'Попълване на тест или страница с резултат'],
         ],
         'repo' => 'https://github.com/sasho-krist/questionnaire_ai',
-        'demo' => null,
+        'demo' => 'https://sasho-dev.com/anketi/questionnaires',
     ],
     [
         'slug' => 'wp-cms-real-estate',
