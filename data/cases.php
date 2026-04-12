@@ -7,6 +7,15 @@ declare(strict_types=1);
  */
 return [
     [
+        'slug' => 'questionnaire-ai',
+        'title' => 'Questionnaire AI — анкети и тестове с OpenAI',
+        'context' => 'Публичен repo · Laravel 12 / PHP 8.2+',
+        'problem' => 'Ръчното съставяне на много въпроси с множествен избор, верни отговори и последователен поток за попълване отнема време; липсват автоматично точкуване и ясни лимити за тестове.',
+        'approach' => 'Laravel приложение с OpenAI Chat Completions (JSON): генериране на заглавия и въпроси с четири опции и записан верен индекс, конструктор с секции, настройки за точки и времеви лимит, опити по UUID и страница с резултат в Blade + Bootstrap.',
+        'stack' => ['Laravel 12', 'PHP 8.2', 'OpenAI', 'Blade', 'MySQL / SQLite'],
+        'outcome' => 'От идея до публичен линк за попълване: чернова, генериране, настройки и play URL с резултат и преглед на отговорите без дублиране на съдържание на ръка.',
+    ],
+    [
         'slug' => 'biomarket-erp',
         'title' => 'BioMarket ERP — вътрешна платформа за верига магазини',
         'context' => 'BioMarket / HealthStore · HR, склад, POS, PRIM',

@@ -33,7 +33,7 @@ declare(strict_types=1);
               <p class="hero-focus"><?= portfolio_h($heroFocus) ?></p>
             <?php endif; ?>
             <div class="hero-actions hero-actions--primary">
-              <a class="btn btn-primary" href="#projects"><?= portfolio_h(portfolio_t('hero_view_projects')) ?></a>
+              <a class="btn btn-primary" href="#project-questionnaire-ai"><?= portfolio_h(portfolio_t('hero_view_projects')) ?></a>
               <a class="btn btn-primary" href="#contact"><?= portfolio_h(portfolio_t('hero_contact')) ?></a>
             </div>
             <div class="hero-actions hero-actions--secondary">

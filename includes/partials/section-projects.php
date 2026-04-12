@@ -51,7 +51,7 @@ declare(strict_types=1);
               <?php
                 $projectShots = array_values(array_filter(
                     portfolio_project_screenshots($p),
-                    static fn (array $s): bool => filter_var($s['url'], FILTER_VALIDATE_URL) !== false
+                    static fn (array $s): bool => portfolio_is_valid_project_image_url($s['url'])
                 ));
               ?>
               <?php if ($projectShots !== []) : ?>
@@ -113,7 +113,7 @@ declare(strict_types=1);
                     <?php
                       $shotCount = count(array_filter(
                           portfolio_project_screenshots($p),
-                          static fn (array $s): bool => filter_var($s['url'], FILTER_VALIDATE_URL) !== false
+                          static fn (array $s): bool => portfolio_is_valid_project_image_url($s['url'])
                       ));
                     ?>
                     <?php if ($shotCount > 0) : ?>

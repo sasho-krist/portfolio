@@ -74,6 +74,24 @@ function portfolio_images_in_subdir(string $relativeDir): array
     return $out;
 }
 
+/**
+ * True for absolute http(s) URLs or bundled site paths (e.g. images/anketa/1.png).
+ */
+function portfolio_is_valid_project_image_url(string $url): bool
+{
+    if ($url === '') {
+        return false;
+    }
+    if (filter_var($url, FILTER_VALIDATE_URL) !== false) {
+        return true;
+    }
+    if (preg_match('#^(?:/|images/)#', $url) === 1) {
+        return true;
+    }
+
+    return false;
+}
+
 function portfolio_h(string $s): string
 {
     return htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');

@@ -101,6 +101,7 @@ return [
      * @var list<array{label: string, url: string, note?: string}>
      */
     'github_repos' => [
+        ['label' => 'questionnaire_ai', 'url' => 'https://github.com/sasho-krist/questionnaire_ai', 'note' => 'Laravel 12, OpenAI, анкети'],
         ['label' => 'booking-hotel-app', 'url' => 'https://github.com/sashokrist/booking-hotel-app', 'note' => 'PMS sync, опашки'],
         ['label' => 'traffic_tracker', 'url' => 'https://github.com/sashokrist/traffic_tracker', 'note' => 'Laravel, отчети, Swagger'],
         ['label' => 'wp-api-hotel-booking', 'url' => 'https://github.com/sashokrist/wp-api-hotel-booking', 'note' => 'WordPress ↔ Laravel API'],
@@ -108,6 +109,7 @@ return [
         ['label' => 'portfolio', 'url' => 'https://github.com/sasho-krist/portfolio', 'note' => 'Този сайт'],
     ],
     'github_repos_en' => [
+        ['label' => 'questionnaire_ai', 'url' => 'https://github.com/sasho-krist/questionnaire_ai', 'note' => 'Laravel 12, OpenAI, questionnaires'],
         ['label' => 'booking-hotel-app', 'url' => 'https://github.com/sashokrist/booking-hotel-app', 'note' => 'PMS sync, queues'],
         ['label' => 'traffic_tracker', 'url' => 'https://github.com/sashokrist/traffic_tracker', 'note' => 'Laravel, reports, Swagger'],
         ['label' => 'wp-api-hotel-booking', 'url' => 'https://github.com/sashokrist/wp-api-hotel-booking', 'note' => 'WordPress ↔ Laravel API'],

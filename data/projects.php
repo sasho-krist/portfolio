@@ -4,6 +4,27 @@ declare(strict_types=1);
 
 return [
     [
+        'slug' => 'questionnaire-ai',
+        'name' => 'questionnaire_ai',
+        'pills' => ['PHP', 'Laravel', 'OpenAI'],
+        'desc' => 'Laravel 12 приложение за създаване и провеждане на тестове/анкети с множествен избор: текстовете и въпросите се генерират с OpenAI; за всеки въпрос — четири опции и индекс на верния отговор; настройки за точки и времеви лимит; страница с резултат и преглед на отговорите.',
+        'problem' => 'Нужда от бързо генериране на съдържание за тестове и проследимост на опити без ръчно въвеждане на десетки въпроси.',
+        'my_role' => 'Пълен поток: контролери, OpenAI услуга, модели, миграции, Blade изгледи и точкуване.',
+        'challenge' => 'Надежден JSON от модела, коректен correct_option и таймер/лимит без да се чупи submit на отговорите.',
+        'solution' => 'OpenAiService с Chat Completions, AttemptScoringService, UUID за анкета и опит, настройки в конструктора преди старт.',
+        'readme_excerpt' => 'README: Laravel 12, OpenAI (gpt-4o-mini), 4 опции + correct_option, секции × въпроси, /play/{uuid}, резултати; SQLite/MySQL.',
+        'screenshots' => [
+            ['url' => 'images/anketa/1.png', 'caption' => 'Начален екран — списък с анкети'],
+            ['url' => 'images/anketa/2.png', 'caption' => 'Форма „Нова анкета“ — заглавие и ключови думи'],
+            ['url' => 'images/anketa/3.png', 'caption' => 'След създаване — успех или следваща стъпка'],
+            ['url' => 'images/anketa/4.png', 'caption' => 'Избор между 5 AI-предложени заглавия'],
+            ['url' => 'images/anketa/5.png', 'caption' => 'Конструктор — секции, въпроси, настройки'],
+            ['url' => 'images/anketa/6.png', 'caption' => 'Попълване на тест или страница с резултат'],
+        ],
+        'repo' => 'https://github.com/sasho-krist/questionnaire_ai',
+        'demo' => null,
+    ],
+    [
         'slug' => 'wp-cms-real-estate',
         'name' => 'wp_CMS_real_estate',
         'pills' => ['PHP', 'WordPress'],
