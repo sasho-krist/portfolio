@@ -102,6 +102,7 @@ return [
      */
     'github_repos' => [
         ['label' => 'questionnaire_ai', 'url' => 'https://github.com/sasho-krist/questionnaire_ai', 'note' => 'Laravel 12, OpenAI, анкети', 'demo' => 'https://sasho-dev.com/anketi/questionnaires'],
+        ['label' => 'bookingAI', 'url' => 'https://github.com/sasho-krist/bookingAI', 'note' => 'Laravel 13, резервации, Sanctum API, OpenAI', 'demo' => 'https://sasho-dev.com/bookingAI/'],
         ['label' => 'booking-hotel-app', 'url' => 'https://github.com/sashokrist/booking-hotel-app', 'note' => 'PMS sync, опашки'],
         ['label' => 'traffic_tracker', 'url' => 'https://github.com/sashokrist/traffic_tracker', 'note' => 'Laravel, отчети, Swagger'],
         ['label' => 'wp-api-hotel-booking', 'url' => 'https://github.com/sashokrist/wp-api-hotel-booking', 'note' => 'WordPress ↔ Laravel API'],
@@ -110,6 +111,7 @@ return [
     ],
     'github_repos_en' => [
         ['label' => 'questionnaire_ai', 'url' => 'https://github.com/sasho-krist/questionnaire_ai', 'note' => 'Laravel 12, OpenAI, questionnaires', 'demo' => 'https://sasho-dev.com/anketi/questionnaires'],
+        ['label' => 'bookingAI', 'url' => 'https://github.com/sasho-krist/bookingAI', 'note' => 'Laravel 13, bookings, Sanctum API, OpenAI', 'demo' => 'https://sasho-dev.com/bookingAI/'],
         ['label' => 'booking-hotel-app', 'url' => 'https://github.com/sashokrist/booking-hotel-app', 'note' => 'PMS sync, queues'],
         ['label' => 'traffic_tracker', 'url' => 'https://github.com/sashokrist/traffic_tracker', 'note' => 'Laravel, reports, Swagger'],
         ['label' => 'wp-api-hotel-booking', 'url' => 'https://github.com/sashokrist/wp-api-hotel-booking', 'note' => 'WordPress ↔ Laravel API'],

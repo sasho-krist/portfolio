@@ -18,6 +18,17 @@ return [
         'demo' => 'https://sasho-dev.com/anketi/questionnaires',
     ],
     [
+        'slug' => 'booking-ai',
+        'title' => 'BookingAI — резервации, локации и опционален OpenAI слой',
+        'context' => 'Публичен repo · Laravel 13 / PHP 8.3+ · REST + Sanctum',
+        'problem' => 'Бизнеси с часови услуги трябва да управляват локации, услуги с продължителност, клиенти и резервации в един поток; често се иска API за интеграции и „интелигентни“ подсказки без отделен продукт.',
+        'approach' => 'Laravel монолит: бизнеси и venues, работно време по локация, услуги и резервации; първоначален съветник; JSON REST под /api/v1 с Laravel Sanctum (token issue, Bearer заявки); опционално OpenAI за препоръки и прогноза на натовареност при зададен API ключ; Blade + Bootstrap 5, тъмна/светла тема и правни страници на български.',
+        'stack' => ['Laravel 13', 'PHP 8.3', 'Sanctum', 'OpenAI', 'Blade', 'Bootstrap 5', 'SQLite / MySQL'],
+        'outcome' => 'Един кодов път за уеб администрация и машиночетим API, с ясно отделяне на AI функции и възможност за локална или MySQL база според среда.',
+        'repo' => 'https://github.com/sasho-krist/bookingAI',
+        'demo' => 'https://sasho-dev.com/bookingAI/',
+    ],
+    [
         'slug' => 'biomarket-erp',
         'title' => 'BioMarket ERP — вътрешна платформа за верига магазини',
         'context' => 'BioMarket / HealthStore · HR, склад, POS, PRIM',
