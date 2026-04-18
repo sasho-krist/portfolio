@@ -21,6 +21,7 @@ $portfolioCssHref = $useCssMin ? 'assets/css/portfolio.min.css' : 'assets/css/po
 $portfolioCssV = (string) filemtime($useCssMin ? $portfolioCssMinPath : $portfolioCssPath);
 
 $brandHref = $navHrefPrefix === '' ? '#top' : portfolio_h($navHrefPrefix . '#top');
+$brandLogoSrc = 'images/logo/' . rawurlencode('Sasho Dev 1-01.png');
 $navFrag = static function (string $id) use ($navHrefPrefix): string {
     return $navHrefPrefix === '' ? '#' . $id : portfolio_h($navHrefPrefix . '#' . $id);
 };
@@ -58,8 +59,8 @@ $navFrag = static function (string $id) use ($navHrefPrefix): string {
   <?php endif; ?>
   <?php if ($ogImageUrl !== null && $ogImageUrl !== '') : ?>
   <meta property="og:image" content="<?= portfolio_h($ogImageUrl) ?>" />
-  <meta property="og:image:width" content="160" />
-  <meta property="og:image:height" content="160" />
+  <meta property="og:image:width" content="<?= portfolio_h((string) ($ogImageWidth ?? 512)) ?>" />
+  <meta property="og:image:height" content="<?= portfolio_h((string) ($ogImageHeight ?? 512)) ?>" />
   <meta property="og:image:alt" content="<?= portfolio_h($profile['name'] . ' — ' . portfolio_t('og_image_alt')) ?>" />
   <?php endif; ?>
   <meta name="twitter:card" content="<?= ($ogImageUrl !== null && $ogImageUrl !== '') ? 'summary_large_image' : 'summary' ?>" />
@@ -84,7 +85,13 @@ $navFrag = static function (string $id) use ($navHrefPrefix): string {
   <header class="site-header">
     <div class="container nav">
       <a class="brand brand-home" href="<?= $brandHref ?>">
-        <span class="brand-mark" aria-hidden="true"></span>
+        <img
+          class="brand-logo"
+          src="<?= portfolio_h($brandLogoSrc) ?>"
+          alt=""
+          decoding="async"
+          fetchpriority="high"
+        />
         <span><?= portfolio_h($profile['name']) ?></span>
       </a>
       <nav class="nav-links" aria-label="<?= portfolio_h(portfolio_t('nav_main')) ?>">

@@ -48,12 +48,23 @@ $pageDescription = portfolio_profile_text($profile, 'seo_description') !== ''
 $galleryImages = portfolio_gallery_images();
 $dogGalleryImages = portfolio_images_in_subdir('images/dogs');
 
-$profilePhotoPath = portfolio_base_path('images/alexander.jpg');
-$hasProfilePhoto = is_file($profilePhotoPath) && is_readable($profilePhotoPath);
+$profileHeroImagePath = portfolio_base_path('images/logo' . DIRECTORY_SEPARATOR . 'Sasho Dev 1-01.png');
+$profileHeroImageSrc = 'images/logo/' . rawurlencode('Sasho Dev 1-01.png');
+$hasProfilePhoto = is_file($profileHeroImagePath) && is_readable($profileHeroImagePath);
+
+$ogImageWidth = 512;
+$ogImageHeight = 512;
+if ($hasProfilePhoto) {
+    $heroImgSize = @getimagesize($profileHeroImagePath);
+    if ($heroImgSize !== false) {
+        $ogImageWidth = $heroImgSize[0];
+        $ogImageHeight = $heroImgSize[1];
+    }
+}
 
 $canonicalUrl = portfolio_canonical_url();
 $ogImageUrl = $hasProfilePhoto
-    ? rtrim($canonicalUrl, '/') . '/images/alexander.jpg'
+    ? rtrim($canonicalUrl, '/') . '/' . $profileHeroImageSrc
     : null;
 $metaKeywords = portfolio_seo_keywords_string($profile);
 $jsonLd = portfolio_seo_json_ld($profile, $canonicalUrl, $ogImageUrl, $pageTitle, $pageDescription);

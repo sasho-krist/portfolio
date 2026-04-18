@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-/** @var array $profile @var bool $hasProfilePhoto @var int $projectsCount @var string $heroFocus */
+/** @var array $profile @var bool $hasProfilePhoto @var string $profileHeroImageSrc @var int $projectsCount @var string $heroFocus */
 
 ?>
     <section class="hero" id="top">
@@ -10,13 +10,13 @@ declare(strict_types=1);
         <div class="hero-main">
           <?php if ($hasProfilePhoto) : ?>
             <div class="hero-profile">
-              <div class="hero-profile__clip">
+              <div class="hero-profile__clip hero-profile__clip--brand">
                 <img
-                  class="hero-profile__img"
-                  src="images/alexander.jpg"
+                  class="hero-profile__img hero-profile__img--brand"
+                  src="<?= portfolio_h($profileHeroImageSrc) ?>"
                   alt="<?= portfolio_h($profile['name']) ?>"
-                  width="160"
-                  height="160"
+                  width="220"
+                  height="220"
                   loading="eager"
                   fetchpriority="high"
                   decoding="async"

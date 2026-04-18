@@ -124,12 +124,13 @@ a.brand-home {
   color: inherit;
 }
 
-.brand-mark {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  box-shadow: 0 0 20px var(--accent-soft);
+.brand-logo {
+  display: block;
+  height: 56px;
+  width: auto;
+  max-width: min(260px, 55vw);
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .nav-links {
@@ -295,6 +296,22 @@ html[data-theme="light"] .hero-profile__clip {
   object-position: center top;
   display: block;
   border-radius: 0;
+}
+
+/* Лого в hero — по-широка рамка от кръг за пълен текст/икона */
+.hero-profile__clip--brand {
+  width: min(240px, 88vw);
+  height: auto;
+  min-height: 160px;
+  aspect-ratio: 1;
+  border-radius: 20px;
+}
+
+.hero-profile__img--brand {
+  object-fit: contain;
+  object-position: center center;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .hero-copy {

@@ -31,7 +31,7 @@
     header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.5) blur(10px); background:linear-gradient(180deg, rgba(11,18,32,.9), rgba(11,18,32,.6)); border-bottom:1px solid rgba(255,255,255,.06)}
     .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
     .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.4px}
-    .brand .dot{width:10px; height:10px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--accent-2)); box-shadow:0 0 20px var(--ring)}
+    .brand-logo{display:block; height:56px; width:auto; max-width:min(260px,55vw); object-fit:contain; flex-shrink:0}
     .links a{margin-left:16px; text-decoration:none; color:var(--text); opacity:.9}
     .links a:hover{opacity:1}
 
@@ -135,7 +135,7 @@
 
   <header>
     <div class="container nav">
-      <div class="brand"><span class="dot"></span> <span> Alexander·Keremidarov</span></div>
+      <div class="brand"><img class="brand-logo" src="../images/logo/Sasho%20Dev%201-01.png" alt="" decoding="async" fetchpriority="high" width="260" height="56" /> <span> Alexander·Keremidarov</span></div>
       <nav class="links" aria-label="Primary">
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
