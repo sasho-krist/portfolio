@@ -22,8 +22,10 @@ return [
     'seo_description' => 'Aleksander Keremidarov — PHP & Laravel full stack разработчик в София. WordPress, REST API, MySQL, React, Next.js. Портфолио и контакт.',
     'seo_description_en' => 'Aleksander Keremidarov — PHP & Laravel full stack developer in Sofia. WordPress, REST API, MySQL, React, Next.js. Portfolio and contact.',
     'seo_keywords' => [
+        'sasho-dev',
         'Alexander Keremidarov',
         'Aleksander Keremidarov',
+        'Александър Керемидаров',
         'PHP developer',
         'Laravel developer',
         'WordPress developer',
