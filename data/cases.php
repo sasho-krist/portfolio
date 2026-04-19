@@ -29,6 +29,17 @@ return [
         'demo' => 'https://sasho-dev.com/bookingAI/',
     ],
     [
+        'slug' => 'email-client',
+        'title' => 'Имейл клиент — IMAP в браузъра и REST API',
+        'context' => 'Публичен repo · Laravel 13 / PHP 8.3+ · IMAP · REST + Sanctum',
+        'problem' => 'Потребителите искат да четат и управляват поща без отделен десктоп клиент; често са нужни множество акаунти, ясни папки (входящи, изходящи, спам) и машиночетим API за интеграции — без да се дублира логика извън приложението.',
+        'approach' => 'Laravel приложение с webklex/laravel-imap за IMAP/SMTP, автоматично откриване на настройки или ръчен вход; Breeze за auth и профил; папки по роля с разпознаване на системни имена при Gmail и други доставчици; REST под /api/v1 с Laravel Sanctum и страница /api-docs; Blade + Tailwind + Alpine, тъмна тема и UI на български.',
+        'stack' => ['Laravel 13', 'PHP 8.3', 'Sanctum', 'IMAP', 'Tailwind CSS', 'Alpine.js', 'SQLite / MySQL'],
+        'outcome' => 'Един уеб интерфейс за ежедневна работа с пощата и същият модел данни достъпен през Bearer token за скриптове и услуги; шифровано съхранение на пароли към пощата в контекста на потребителския профил.',
+        'repo' => 'https://github.com/sasho-krist/email-client',
+        'demo' => 'https://sasho-dev.com/email-client/',
+    ],
+    [
         'slug' => 'biomarket-erp',
         'title' => 'BioMarket ERP — вътрешна платформа за верига магазини',
         'context' => 'BioMarket / HealthStore · HR, склад, POS, PRIM',

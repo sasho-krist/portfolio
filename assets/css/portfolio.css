@@ -775,7 +775,6 @@ body[data-projects-view="table"] .projects-table-wrap {
 
 .project-desc {
   margin: 0;
-  flex: 1;
   color: var(--muted);
   font-size: 0.94rem;
 }
