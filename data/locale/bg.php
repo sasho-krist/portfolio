@@ -51,6 +51,7 @@ return [
     'projects_shots_aria' => 'Снимки от GitHub README',
     'projects_github' => 'GitHub',
     'projects_demo' => 'Демо',
+    'projects_open' => 'Виж детайли',
     'projects_shots_link' => 'снимки в изглед карти',
     'projects_table_problem' => 'Проблем:',
     'projects_table_role' => 'Роля:',

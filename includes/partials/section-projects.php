@@ -14,73 +14,45 @@ declare(strict_types=1);
         </div>
         <div class="projects-grid" aria-label="<?= portfolio_h(portfolio_t('projects_aria_cards')) ?>">
           <?php foreach ($projects as $p) : ?>
+            <?php
+              $projectShots = array_values(array_filter(
+                  portfolio_project_screenshots($p),
+                  static fn (array $s): bool => portfolio_is_valid_project_image_url($s['url'])
+              ));
+              $cover = $projectShots[0] ?? null;
+              $projectUrl = 'project.php?slug=' . rawurlencode((string) $p['slug']);
+              if (portfolio_lang() === 'en') {
+                  $projectUrl .= '&lang=en';
+              }
+            ?>
             <article class="card project-card" id="project-<?= portfolio_h($p['slug']) ?>">
-              <div class="project-meta">
-                <?php foreach ($p['pills'] as $pill) : ?>
-                  <span class="pill"><?= portfolio_h($pill) ?></span>
-                <?php endforeach; ?>
-              </div>
-              <h3><?= portfolio_h($p['name']) ?></h3>
-              <p class="project-desc"><?= portfolio_h($p['desc']) ?></p>
-              <?php if (! empty($p['readme_excerpt'])) : ?>
-                <p class="project-readme"><?= portfolio_h((string) $p['readme_excerpt']) ?></p>
-              <?php endif; ?>
-              <?php
-                $hasDetail = ! empty($p['problem']) || ! empty($p['my_role']) || ! empty($p['challenge']) || ! empty($p['solution']);
-              ?>
-              <?php if ($hasDetail) : ?>
-                <dl class="project-detail">
-                  <?php if (! empty($p['problem'])) : ?>
-                    <dt><?= portfolio_h(portfolio_t('projects_detail_problem')) ?></dt>
-                    <dd><?= portfolio_h((string) $p['problem']) ?></dd>
-                  <?php endif; ?>
-                  <?php if (! empty($p['my_role'])) : ?>
-                    <dt><?= portfolio_h(portfolio_t('projects_detail_role')) ?></dt>
-                    <dd><?= portfolio_h((string) $p['my_role']) ?></dd>
-                  <?php endif; ?>
-                  <?php if (! empty($p['challenge'])) : ?>
-                    <dt><?= portfolio_h(portfolio_t('projects_detail_challenge')) ?></dt>
-                    <dd><?= portfolio_h((string) $p['challenge']) ?></dd>
-                  <?php endif; ?>
-                  <?php if (! empty($p['solution'])) : ?>
-                    <dt><?= portfolio_h(portfolio_t('projects_detail_solution')) ?></dt>
-                    <dd><?= portfolio_h((string) $p['solution']) ?></dd>
-                  <?php endif; ?>
-                </dl>
-              <?php endif; ?>
-              <?php
-                $projectShots = array_values(array_filter(
-                    portfolio_project_screenshots($p),
-                    static fn (array $s): bool => portfolio_is_valid_project_image_url($s['url'])
-                ));
-              ?>
-              <?php if ($projectShots !== []) : ?>
-                <div class="project-shots" aria-label="<?= portfolio_h(portfolio_t('projects_shots_aria')) ?>">
-                  <?php foreach ($projectShots as $si => $shot) : ?>
-                    <?php
-                      $alt = $p['name'] . ' — снимка ' . (string) ($si + 1);
-                      if ($shot['caption'] !== '') {
-                          $alt = $shot['caption'];
-                      }
-                    ?>
-                    <figure class="project-shot">
-                      <a href="<?= portfolio_h($shot['url']) ?>" target="_blank" rel="noopener noreferrer">
-                        <img
-                          src="<?= portfolio_h($shot['url']) ?>"
-                          alt="<?= portfolio_h($alt) ?>"
-                          width="320"
-                          height="200"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </a>
-                      <?php if ($shot['caption'] !== '') : ?>
-                        <figcaption class="project-shot-cap"><?= portfolio_h($shot['caption']) ?></figcaption>
-                      <?php endif; ?>
-                    </figure>
+              <a class="project-card-main" href="<?= portfolio_h($projectUrl) ?>">
+                <div class="project-meta">
+                  <?php foreach ($p['pills'] as $pill) : ?>
+                    <span class="pill"><?= portfolio_h($pill) ?></span>
                   <?php endforeach; ?>
                 </div>
-              <?php endif; ?>
+                <h3><?= portfolio_h($p['name']) ?></h3>
+                <?php if ($cover !== null) : ?>
+                  <?php
+                    $coverAlt = $cover['caption'] !== ''
+                        ? $cover['caption']
+                        : ($p['name'] . ' — screenshot');
+                  ?>
+                  <figure class="project-cover">
+                    <img
+                      src="<?= portfolio_h($cover['url']) ?>"
+                      alt="<?= portfolio_h($coverAlt) ?>"
+                      width="640"
+                      height="360"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </figure>
+                <?php endif; ?>
+                <p class="project-desc project-desc--compact"><?= portfolio_h($p['desc']) ?></p>
+                <span class="project-open-link"><?= portfolio_h(portfolio_t('projects_open')) ?> →</span>
+              </a>
               <div class="project-actions">
                 <a class="btn btn-primary" href="<?= portfolio_h($p['repo']) ?>" target="_blank" rel="noopener noreferrer"><?= portfolio_h(portfolio_t('projects_github')) ?></a>
                 <?php if (! empty($p['demo'])) : ?>

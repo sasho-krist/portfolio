@@ -212,3 +212,18 @@ function portfolio_project_screenshots(array $p): array
 
     return $out;
 }
+
+/**
+ * @param list<array<string, mixed>> $projects
+ * @return array<string, mixed>|null
+ */
+function portfolio_project_by_slug(array $projects, string $slug): ?array
+{
+    foreach ($projects as $project) {
+        if (($project['slug'] ?? null) === $slug) {
+            return $project;
+        }
+    }
+
+    return null;
+}

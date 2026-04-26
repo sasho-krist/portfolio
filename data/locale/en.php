@@ -51,6 +51,7 @@ return [
     'projects_shots_aria' => 'Screenshots from GitHub README',
     'projects_github' => 'GitHub',
     'projects_demo' => 'Demo',
+    'projects_open' => 'View details',
     'projects_shots_link' => 'screenshots in card view',
     'projects_table_problem' => 'Problem:',
     'projects_table_role' => 'Role:',

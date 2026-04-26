@@ -16,7 +16,7 @@ $navShowTestimonials = $navShowTestimonials ?? false;
 
 $portfolioCssPath = __DIR__ . '/../assets/css/portfolio.css';
 $portfolioCssMinPath = __DIR__ . '/../assets/css/portfolio.min.css';
-$useCssMin = is_readable($portfolioCssMinPath);
+$useCssMin = false;
 $portfolioCssHref = $useCssMin ? 'assets/css/portfolio.min.css' : 'assets/css/portfolio.css';
 $portfolioCssV = (string) filemtime($useCssMin ? $portfolioCssMinPath : $portfolioCssPath);
 
