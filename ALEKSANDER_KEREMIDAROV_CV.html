@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aleksander Keremidarov - CV</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --accent: #7c3aed;
+      --ink: #0f172a;
+      --muted: #475569;
+      --line: #dbe3f3;
+      --bg-soft: #f8faff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Calibri, "Segoe UI", Arial, sans-serif;
+      line-height: 1.15;
+      color: var(--ink);
+      background: #ffffff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 12mm;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 34% 66%;
+      gap: 10mm;
+    }
+
+    .sidebar {
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 6mm;
+    }
+
+    .main {
+      padding-top: 1mm;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      letter-spacing: 0.03em;
+      color: var(--primary);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .role {
+      margin-top: 4px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .contact {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--ink);
+    }
+
+    .contact div {
+      margin: 5px 0;
+      word-break: break-word;
+    }
+
+    .contact a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .contact a:hover { text-decoration: underline; }
+
+    .section {
+      margin-top: 14px;
+    }
+
+    .section-title {
+      margin: 0 0 8px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      text-transform: uppercase;
+      border-left: 4px solid var(--accent);
+      padding-left: 8px;
+    }
+
+    .summary {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      font-size: 11px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      border: 1px solid #cfd8ee;
+      color: var(--primary);
+      background: #fff;
+      font-weight: 700;
+    }
+
+    .project {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px;
+      margin-bottom: 8px;
+      background: #fff;
+    }
+
+    .project h3 {
+      margin: 0 0 4px;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .project a {
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 12px;
+      word-break: break-all;
+    }
+
+    .project ul {
+      margin: 5px 0 0 16px;
+      padding: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .timeline-item {
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+
+    .timeline-item .title {
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .timeline-item .period {
+      color: var(--accent);
+      font-weight: 700;
+      margin-left: 6px;
+    }
+
+    .timeline-item ul {
+      margin: 5px 0 0 16px;
+      padding: 0;
+      color: var(--muted);
+    }
+
+    .small-list {
+      margin: 0;
+      padding-left: 16px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .links-list a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .links-list a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>ALEKSANDER KEREMIDAROV</h1>
+      <div class="role">Senior Full Stack Developer</div>
+      <div class="contact">
+        <div>📍 Sofia, Bulgaria</div>
+        <div>📧 <a href="mailto:alexander.krist@gmail.com">alexander.krist@gmail.com</a></div>
+        <div>📞 <a href="tel:+359877750552">+359 877 750 552</a></div>
+        <div>🔗 <a href="https://github.com/sashokrist">github.com/sashokrist</a> | <a href="https://github.com/sasho-krist">github.com/sasho-krist</a></div>
+        <div>🌐 <a href="https://sasho-dev.com/portfolio">sasho-dev.com/portfolio</a></div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <section class="section">
+          <h2 class="section-title">Career Links</h2>
+          <ul class="small-list links-list">
+            <li><a href="https://sasho-dev.com/portfolio">Portfolio</a></li>
+            <li><a href="https://github.com/sashokrist">GitHub: sashokrist</a></li>
+            <li><a href="https://github.com/sasho-krist">GitHub: sasho-krist</a></li>
+            <li><a href="https://sasho-dev.com/questionnaire_ai/login">AI Questionnaire Demo</a></li>
+            <li><a href="https://sasho-dev.com/bookingAI/login">BookingAI Demo</a></li>
+            <li><a href="https://sasho-dev.com/email-client/">Email Client Demo</a></li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">Tech Stack</h2>
+          <div class="chips">
+            <span class="chip">PHP</span>
+            <span class="chip">Laravel</span>
+            <span class="chip">React</span>
+            <span class="chip">Next.js</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">MySQL</span>
+            <span class="chip">PostgreSQL</span>
+            <span class="chip">Docker</span>
+            <span class="chip">Linux</span>
+            <span class="chip">Nginx</span>
+            <span class="chip">WordPress</span>
+            <span class="chip">OpenAI API</span>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">Education</h2>
+          <div class="timeline-item">
+            <div class="title">Bachelor of Engineering in Information and Communication Technology</div>
+            <div class="period">2015 - 2018 | VIA University College, Denmark</div>
+            <ul>
+              <li>Focus: Java, .NET, SQL, Android, Networking</li>
+              <li>Final project: Laravel-based classified ads platform for musical instruments</li>
+            </ul>
+          </div>
+          <div class="timeline-item">
+            <div class="title">Java Development and Business Management</div>
+            <div class="period">2003 - 2006 | Vejle Teknik Skole, Denmark</div>
+            <ul>
+              <li>Focus: Java programming, logistics, and business management</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">Languages</h2>
+          <ul class="small-list">
+            <li>Bulgarian (Native)</li>
+            <li>English (Advanced)</li>
+            <li>Russian (Intermediate)</li>
+            <li>Danish (Basic)</li>
+          </ul>
+        </section>
+      </aside>
+
+      <main class="main">
+        <section class="section">
+          <h2 class="section-title">Professional Summary</h2>
+          <p class="summary">
+            Senior Laravel / Full Stack Developer with 7+ years of experience building scalable applications, REST APIs, and AI-powered systems.
+            Specialized in backend architecture, performance optimization, and real-world AI integrations. Built portfolio AI chat assistants and production-grade
+            business platforms across ERP, booking, CMS, and email domains.
+          </p>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">Portfolio Note</h2>
+          <p class="summary">
+            Portfolio: <a href="https://sasho-dev.com/portfolio">sasho-dev.com/portfolio</a>. It includes an AI chat assistant that answers questions about career,
+            projects, and skills using data published on the site.
+          </p>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">Featured Projects</h2>
+
+          <article class="project">
+            <h3>🧠 AI Questionnaire System</h3>
+            <a href="https://sasho-dev.com/questionnaire_ai/login">https://sasho-dev.com/questionnaire_ai/login</a>
+            <ul>
+              <li>AI-generated tests using OpenAI</li>
+              <li>Dynamic questions, scoring, and time limits</li>
+              <li>REST API and CSV export</li>
+            </ul>
+          </article>
+
+          <article class="project">
+            <h3>🤖 Booking AI System</h3>
+            <a href="https://sasho-dev.com/bookingAI/login">https://sasho-dev.com/bookingAI/login</a>
+            <ul>
+              <li>Smart booking logic and scheduling workflows</li>
+              <li>Multi-business scalable architecture</li>
+              <li>Role-based access control</li>
+            </ul>
+          </article>
+
+          <article class="project">
+            <h3>📧 Email Client (IMAP System)</h3>
+            <a href="https://sasho-dev.com/email-client/">https://sasho-dev.com/email-client/</a>
+            <ul>
+              <li>Multi-account email system</li>
+              <li>IMAP/SMTP integration</li>
+              <li>Full backend logic and API support</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">AI Skills</h2>
+          <ul class="small-list">
+            <li>Hands-on OpenAI API integration in Laravel applications (questionnaires, tests, booking logic)</li>
+            <li>Built AI-powered career assistant for personal portfolio content</li>
+            <li>Prompt engineering, REST AI service consumption, and embedding AI in full-stack products</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <h2 class="section-title">Experience</h2>
+
+          <div class="timeline-item">
+            <span class="title">Devrix - Full Stack Developer</span>
+            <span class="period">(2025 - Present)</span>
+            <ul>
+              <li>Built and maintained Laravel and WordPress solutions</li>
+              <li>Delivered third-party API integrations</li>
+              <li>Improved application performance and reliability</li>
+              <li>Implemented custom plugins/themes and production bug fixes</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <span class="title">Freelance - Full Stack Developer (ERP / AI / Booking)</span>
+            <span class="period">(Apr 2025 - Jun 2025)</span>
+            <ul>
+              <li>Built Training and Test Management ERP from scratch with Laravel + Bootstrap</li>
+              <li>Delivered category, test, question, and bulk answer management with access control</li>
+              <li>Implemented learning/test modes, result tracking, and permission-based content flows</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <span class="title">Bteam - Full Stack Laravel Developer</span>
+            <span class="period">(Sep 2023 - Apr 2025)</span>
+            <ul>
+              <li>Backend development for voucher systems and REST APIs</li>
+              <li>Built new features, fixed production bugs, and developed custom WordPress plugins</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <span class="title">Looming Tech - Full Stack Laravel Developer</span>
+            <span class="period">(Jun 2021 - Jun 2023)</span>
+            <ul>
+              <li>Built Laravel systems with Orchid Admin and Vue dashboards</li>
+              <li>Delivered REST APIs and Docker-based deployments</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <span class="title">Shippii Technologies - Laravel / OctoberCMS Backend</span>
+            <span class="period">(Nov 2019 - May 2021)</span>
+            <ul>
+              <li>Worked on shipping platform architecture and refactoring initiatives</li>
+              <li>Implemented features and resolved backend issues in production systems</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <span class="title">Freelance - Full Stack Developer</span>
+            <span class="period">(2021 - Present)</span>
+            <ul>
+              <li>Delivered ERP systems, AI platforms, and booking solutions</li>
+              <li>Designed scalable backend structures and REST APIs</li>
+              <li>Handled full delivery lifecycle from architecture to deployment</li>
+              <li>Projects include CO impact systems, real estate CMS, and donation platform integrations</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

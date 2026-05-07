@@ -40,6 +40,17 @@ return [
         'demo' => 'https://sasho-dev.com/email-client/',
     ],
     [
+        'slug' => 'f1-live-results',
+        'title' => 'F1 Live Results — живо табло, календар и класиране (OpenF1)',
+        'context' => 'Публичен repo · PHP 8+ · OpenF1 API',
+        'problem' => 'Нужда от леко уеб приложение за текуща/последна F1 сесия (класиране, интервали, Race Control), плюс календар на сезона и генерално класиране, без тежък фронтенд фреймуърк и без собствен API ключ.',
+        'approach' => 'SWP с PHP backend и ES6+ JavaScript: JSON слой в /api (live, calendar по година, standings към OpenF1 championship endpoints), страници index/calendar/standings, клиентско опресняване на таблото ~5 сек и кеширане за календар/класиране според README.',
+        'stack' => ['PHP 8+', 'JavaScript', 'OpenF1', 'CSS'],
+        'outcome' => 'Работещо публично демо с ясна структура, страници за правна информация и ЧЗВ; данни директно от OpenF1 без ключ за текущата интеграция.',
+        'repo' => 'https://github.com/sasho-krist/f1_live_results',
+        'demo' => 'https://sasho-dev.com/f1_live_results/',
+    ],
+    [
         'slug' => 'biomarket-erp',
         'title' => 'BioMarket ERP — вътрешна платформа за верига магазини',
         'context' => 'BioMarket / HealthStore · HR, склад, POS, PRIM',
