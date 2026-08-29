@@ -59,7 +59,7 @@ return [
     'projects_table_challenge' => 'Предизвикателство:',
     'nav_github' => 'GitHub',
     'github_section_title' => 'Код в GitHub',
-    'github_profile_cta' => 'Профил @sashokrist',
+    'github_profile_cta' => 'Профил @sasho-krist',
     'skills_title' => 'Умения и технологии',
     'services_title' => 'Услуги',
     'about_title' => 'За мен',

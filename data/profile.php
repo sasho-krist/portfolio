@@ -11,7 +11,7 @@ return [
     'location_en' => 'Sofia, Bulgaria',
     'email' => 'alexander.krist@gmail.com',
     'phone' => '+359 877 750 552',
-    'github' => 'https://github.com/sashokrist',
+    'github' => 'https://github.com/sasho-krist?tab=repositories',
     'site_repo_url' => 'https://github.com/sasho-krist/portfolio',
     'linkedin' => '', // пълен URL към профил, напр. https://www.linkedin.com/in/...
     // Насрочване на срещи (Google Календар → Настройки → „Насрочване на срещи“ / appointment schedule).

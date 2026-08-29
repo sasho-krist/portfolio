@@ -51,7 +51,7 @@ declare(strict_types=1);
             <p><strong><?= portfolio_h(portfolio_t('contact_email')) ?></strong> <a href="mailto:<?= portfolio_h($profile['email']) ?>"><?= portfolio_h($profile['email']) ?></a></p>
             <p><strong><?= portfolio_h(portfolio_t('contact_phone')) ?></strong> <a href="tel:<?= portfolio_h(preg_replace('/\s+/', '', $profile['phone'])) ?>"><?= portfolio_h($profile['phone']) ?></a></p>
             <p><strong><?= portfolio_h(portfolio_t('contact_location')) ?></strong> <?= portfolio_h(portfolio_profile_text($profile, 'location')) ?></p>
-            <p><strong><?= portfolio_h(portfolio_t('contact_github')) ?></strong> <a href="<?= portfolio_h($profile['github']) ?>" target="_blank" rel="noopener noreferrer">@sashokrist</a></p>
+            <p><strong><?= portfolio_h(portfolio_t('contact_github')) ?></strong> <a href="<?= portfolio_h($profile['github']) ?>" target="_blank" rel="noopener noreferrer">@sasho-krist</a></p>
             <?php if (! empty($profile['site_repo_url']) && is_string($profile['site_repo_url']) && filter_var($profile['site_repo_url'], FILTER_VALIDATE_URL)) : ?>
               <?php
                 $repoPath = trim((string) parse_url($profile['site_repo_url'], PHP_URL_PATH), '/');
