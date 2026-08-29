@@ -4,6 +4,20 @@ declare(strict_types=1);
 
 return [
     [
+        'slug' => 'sql-builder-ai',
+        'name' => 'sql-builder-ai',
+        'pills' => ['PHP', 'Anthropic', 'REST API', 'Vanilla JS'],
+        'desc' => 'Едностранично приложение + отворен REST API, което превръща свободен текст в SQL заявка чрез Anthropic (Claude) API. Покрива целия SQL обхват — SELECT/INSERT/UPDATE/DELETE, всякакви JOIN-ове, подзаявки, CTE, UNION, GROUP BY/HAVING, прозоречни функции, ORDER BY, LIMIT — в 9 диалекта (MySQL, MariaDB, PostgreSQL, SQLite, T-SQL, Oracle, BigQuery, Snowflake, ANSI). Режим „само за четене“, поле за схема и обяснение на заявката. API ключът стои само на сървъра.',
+        'problem' => 'Писането на по-сложни SQL заявки (много JOIN-ове, агрегации, прозоречни функции) отнема време и е податливо на грешки в синтаксиса на конкретния диалект.',
+        'my_role' => 'Цялостно: PHP backend с официалния Anthropic PHP SDK, prompt дизайн и парсване на JSON отговор, отворен REST API (/api/health, /api/dialects, /api/sql) с опционален токен и per-IP rate limit, модерен UI на български без framework.',
+        'challenge' => 'Надежден, валиден SQL за правилния диалект от неясен свободен текст; предпазване на API кредитите при публичен endpoint без регистрация.',
+        'solution' => 'System prompt с фиксиран диалект и JSON договор + устойчив парсър; SqlGenerator услуга; file-based fixed-window rate limit в storage/; CORS и опционален Bearer / X-Api-Key токен.',
+        'readme_excerpt' => 'README: PHP 8.1+, anthropic-ai/sdk, claude-opus-5 по подразбиране; POST /api/sql { request, dialect?, schema?, readOnly?, explain? } → { sql, notes, usage }; WAMP/Apache или php -S router.php.',
+        'screenshots' => [],
+        'repo' => 'https://github.com/sasho-krist/sql-builder-ai',
+        'demo' => 'https://sasho-dev.com/sql-builder-ai/',
+    ],
+    [
         'slug' => 'questionnaire-ai',
         'name' => 'questionnaire_ai',
         'pills' => ['PHP', 'Laravel', 'OpenAI'],
