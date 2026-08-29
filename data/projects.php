@@ -13,7 +13,10 @@ return [
         'challenge' => 'Надежден, валиден SQL за правилния диалект от неясен свободен текст; предпазване на API кредитите при публичен endpoint без регистрация.',
         'solution' => 'System prompt с фиксиран диалект и JSON договор + устойчив парсър; SqlGenerator услуга; file-based fixed-window rate limit в storage/; CORS и опционален Bearer / X-Api-Key токен.',
         'readme_excerpt' => 'README: PHP 8.1+, anthropic-ai/sdk, claude-opus-5 по подразбиране; POST /api/sql { request, dialect?, schema?, readOnly?, explain? } → { sql, notes, usage }; WAMP/Apache или php -S router.php.',
-        'screenshots' => [],
+        'screenshots' => [
+            ['url' => 'https://raw.githubusercontent.com/sasho-krist/sql-builder-ai/main/docs/screenshots/1-dark.png', 'caption' => 'Свободен текст → генериран SQL с подсветка и бележки от модела (тъмна тема)'],
+            ['url' => 'https://raw.githubusercontent.com/sasho-krist/sql-builder-ai/main/docs/screenshots/2-light.png', 'caption' => 'Същият изглед в светла тема'],
+        ],
         'repo' => 'https://github.com/sasho-krist/sql-builder-ai',
         'demo' => 'https://sasho-dev.com/sql-builder-ai/',
     ],
