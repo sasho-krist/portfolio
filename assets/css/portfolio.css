@@ -735,7 +735,6 @@ body[data-projects-view="table"] .projects-table-wrap {
 
 .project-card {
   position: relative;
-  padding-top: 28px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -749,10 +748,6 @@ body[data-projects-view="table"] .projects-table-wrap {
 }
 
 .project-meta {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  right: 12px;
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -780,7 +775,7 @@ body[data-projects-view="table"] .projects-table-wrap {
 .project-card h3 {
   font-family: var(--font-display);
   font-size: 1.05rem;
-  margin: 18px 0 0;
+  margin: 10px 0 0;
 }
 
 .project-desc {
