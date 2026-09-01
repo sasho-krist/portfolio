@@ -4,6 +4,27 @@ declare(strict_types=1);
 
 return [
     [
+        'slug' => 'shop-builder',
+        'name' => 'Shop Builder',
+        'pills' => ['PHP', 'Laravel 13', 'React 19', 'Inertia', 'TypeScript', 'Stripe', 'Multi-tenant'],
+        'desc' => 'Multi-tenant SaaS платформа за изграждане на онлайн магазини. Търговец се регистрира, получава магазин на собствен поддомейн (или свързан личен домейн) и управлява всичко — каталог, тема, страници, навигация, поръчки, екип — от визуален админ панел, без код. Конструктор на страници в стил Elementor: ~40 секции, групирани (Оформление / Магазин / Основни / Медия / Съдържание / Разширени), контейнер „Колони“, който се разделя на 2–4 колони с различни елементи във всяка, редактор на тема с дизайн-токени и жива визуализация. Витрина с кошница, checkout (наложен платеж или карта през Stripe) и клиентски акаунти. Целият интерфейс — админ и витрина — е двуезичен, български по подразбиране.',
+        'problem' => 'Малкият бизнес иска онлайн магазин без да наема разработчик и без да опира до бедни drag-and-drop конструктори. А мулти-наемната архитектура (един код, много магазини на поддомейни с изолирани данни) и page builder, който изглежда еднакво в редактора и на живо, са нетривиални за изграждане.',
+        'my_role' => 'Цялостно: мулти-наемна архитектура (`tenant_id` scoping през trait + глобален scope, резолюция на наемателя по заявка хост), Laravel 13 backend, Inertia v3 + React 19 + TypeScript админ панел, page builder с рекурсивни вложени блокове (контейнер „Колони“), Stripe за плащания на витрината и абонаменти на платформата (Cashier), пълна двуезичност (BG/EN), деплой на споделен cPanel/LiteSpeed хостинг с wildcard поддомейни.',
+        'challenge' => 'Един и същ набор от секции да се рендира идентично в редактора и на живата витрина; вложени блокове (колони в контейнер) с рекурсивна валидация и drag-and-drop; строга изолация на данните между магазините; отделен hostname с валиден сертификат за всеки магазин на споделен хостинг.',
+        'solution' => 'Споделен section registry — една дефиниция захранва и editor canvas, и storefront. Вложените блокове са `Block.columns: Block[][]` с рекурсивни helper-и и React context за рендиране без излишни отстъпи. `BelongsToTenant` trait със скрити глобален scope; наемателят се вади от `$request->getHost()`. Wildcard поддомейн `*.shop.sasho-dev.com` + wildcard TLS, така че нов магазин работи веднага без ръчна настройка.',
+        'readme_excerpt' => 'README: Laravel 13, PHP 8.3, Inertia v3 + React 19 + TypeScript, Tailwind 4, MySQL, Pest 4; ~40 page-builder секции (Elementor-style) + контейнер „Колони“; системни страници (home/shop/cart/thankyou); Stripe Checkout + Cashier billing; BG/EN i18n; `composer test` (Pint + PHPStan ниво 9 + Pest, ~200 теста).',
+        'screenshots' => [
+            ['url' => 'https://raw.githubusercontent.com/sasho-krist/shop-builder/main/docs/screenshots/1-editor.png', 'caption' => 'Конструктор на страници — списък със секции, панел с настройки и жива визуализация с реални продукти'],
+            ['url' => 'https://raw.githubusercontent.com/sasho-krist/shop-builder/main/docs/screenshots/2-sections.png', 'caption' => 'Библиотека от ~40 секции, групирани: Оформление / Магазин / Основни / Медия / Съдържание / Разширени'],
+            ['url' => 'https://raw.githubusercontent.com/sasho-krist/shop-builder/main/docs/screenshots/3-columns.png', 'caption' => 'Контейнер „Колони“ — разделя се на 2–4 колони, всяка с отделен стек от елементи'],
+            ['url' => 'https://raw.githubusercontent.com/sasho-krist/shop-builder/main/docs/screenshots/4-storefront.png', 'caption' => 'Витрина на магазин — тема с дизайн-токени, hero и продуктова мрежа'],
+            ['url' => 'https://raw.githubusercontent.com/sasho-krist/shop-builder/main/docs/screenshots/5-theme.png', 'caption' => 'Редактор на тема — цветове, шрифтове, radius, spacing с мини визуализация'],
+            ['url' => 'https://raw.githubusercontent.com/sasho-krist/shop-builder/main/docs/screenshots/6-products.png', 'caption' => 'Продукт с опции и варианти (матрица размер/цвят), SEO полета и изображения'],
+        ],
+        'repo' => 'https://github.com/sasho-krist/shop-builder',
+        'demo' => 'https://shop.sasho-dev.com/',
+    ],
+    [
         'slug' => 'sql-builder-ai',
         'name' => 'SQL Builder',
         'pills' => ['PHP', 'Vanilla JS', 'Anthropic', 'REST API'],
