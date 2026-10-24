@@ -232,6 +232,9 @@
             <span class="chip">Nginx</span>
             <span class="chip">WordPress</span>
             <span class="chip">OpenAI API</span>
+            <span class="chip">PHPStan L9</span>
+            <span class="chip">GitHub Actions</span>
+            <span class="chip">cPanel</span>
           </div>
         </section>
 
@@ -269,9 +272,10 @@
         <section class="section">
           <h2 class="section-title">Professional Summary</h2>
           <p class="summary">
-            Senior Laravel / Full Stack Developer with 7+ years of experience building scalable applications, REST APIs, and AI-powered systems.
-            Specialized in backend architecture, performance optimization, and real-world AI integrations. Built portfolio AI chat assistants and production-grade
-            business platforms across ERP, booking, CMS, and email domains.
+            Senior Laravel / full stack developer with 8 years of experience building business-critical web systems, REST APIs and AI-powered features.
+            For the past year I have been the technical owner and lead developer of BioMarket ERP, a production platform for a retail chain that I started
+            from an empty repository in October 2025. I write the code, review and merge the team's work, ship releases, run the server and backups and manage
+            the database. I am looking for a senior or lead role where one person who owns delivery end to end creates value.
           </p>
         </section>
 
@@ -320,9 +324,9 @@
         <section class="section">
           <h2 class="section-title">AI Skills</h2>
           <ul class="small-list">
-            <li>Hands-on OpenAI API integration in Laravel applications (questionnaires, tests, booking logic)</li>
-            <li>Built AI-powered career assistant for personal portfolio content</li>
-            <li>Prompt engineering, REST AI service consumption, and embedding AI in full-stack products</li>
+            <li>OpenAI API in Laravel applications: generated questionnaires and tests, booking suggestions, SEO content; AI features are optional layers that never block the core flow</li>
+            <li>Prompt engineering, structured outputs with validated answer keys, embedding AI in full stack products, and an AI career assistant on my portfolio</li>
+            <li>Daily use of AI coding assistants (Claude Code) under the same review and quality gate as the rest of the code</li>
           </ul>
         </section>
 
@@ -330,23 +334,34 @@
           <h2 class="section-title">Experience</h2>
 
           <div class="timeline-item">
+            <span class="title">BioMarket / HealthStore - Lead Developer &amp; Technical Owner</span>
+            <span class="period">(Oct 2025 - Present)</span>
+            <ul>
+              <li>Designed and built an internal ERP from scratch (HR and shifts, payroll, warehouse, POS, couriers, B2B, CRM, fleet, internal mail) - Laravel 12, PHP 8.3, MySQL/MariaDB</li>
+              <li>Led delivery for two additional developers: authored 336 of 550 pull requests, merged about 90% of all 599 merged PRs and decided what reaches production</li>
+              <li>Built the quality pipeline: GitHub Actions CI, Pint, PHPStan level 9, parallel PHPUnit (220 test files), Composer audit, and a custom static check that fails any SQL write outside a transaction</li>
+              <li>Run production end to end: cPanel hosting, cron and queue workers, daily database and code backups, a load-aware scheduler for 51 jobs with a daily email report, and schema changes on live data without data loss</li>
+              <li>Integrated Econt, Speedy and Box Now (including signed webhooks), the PRIM supplier API, OpenCart storefronts, IMAP mailboxes, Google Business reviews, bank payout files and Tuya IoT access control</li>
+              <li>Implemented role and category based access control, IP whitelisting and security fixes (XSS, input validation); wrote user and access-control documentation</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
             <span class="title">Devrix - Full Stack Developer</span>
             <span class="period">(2025 - Present)</span>
             <ul>
-              <li>Built and maintained Laravel and WordPress solutions</li>
-              <li>Delivered third-party API integrations</li>
-              <li>Improved application performance and reliability</li>
-              <li>Implemented custom plugins/themes and production bug fixes</li>
+              <li>Built and maintained Laravel and WordPress solutions; delivered third-party API integrations</li>
+              <li>Improved application performance and reliability; implemented custom plugins and themes and fixed production bugs</li>
             </ul>
           </div>
 
           <div class="timeline-item">
             <span class="title">Freelance - Full Stack Developer (ERP / AI / Booking)</span>
-            <span class="period">(Apr 2025 - Jun 2025)</span>
+            <span class="period">(2021 - Present)</span>
             <ul>
-              <li>Built Training and Test Management ERP from scratch with Laravel + Bootstrap</li>
-              <li>Delivered category, test, question, and bulk answer management with access control</li>
-              <li>Implemented learning/test modes, result tracking, and permission-based content flows</li>
+              <li>Delivered ERP systems, AI platforms and booking solutions covering architecture, REST APIs and deployment</li>
+              <li>Projects include CO2 impact systems, a real estate CMS and donation platform integrations</li>
+              <li>Apr 2025: built a Training and Test Management ERP with Laravel and Bootstrap: categories, tests, questions, bulk answers, learning and test modes, result tracking and permission-based content</li>
             </ul>
           </div>
 
@@ -355,7 +370,7 @@
             <span class="period">(Sep 2023 - Apr 2025)</span>
             <ul>
               <li>Backend development for voucher systems and REST APIs</li>
-              <li>Built new features, fixed production bugs, and developed custom WordPress plugins</li>
+              <li>Built new features, fixed production bugs and developed custom WordPress plugins</li>
             </ul>
           </div>
 
@@ -369,22 +384,10 @@
           </div>
 
           <div class="timeline-item">
-            <span class="title">Shippii Technologies - Laravel / OctoberCMS Backend</span>
+            <span class="title">Shippii Technologies - Laravel / OctoberCMS Backend Developer</span>
             <span class="period">(Nov 2019 - May 2021)</span>
             <ul>
-              <li>Worked on shipping platform architecture and refactoring initiatives</li>
-              <li>Implemented features and resolved backend issues in production systems</li>
-            </ul>
-          </div>
-
-          <div class="timeline-item">
-            <span class="title">Freelance - Full Stack Developer</span>
-            <span class="period">(2021 - Present)</span>
-            <ul>
-              <li>Delivered ERP systems, AI platforms, and booking solutions</li>
-              <li>Designed scalable backend structures and REST APIs</li>
-              <li>Handled full delivery lifecycle from architecture to deployment</li>
-              <li>Projects include CO impact systems, real estate CMS, and donation platform integrations</li>
+              <li>Worked on a shipping platform: architecture, refactoring, new features and production backend issues</li>
             </ul>
           </div>
         </section>

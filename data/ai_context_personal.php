@@ -23,6 +23,9 @@ return [
 · Стаж: 2016–2017 Intellia — WordPress (теми, плъгини, миграции, бъгове).
 
 Текуща и скорошна работа (от base knowledge):
+· От окт. 2025 — BioMarket / HealthStore, Lead Developer & Technical Owner: ERP от нулата (HR и смени, ТРЗ, склад, POS, куриери, B2B, CRM, автопарк, вътрешна поща), Laravel 12, PHP 8.3, MySQL/MariaDB; 2 083 комита за 13 месеца, 260 PR-а в продукция за 9 месеца, 673 миграции върху живи данни, 51 планирани задачи; водя двама допълнителни разработчици (336 от 550 PR-а мои, ~90% от 599 слети PR-а минават през мен); quality gate (GitHub Actions, Pint, PHPStan 9, ParaTest, проверка за SQL извън транзакция); поддържам продукцията (cPanel, cron, queue, бекъпи). Интеграции: Еконт, Спиди, Box Now, PRIM, OpenCart, IMAP, Google Business, банкови файлове, Tuya IoT.
+· 2025 — настояще: Devrix, Full Stack Developer (Laravel и WordPress, API интеграции, custom плъгини и теми).
+· 2021 — настояще: Freelance, ERP / AI / резервации (вкл. ERP за обучения и тестове, апр. 2025).
 · Freelance / разработчик в Pavelandreev.bg — REST API (DeepL, IP локализация), интеграция Paysera, нов дизайн; Laravel, PHP, MySQL, Ajax, JavaScript.
 · Bteam (посочено като текущ контекст в базата) — ваучерна/свързана система (виж и портфолио за детайли).
 · 2021.06–2023.06 — Looming Tech: Laravel, Orchid admin, REST API (UK училище, UK телефон), MySQL, Ajax, JS; Monizze — белгийски ваучери, Laravel, REST, Vue.js, Docker, рефакторинг, нови функции.
@@ -62,6 +65,9 @@ Education:
 · Internship 2016–2017 Intellia — WordPress (themes, plugins, migrations, fixes).
 
 Work experience (base knowledge + CV-style):
+· Since Oct 2025 — BioMarket / HealthStore, Lead Developer & Technical Owner: built the ERP from scratch (HR and shifts, payroll, warehouse, POS, couriers, B2B, CRM, fleet, internal mail), Laravel 12, PHP 8.3, MySQL/MariaDB; 2,083 commits in 13 months, 260 PRs released to production in 9 months, 673 migrations on live data, 51 scheduled jobs; leads two additional developers (authored 336 of 550 PRs, merged ~90% of all 599 merged PRs); quality gate (GitHub Actions, Pint, PHPStan 9, ParaTest, check for SQL writes outside a transaction); runs production (cPanel, cron, queues, backups). Integrations: Econt, Speedy, Box Now, PRIM, OpenCart, IMAP, Google Business, bank files, Tuya IoT.
+· 2025 — present: Devrix, Full Stack Developer (Laravel and WordPress, API integrations, custom plugins and themes).
+· 2021 — present: Freelance, ERP / AI / booking (including a Training and Test ERP, Apr 2025).
 · Current: freelance developer at Pavelandreev.bg — REST APIs (DeepL, IP localization), Paysera payment integration, new design implementation; Laravel, PHP, MySQL, Ajax, JavaScript.
 · Bteam noted as current in knowledge base (voucher-related work; see portfolio for public details).
 · 2021.06–2023.06 — Looming Tech: Laravel, Orchid admin, REST API (UK school, UK phone), MySQL, Ajax, JS; Monizze — Belgian voucher system, Laravel, REST, Vue.js, Docker, refactoring, features, bug fixes.

@@ -53,11 +53,11 @@ return [
     [
         'slug' => 'biomarket-erp',
         'title' => 'BioMarket ERP — вътрешна платформа за верига магазини',
-        'context' => 'BioMarket / HealthStore · HR, склад, POS, PRIM',
+        'context' => 'BioMarket / HealthStore · Lead Developer & Technical Owner · от окт. 2025',
         'problem' => 'Разпокъсани процеси между магазини, склад и администрация; нужда от единна система за графици, обучения, payroll и интеграции.',
-        'approach' => 'Laravel монолит с модулна структура, Blade UI, опашки и cron за синхронизации към PRIM; ясни роли и права по обекти.',
+        'approach' => 'Laravel монолит със сервизни класове по домейни, Blade UI, опашки, load-aware scheduler за 51 задачи, автоматични бекъпи и задължителен quality gate (Pint, PHPStan 9, ParaTest, audit, проверка за транзакции) преди всяко сливане; роли и права по категории с IP whitelisting.',
         'stack' => ['Laravel', 'PHP 8', 'MySQL', 'Blade', 'REST / PRIM'],
-        'outcome' => 'Централизирани HR и оперативни процеси, проследими обучения и тестове, по-малко ръчни грешки между обектите.',
+        'outcome' => 'Таблици и ръчни процеси са заменени с една система, която се ползва ежедневно от персонала в магазините, склада и офиса: 2 083 комита за 13 месеца, 260 pull requests в продукция за 9 месеца и 673 миграции върху живи данни.',
     ],
     [
         'slug' => 'wordpress-laravel-api',
