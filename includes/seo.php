@@ -136,7 +136,7 @@ function portfolio_seo_json_ld(array $profile, string $canonicalUrl, ?string $og
             '@type' => 'Person',
             '@id' => $personId,
             'name' => $profile['name'],
-            'alternateName' => ['Alexander Keremidarov', 'Aleksander Keremidarov'],
+            'alternateName' => ['Alexander Keremidarov', 'Alexander Keremidarov'],
             'jobTitle' => $profile['title'] ?? 'Web Developer',
             'description' => $pageDescription,
             'url' => $canonicalUrl,

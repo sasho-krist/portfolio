@@ -2,7 +2,7 @@
 # Used together with data/ai_context_personal.php for the site AI chat.
 # Edit ai_context_personal.php (bg/en) when changing facts — keep this file in sync if you use it as scratchpad.
 
-Aleksander Keremidarov
+Alexander Keremidarov
 alexander.krist@gmail.com
 Sofia, Bulgaria
 Phone: +359 877750552

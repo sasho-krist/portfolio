@@ -53,7 +53,7 @@ return [
 Интересни факти: гледа Ф1; ходи на мачове на Левски; харесва да ходи в парка с кучето.
 TXT,
     'en' => <<<'TXT'
-Contact: Aleksander Keremidarov · alexander.krist@gmail.com · Phone +359 877750552 · Sofia, Bulgaria.
+Contact: Alexander Keremidarov · alexander.krist@gmail.com · Phone +359 877750552 · Sofia, Bulgaria.
 Also goes by: Alex, Sasho.
 
 Beliefs (as shared): "To achieve anything requires perseverance, hard work and faith that you will succeed." Team player, goal-oriented, structured, open-minded, quick learner, builds trust and strong relationships, does not give up.

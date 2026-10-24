@@ -103,7 +103,7 @@ return [
     'contact_name_placeholder' => 'Your name',
     'contact_email_label' => 'Email',
     'contact_message' => 'Message',
-    'contact_placeholder' => 'Hi Aleksander…',
+    'contact_placeholder' => 'Hi Alexander…',
     'contact_privacy' => 'By sending the form you accept processing of personal data only to reply to your message.',
     'contact_privacy_link' => 'Privacy policy',
     'contact_submit' => 'Send',

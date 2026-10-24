@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 return [
-    'name' => 'Aleksander Keremidarov',
+    'name' => 'Alexander Keremidarov',
     'title' => 'Senior Full Stack Developer',
     'tagline' => 'Senior Laravel / PHP разработчик с AI интеграции — технически собственик на BioMarket ERP, продукционна платформа за търговска верига.',
     'tagline_en' => 'Senior Laravel / PHP developer with AI integrations — technical owner of BioMarket ERP, a production platform for a retail chain.',
@@ -17,14 +17,14 @@ return [
     // Насрочване на срещи (Google Календар → Настройки → „Насрочване на срещи“ / appointment schedule).
     // Ако линкът показва „Срещата не бе намерена“, създай ново насрочване и подмени URL-а или задай CALENDAR_URL в .env
     'calendar' => 'https://calendar.app.google/VrS5H47ZJH7uKdNL7',
-    'seo_title' => 'Aleksander Keremidarov | Senior Laravel / PHP Developer · Sofia',
-    'seo_title_en' => 'Aleksander Keremidarov | Senior Laravel / PHP Developer · Sofia',
-    'seo_description' => 'Aleksander Keremidarov — Senior Laravel / PHP full stack разработчик в София с 8 години опит. Технически собственик на BioMarket ERP, REST API, AI интеграции с OpenAI. Портфолио и контакт.',
-    'seo_description_en' => 'Aleksander Keremidarov — Senior Laravel / PHP full stack developer in Sofia with 8 years of experience. Technical owner of BioMarket ERP, REST APIs, OpenAI integrations. Portfolio and contact.',
+    'seo_title' => 'Alexander Keremidarov | Senior Laravel / PHP Developer · Sofia',
+    'seo_title_en' => 'Alexander Keremidarov | Senior Laravel / PHP Developer · Sofia',
+    'seo_description' => 'Alexander Keremidarov — Senior Laravel / PHP full stack разработчик в София с 8 години опит. Технически собственик на BioMarket ERP, REST API, AI интеграции с OpenAI. Портфолио и контакт.',
+    'seo_description_en' => 'Alexander Keremidarov — Senior Laravel / PHP full stack developer in Sofia with 8 years of experience. Technical owner of BioMarket ERP, REST APIs, OpenAI integrations. Portfolio and contact.',
     'seo_keywords' => [
         'sasho-dev',
         'Alexander Keremidarov',
-        'Aleksander Keremidarov',
+        'Alexander Keremidarov',
         'Александър Керемидаров',
         'PHP developer',
         'Laravel developer',

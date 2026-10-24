@@ -78,7 +78,7 @@ return [
         [
             'title' => 'Career & experience',
             'questions' => [
-                'Where is Aleksander working now and what does he do?',
+                'Where is Alexander working now and what does he do?',
                 'What did he do at Pavelandreev.bg (Paysera, APIs, design)?',
                 'Summarize his time at Looming Tech and Monizze.',
                 'What did his role at Bteam involve regarding vouchers?',
@@ -118,7 +118,7 @@ return [
                 'Which pets are mentioned and what are their names?',
                 'Which relatives live in Denmark?',
                 'How is his home in Sofia described?',
-                'What nicknames does he go by besides Aleksander?',
+                'What nicknames does he go by besides Alexander?',
             ],
         ],
         [
